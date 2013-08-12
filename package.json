@@ -1,0 +1,24 @@
+{
+  "name": "reveal-template",
+  "version": "0.0.1",
+  "description": "Template for reveal.js",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mrkelly/reveal-template.git"
+  },
+  "keywords": [
+    "reveal",
+    "template",
+    "js",
+    "presentation"
+  ],
+  "author": "Michael Kelly",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mrkelly/reveal-template/issues"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1"
+  }
+}
