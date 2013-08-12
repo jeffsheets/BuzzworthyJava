@@ -11,6 +11,6 @@
   "dependencies": {
     "reveal.js": "~2.4.0",
     "jquery.classList": "*",
-    "headjs": "*"
+    "headjs": "b8189f180c340fa34a8e197d11bed47b7f03e78d"
   }
 }

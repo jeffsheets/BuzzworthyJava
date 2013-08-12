@@ -24,9 +24,9 @@ module.exports = function(grunt) {
       combine : {
         files : {
           'dist/assets/css/style.css':[
-          'dist/temp/style.css',
           'src/assets/js/components/reveal.js/css/reveal.css',
-          'src/assets/js/components/reveal.js/lib/css/zenburn.css'
+          'src/assets/js/components/reveal.js/lib/css/zenburn.css',
+          'dist/temp/style.css'
           ]
         }
       }
@@ -37,12 +37,20 @@ module.exports = function(grunt) {
         src : [
           // Reveal.js
           'src/assets/js/components/headjs/dist/head.js',
-          'src/assets/js/components/reveal.js/lib/js/classList.js',
           'src/assets/js/components/reveal.js/js/reveal.js',
-          'src/assets/js/reveal.init.js'
+          'src/assets/js/components/reveal.js/lib/js/classList.js',
+
+          // Reveal.js Plugins
+          'src/assets/js/components/reveal.js/plugin/markdown/marked.js',
+          'src/assets/js/components/reveal.js/plugin/markdown/markdown.js',
+          'src/assets/js/components/reveal.js/plugin/highlight/highlight.js',
+          'src/assets/js/components/reveal.js/plugin/zoom-js/zoom.js',
+
+          //Presentation init
+          'src/js/reveal.init.js'
         ],
 
-        dest: 'dist/assets/js/app.js'
+        dest: 'dist/temp/app.js'
       }
     },
 
@@ -70,13 +78,27 @@ module.exports = function(grunt) {
       }
     },
 
+    copy: {
+      vendor : {
+        files: [
+          {
+            expand: true,
+            cwd: 'src/assets/js/components/reveal.js/lib/font',
+            src:['**'],
+            dest:'dist/assets/font'
+          }
+        ]
+      },
+
+    },
+
     watch : {
       options : {
         livereload: true
       },
       src: {
         files: [
-          'src/**/*'
+        'src/**/*'
         ],
         tasks: ['assemble']
       }
@@ -99,12 +121,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jade');
+  grunt.loadNpmTasks("grunt-contrib-copy");
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-connect');
 
   // Default task(s).
   grunt.registerTask('default', ['assemble']);
-  grunt.registerTask('assemble', ['clean:pre', 'less', 'cssmin', 'concat', 'jade', 'clean:post']);
+  grunt.registerTask('assemble', ['clean:pre', 'less', 'cssmin', 'concat', 'uglify', 'jade', 'copy', 'clean:post']);
   grunt.registerTask('run', ['connect', 'watch']);
 
 };
