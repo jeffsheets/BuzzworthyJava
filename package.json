@@ -1,6 +1,6 @@
 {
   "name": "reveal-template",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Template for reveal.js",
   "main": "index.js",
   "repository": {
