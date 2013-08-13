@@ -4,12 +4,19 @@
 @body-gradient-start:         #eee;
 @body-gradient-end:           #888;
 @text-color:                  #333;
+
 @logo-width:                  742px;
 @logo-height:                 267px;
 @logo-default-scale:          0.3;
 @logo-default-opacity:        0.5;
 @logo-overview-opacity:       0.1;
+@logo-red-color:              #ee311d;
 
+@link-color:                  darken(desaturate(@logo-red-color, 20%), 10%);
+@link-hover-color:            desaturate(@link-color, 10%);
+@link-roll-bg:                darken(desaturate(@logo-red-color, 20%), 25%);
+@nav-arrow-color:             darken(desaturate(@logo-red-color, 20%), 10%);
+@nav-arrow-hover-color:       desaturate(lighten(@nav-arrow-color, 10%), 10%);
 
 body {
   .gradient(radial-gradient(center, circle cover, @body-gradient-start 0%, @body-gradient-end 100%));
@@ -72,12 +79,12 @@ body {
     letter-spacing: -0.05em;
     text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
   }
-  h1 { font-size: ceil(@font-size-base * 8.1 ); }
-  h2 { font-size: ceil(@font-size-base * 3.85 ); }
-  h3 { font-size: ceil(@font-size-base * 3 ); }
-  h4 { font-size: ceil(@font-size-base * 2.15 ); }
-  h5 { font-size:  @font-size-base; }
-  h6 { font-size: ceil(@font-size-base * 1.45 ); }
+  h1 { font-size: ceil(@font-size-base * 8.1);  }
+  h2 { font-size: ceil(@font-size-base * 3.85); }
+  h3 { font-size: ceil(@font-size-base * 3);    }
+  h4 { font-size: ceil(@font-size-base * 2.15); }
+  h5 { font-size: @font-size-base;              }
+  h6 { font-size: ceil(@font-size-base * 1.45); }
 }
 
 /*********************************************
@@ -85,13 +92,13 @@ body {
  *********************************************/
 .reveal {
   a:not(.image) {
-    color: #3b759e;
+    color: @link-color;
     text-decoration: none;
     .transition-property(color);
     .transition-duration(0.15s);
     .transition-timing-function(ease);
     &:hover {
-      color: #74a7cb;
+      color: @link-hover-color;
       text-shadow: none;
       border: none;
     }
@@ -100,7 +107,7 @@ body {
 
 .reveal .roll span:after {
   color: #fff;
-  background: #264c66;
+  background: @link-roll-bg;
 }
 
 /*********************************************
@@ -125,33 +132,45 @@ body {
 /*********************************************
  * NAVIGATION CONTROLS
  *********************************************/
-.reveal .controls div.navigate-left,
-.reveal .controls div.navigate-left.enabled {
-  border-right-color: #3b759e; }
+.reveal .controls {
+  div {
+    &.navigate-left,
+    &.navigate-left.enabled {
+      border-right-color: @nav-arrow-color;
+    }
 
-.reveal .controls div.navigate-right,
-.reveal .controls div.navigate-right.enabled {
-  border-left-color: #3b759e; }
+    &.navigate-right,
+    &.navigate-right.enabled {
+      border-left-color: @nav-arrow-color;
+    }
 
-.reveal .controls div.navigate-up,
-.reveal .controls div.navigate-up.enabled {
-  border-bottom-color: #3b759e; }
+    &.navigate-up,
+    &.navigate-up.enabled {
+      border-bottom-color: @nav-arrow-color;
+    }
 
-.reveal .controls div.navigate-down,
-.reveal .controls div.navigate-down.enabled {
-  border-top-color: #3b759e; }
+    &.navigate-down,
+    &.navigate-down.enabled {
+      border-top-color: @nav-arrow-color;
+    }
 
-.reveal .controls div.navigate-left.enabled:hover {
-  border-right-color: #74a7cb; }
+    &.navigate-left.enabled:hover {
+      border-right-color: @nav-arrow-hover-color;
+    }
 
-.reveal .controls div.navigate-right.enabled:hover {
-  border-left-color: #74a7cb; }
+    &.navigate-right.enabled:hover {
+      border-left-color: @nav-arrow-hover-color;
+    }
 
-.reveal .controls div.navigate-up.enabled:hover {
-  border-bottom-color: #74a7cb; }
+    &.navigate-up.enabled:hover {
+      border-bottom-color: @nav-arrow-hover-color;
+    }
 
-.reveal .controls div.navigate-down.enabled:hover {
-  border-top-color: #74a7cb; }
+    &.navigate-down.enabled:hover {
+      border-top-color: @nav-arrow-hover-color;
+    }
+  }
+}
 
 /*********************************************
  * PROGRESS BAR
