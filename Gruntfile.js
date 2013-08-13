@@ -24,9 +24,8 @@ module.exports = function(grunt) {
       combine : {
         files : {
           'dist/assets/css/style.css':[
-          'src/assets/js/components/reveal.js/css/reveal.css',
-          'src/assets/js/components/reveal.js/lib/css/zenburn.css',
-          'dist/temp/style.css'
+            'src/assets/js/components/reveal.js/lib/css/zenburn.css',
+            'dist/temp/style.css'
           ]
         }
       }
@@ -84,6 +83,12 @@ module.exports = function(grunt) {
           {
             expand: true,
             cwd: 'src/assets/js/components/reveal.js/lib/font',
+            src:['**'],
+            dest:'dist/assets/font'
+          },
+          {
+            expand: true,
+            cwd: 'src/assets/js/components/font-awesome/font',
             src:['**'],
             dest:'dist/assets/font'
           }
