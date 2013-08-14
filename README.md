@@ -1,18 +1,18 @@
-reveal-template
+UP Lunch and Learn
 ===============
 
-#Reveal.js Template
+#UP Lunch and Learn
 
-
-## Dependencies
+#Slides
+### Dependencies
 * Node
 * Bower
 
-##Getting Started
+###Getting Started
 * Run `npm install` to install node dependencies
 * Run `bower install` to install client-side dependencies
 
-##Grunt Commands
+###Grunt Commands
 * `grunt assemble`
   * Minify/uglify the javascript source and css
   * Compiles jade
