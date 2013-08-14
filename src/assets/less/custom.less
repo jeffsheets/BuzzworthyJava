@@ -2,12 +2,292 @@
   font-style: inherit;
 }
 
-.reveal section img {
-  &.angular-logo {
-    width: 256px;
+
+.index-section {
+  .sliding-image-container {
+    position: relative;
+    width: auto;
     height: 256px;
-    border: none;
-    background: none;
-    box-shadow: none;
+    margin-bottom: 30px;
   }
+
+  .fading-header-container {
+    position: relative;
+    width: auto;
+    height: auto;
+    margin-top: -30px;
+    h1 {
+      position: absolute;
+      margin-top: 10px;
+      left: 0;
+      right: 0;
+      opacity: 0;
+    }
+  }
+
+  p {
+    padding-top: 110px;
+  }
+
+  .animate-logos {
+    &.angular {
+      -webkit-animation: anuglarlogo 20s infinite ease;
+    }
+    &.grunt {
+      -webkit-animation: gruntlogo 20s infinite ease;
+    }
+    &.yeoman {
+      -webkit-animation: yeomanlogo 20s infinite ease;
+    }
+    &.bootstrap {
+      -webkit-animation: bootstraplogo 20s infinite ease;
+      -webkit-animation-delay: 1s;
+    }
+  }
+
+  .animate-headers {
+    &.angular {
+      -webkit-animation: anuglarheader 20s infinite ease;
+    }
+    &.grunt {
+      -webkit-animation: gruntheader 20s infinite ease;
+    }
+    &.yeoman {
+      -webkit-animation: yeomanheader 20s infinite ease;
+    }
+    &.bootstrap {
+      -webkit-animation: bootstrapheader 20s infinite ease;
+      -webkit-animation-delay: 1s;
+    }
+  }
+
+  img {
+    &.angular,
+    &.grunt,
+    &.yeoman,
+    &.bootstrap {
+      position:absolute;
+      margin-left: 2000px;
+      width: 256px;
+      height: 256px;
+      border: none;
+      background: none;
+      box-shadow: none;
+    }
+  }
+
+
+}
+
+
+.index-slide {
+
+}
+
+@-webkit-keyframes anuglarlogo {
+
+  0% {
+    margin-left: 2000px;
+  }
+
+  5% {
+    margin-left: -128px;
+  }
+
+  20% {
+    margin-left: -128px;
+  }
+
+  25% {
+    margin-left: -2000px;
+  }
+
+  100% {
+    margin-left: -2000px;
+  }
+
+}
+
+@-webkit-keyframes gruntlogo {
+
+  0% {
+    margin-left: 2000px;
+  }
+
+  22% {
+    margin-left: 2000px;
+  }
+
+  27% {
+    margin-left: -128px;
+  }
+
+  45% {
+    margin-left: -128px;
+  }
+
+  50% {
+    margin-left: -2000px;
+  }
+
+  100% {
+    margin-left: -2000px;
+  }
+
+}
+
+@-webkit-keyframes yeomanlogo {
+
+  0% {
+    margin-left: 2000px;
+  }
+
+  47% {
+    margin-left: 2000px;
+  }
+
+  52% {
+    margin-left: -128px;
+  }
+
+  70% {
+    margin-left: -128px;
+  }
+
+  75% {
+    margin-left: -2000px;
+  }
+
+  100% {
+    margin-left: -2000px;
+  }
+
+}
+
+@-webkit-keyframes bootstraplogo {
+
+  0% {
+    margin-left: 2000px;
+  }
+
+  70% {
+    margin-left: 2000px;
+  }
+
+  75% {
+    margin-left: -128px;
+  }
+
+  95% {
+    margin-left: -128px;
+  }
+
+  100% {
+    margin-left: -2000px;
+  }
+
+}
+
+@-webkit-keyframes anuglarheader {
+
+  0% {
+    opacity: 0;
+  }
+
+  5% {
+    opacity: 1;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  25% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+
+}
+
+@-webkit-keyframes gruntheader {
+
+  0% {
+    opacity: 0;
+  }
+
+  22% {
+    opacity: 0;
+  }
+
+  27% {
+    opacity: 1;
+  }
+
+  45% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+
+}
+
+@-webkit-keyframes yeomanheader {
+
+  0% {
+    opacity: 0;
+  }
+
+  47% {
+    opacity: 0;
+  }
+
+  52% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 1;
+  }
+
+  75% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+
+}
+
+@-webkit-keyframes bootstrapheader {
+
+  0% {
+    opacity: 0;
+  }
+
+  70% {
+    opacity: 0;
+  }
+
+  75% {
+    opacity: 1;
+  }
+
+  95% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+
 }

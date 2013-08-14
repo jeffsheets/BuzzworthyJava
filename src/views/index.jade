@@ -21,9 +21,17 @@ html(class="no-js", ng-app="main")
     .reveal
       .opi-logo
       .slides
-        section(data-state="index-slide")
-          img.angular-logo(src="assets/img/angular.png")
-          h1 Angular.js
+        section.index-section(data-state="index-slide")
+          .sliding-image-container
+            img.animate-logos.angular(src="assets/img/angular.png")
+            img.animate-logos.grunt(src="assets/img/grunt-logo.png")
+            img.animate-logos.yeoman(src="assets/img/yeoman-logo.png")
+            img.animate-logos.bootstrap(src="assets/img/bootstrap-logo.png")
+          .fading-header-container
+            h1.animate-headers.angular Angular.js
+            h1.animate-headers.grunt Grunt.js
+            h1.animate-headers.yeoman Yeoman
+            h1.animate-headers.bootstrap Bootstrap
           p
             small Union Pacific Lunch and Learn
 
