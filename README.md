@@ -1,18 +1,16 @@
 UP Lunch and Learn
 ===============
 
-#UP Lunch and Learn
-
-#Slides
-### Dependencies
+##Slides
+#### Dependencies
 * Node
 * Bower
 
-###Getting Started
+####Getting Started
 * Run `npm install` to install node dependencies
 * Run `bower install` to install client-side dependencies
 
-###Grunt Commands
+####Grunt Commands
 * `grunt assemble`
   * Minify/uglify the javascript source and css
   * Compiles jade
