@@ -24,9 +24,8 @@ module.exports = function(grunt) {
       combine : {
         files : {
           'dist/assets/css/style.css':[
-          'src/assets/js/components/reveal.js/css/reveal.css',
-          'src/assets/js/components/reveal.js/lib/css/zenburn.css',
-          'dist/temp/style.css'
+            'src/assets/js/components/reveal.js/lib/css/zenburn.css',
+            'dist/temp/style.css'
           ]
         }
       }
@@ -86,6 +85,12 @@ module.exports = function(grunt) {
             cwd: 'src/assets/js/components/reveal.js/lib/font',
             src:['**'],
             dest:'dist/assets/font'
+          },
+          {
+            expand: true,
+            cwd: 'src/assets/js/components/font-awesome/font',
+            src:['**'],
+            dest:'dist/assets/font'
           }
         ]
       },
@@ -123,6 +128,16 @@ module.exports = function(grunt) {
       }
     },
 
+    shell : {
+      publish : {
+        options: {
+          stdout: true,
+          stderr: true
+        },
+        command: 'git subtree split --branch gh-pages --prefix dist/'
+      }
+    }
+
   });
 
   grunt.loadNpmTasks('grunt-contrib-clean');
@@ -134,10 +149,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-copy");
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-shell');
 
   // Default task(s).
   grunt.registerTask('default', ['assemble']);
   grunt.registerTask('assemble', ['clean:pre', 'less', 'cssmin', 'concat', 'uglify', 'jade', 'copy', 'clean:post']);
   grunt.registerTask('run', ['connect', 'watch']);
+  grunt.registerTask('publish', ['assemble', 'shell:publish']);
 
 };
