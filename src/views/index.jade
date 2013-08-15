@@ -178,8 +178,23 @@ html(class="no-js", ng-app="main")
                 ul
                   li Applying optimization transforms
                   li Mangling variables
-                  li Analyzing the scope for unused items
+                  li Analyzing the scope
+              li As an added benefit, your source code is obsfucated
 
+          section
+            h3 Minification Example
+            p Minification results on a real project
+            ul
+              li 
+                strong Original 
+                | 2611949 bytes (2.49MB)
+              li 
+                strong Minified 
+                | 996966 bytes (973.5KB)
+              li 
+                strong Gzipped 
+                | 170552 bytes (166.5KB)
+              li 15:1 Compression ratio
 
           section
             h3 Templates
@@ -263,21 +278,21 @@ html(class="no-js", ng-app="main")
               a(href="http://phantomjs.org/", target="_blank") PhantomJS
             p Phantom JS is a headless WebKit browser
             ul.icons-ul
-              li.
-                <i class="icon-li icon-ok"></i>
-                Works out of the box
-              li.
-                <i class="icon-li icon-ok"></i>
-                Scriptable API
-              li.
-                <i class="icon-li icon-ok"></i>
-                Performance reporting
-              li.
-                <i class="icon-li icon-remove"></i>
-                Firefox anyone?
-              li.
-                <i class="icon-li icon-remove"></i>
-                It's a WebKit port, not a real browser
+              li
+                i.icon-li.icon-ok
+                | Works out of the box
+              li
+                i.icon-li.icon-ok
+                | Scriptable API
+              li
+                i.icon-li.icon-ok
+                | Performance reporting
+              li
+                i.icon-li.icon-remove
+                | Not comparable with Firefox
+              li
+                i.icon-li.icon-remove
+                | It's a WebKit port, not a real browser
           section
             h3
               a(href="http://en.wikipedia.org/wiki/Xvfb", target="_blank") Xvfb
@@ -285,18 +300,18 @@ html(class="no-js", ng-app="main")
               <strong>X</strong> <strong>V</strong>irtual <strong>F</strong>rame <strong>B</strong>uffer
               provides a virtual X11 server on a headless device for GUI applications.
             ul.icons-ul
-              li.
-                <i class="icon-li icon-ok"></i>
-                Color depth and resolutions are customizable
-              li.
-                <i class="icon-li icon-ok"></i>
-                Easy to install and configure
-              li.
-                <i class="icon-li icon-ok"></i>
-                Test with Chrome, Firefox, etc.
-              li.
-                <i class="icon-li icon-remove"></i>
-                *nix only
+              li
+                i.icon-li.icon-ok
+                | Color depth and resolutions are customizable
+              li
+                i.icon-li.icon-ok
+                | Easy to install and configure
+              li
+                i.icon-li.icon-ok
+                | Test with Chrome, Firefox, etc.
+              li
+                i.icon-li.icon-remove
+                | *nix only
 
           section
             h3 Examples
@@ -351,6 +366,13 @@ html(class="no-js", ng-app="main")
 
             a(href="https://github.com/joshdmiller/ng-boilerplate") ng-boilerplate on Github
 
+        section
+          section
+            h2 Conclusion
+          section
+            h1
+              i.icon-question-sign
+            h2 Questions
 
         //- section
         //-   h2 Heads Up
