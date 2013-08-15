@@ -187,7 +187,88 @@ watch : {
             <h2>Continuous Integration</h2>
           </section>
           <section>
-            <h3>How we run tests</h3>
+            <h3>Jenkins</h3>
+            <ul>
+              <li>Works out of the box</li>
+              <li>Uses development tools</li>
+              <li>Run commands as you would locally</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Git source control</h3>
+            <ul>
+              <li>Building a single branch</li>
+              <li>Building multiple branches</li>
+              <li>Special considerations with the workspace</li>
+            </ul>
+          </section>
+          <section>
+            <h3>The Process</h3>
+            <ul>
+              <li>Install NPM and Bower packages</li>
+              <li>Run the assembly task</li>
+              <li>Test</li>
+              <li>Record the JUnit test results</li>
+            </ul>
+          </section>
+          <section>
+            <h3>More on Tests</h3>
+            <p>More than likely your CI will be running on a headless OS. How do you run end-to-end tests with no display?</p>
+          </section>
+          <section>
+            <h3><a href="http://phantomjs.org/" target="_blank">PhantomJS</a></h3>
+            <p>Phantom JS is a headless WebKit browser</p>
+            <ul class="icons-ul">
+              <li>
+                <i class="icon-li icon-ok"></i>
+                Works out of the box
+              </li>
+              <li>
+                <i class="icon-li icon-ok"></i>
+                Scriptable API
+              </li>
+              <li>
+                <i class="icon-li icon-ok"></i>
+                Performance reporting
+              </li>
+              <li>
+                <i class="icon-li icon-remove"></i>
+                Firefox anyone?
+              </li>
+              <li>
+                <i class="icon-li icon-remove"></i>
+                It's a WebKit port, not a real browser
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h3><a href="http://en.wikipedia.org/wiki/Xvfb" target="_blank">Xvfb</a></h3>
+            <p>
+              <strong>X</strong> <strong>V</strong>irtual <strong>F</strong>rame <strong>B</strong>uffer
+              provides a virtual X11 server on a headless device for GUI applications.
+            </p>
+            <ul class="icons-ul">
+              <li>
+                <i class="icon-li icon-ok"></i>
+                Color depth and resolutions are customizable
+              </li>
+              <li>
+                <i class="icon-li icon-ok"></i>
+                Easy to install and configure
+              </li>
+              <li>
+                <i class="icon-li icon-ok"></i>
+                Test with Chrome, Firefox, etc.
+              </li>
+              <li>
+                <i class="icon-li icon-remove"></i>
+                *nix only
+                
+              </li>
+            </ul>
+          </section>
+          <section>
+            <h3>Examples</h3>
           </section>
         </section>
         <section>
