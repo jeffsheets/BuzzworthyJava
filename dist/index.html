@@ -173,7 +173,7 @@ watch : {
                   <li>Analyzing the scope</li>
                 </ul>
               </li>
-              <li>As an added benefit, your source code is obsfucated</li>
+              <li>As an added benefit: your source code is obsfucated</li>
             </ul>
           </section>
           <section>
@@ -184,6 +184,17 @@ watch : {
               <li> <strong>Minified </strong>996966 bytes (973.5KB)</li>
               <li> <strong>Gzipped </strong>170552 bytes (166.5KB)</li>
               <li>15:1 Compression ratio</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Special Considerations</h3>
+            <p>Because of mangling, Angular dependency injection and "Pretotyping" no longer works and leads to the infamous:</p>
+            <pre><code data-trim contenteditable>
+Uncaught Error: Unknown provider: aProvider <- a
+</code></pre>
+            <ul>
+              <li>Convert all modules and components to string argument style  </li>
+              <li>Lets take a look</li>
             </ul>
           </section>
           <section>
@@ -202,18 +213,42 @@ watch : {
           </section>
           <section>
             <h3> <a href="http://momentjs.com/" target="_blank">moment.js</a></h3>
+            <p>Arguably the best date formatting library on the planet</p>
+            <ul>
+              <li>Formatting</li>
+              <li>Internationalization</li>
+              <li>Calculations</li>
+              <li>Fuzzy dates</li>
+            </ul>
           </section>
           <section>
-            <h3> <a href="" target="_blank">add-to-homescreen</a></h3>
+            <h3> <a href="https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-Browser-Polyfills" target="_blank">HTML5 Shims and Polyfills</a></h3>
+            <p>A long list of libraries for providing standard HTML4 and HTML5 capabilities in "web browsers" (IE)</p>
+            <ul>
+              <li>SVG</li>
+              <li>Form Elements</li>
+              <li>Web Sockets</li>
+              <li>Browser state</li>
+            </ul>
           </section>
           <section>
             <h3> <a href="https://github.com/scottjehl/Respond" target="_blank">respond.js</a></h3>
+            <p>respond.js is a CSS3 polyfill for basic media queries.</p>
+            <ul>
+              <li>Automatic browser detection</li>
+              <li>Fast and lightweight</li>
+              <li>Works great with Twitter Bootstrap</li>
+              <li>Has a few <a href="https://github.com/scottjehl/Respond#support--caveats" target="_blank">caveats</a></li>
+            </ul>
           </section>
           <section>
             <h3> <a href="http://lodash.com/" target="_blank">jquery and lodash</a></h3>
           </section>
           <section>
             <h3> <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a></h3>
+          </section>
+          <section>
+            <h3> <a href="" target="_blank">add-to-homescreen</a></h3>
           </section>
         </section>
         <section>
