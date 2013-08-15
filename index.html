@@ -39,82 +39,180 @@
         </section>
         <section>
           <h1><i class="icon-github"></i></h1>
-          <p>These slides are up on GitHub!</p><a href="http://mrkelly.github.io/up-angular">mrkelly/up-angular</a>
+          <p>These slides are up on GitHub!</p><a href="http://mrkelly.github.io/up-angular" target="_blank">mrkelly/up-angular</a>
         </section>
         <section>
-          <h2>Project Layout</h2>
+          <section>
+            <h2>Today's Objective</h2>
+            <p>Share our experience building a production application using Angular JS</p>
+            <p>Many of the topics covered are universal to any JS dev</p>
+            <p>We love questions, don't be shy..you cannot derail us (challenge)</p>
+          </section>
+          <section>
+            <h2>About Us</h2>
+            <p>We are NOT experts, just write a ton of code.</p>
+            <ul>
+              <li>Mike Kelly<a href="https://twitter.com/mikerkelly" target="_blank">(@mikerkelly)</a></li>
+              <li>Bruce Coddington<a href="https://twitter.com/brucecoddington" target="_blank">(@brucecoddington)</a></li>
+            </ul><small>We're ALL noobs</small>
+          </section>
         </section>
         <section>
-          <h2>Build Process</h2>
+          <section>
+            <h2>Project Layout</h2>
+          </section>
+          <section>
+            <h2>Objectives</h2>
+            <ul>
+              <li>Familiar for enterprise Java devs</li>
+              <li>Clear separation of concerns</li>
+              <li>Compiled code away from written code</li>
+              <li>Obvious (please)</li>
+              <li>Have our favorite libs play together nicely</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Let's take a look</h2><a href="https://github.com/brucecoddington/mixtape" target="_blank">Mixtape on Github</a>
+          </section>
         </section>
         <section>
-          <h3>Watch Task</h3>
-        </section>
-        <section>
-          <h3>Server Task</h3>
-        </section>
-        <section>
-          <h3>JSHint</h3>
-        </section>
-        <section>
-          <h3>LESS</h3>
-        </section>
-        <section>
-          <h3>Minification and Uglification</h3>
-        </section>
-        <section>
-          <h3>Templates</h3>
-        </section>
-        <section>
-          <h3>Extending grunt</h3>
+          <section>
+            <h2>Build Process</h2>
+            <ul>
+              <li>Automate Everything!!</li>
+              <li>Minimize developer interaction (just write the code)</li>
+            </ul>
+          </section>
+          <section>
+            <h2><a href="http://gruntjs.com/" target="_blank">Grunt</a></h2>
+            <ul>
+              <li>The JavaScript Task Runner</li>
+              <li>A ton of tasks already written to do most anything</li>
+              <li>Easy to extend and write your own tasks</li>
+              <li>Gruntfile.js (let's take a look)</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Watch Task</h3>
+            <pre><code data-trim contenteditable>
+// A task that runs in the background 'watching' for changes to code.
+watch : {
+    options : {
+        livereload: true
+    },
+    client: {
+        files: [
+            'client/src/**/*.js',
+            'client/test/**/*.js',
+            '<%= assetsDir %>/templates/**/*.html'
+        ],
+        tasks: ['assemble', 'karma:unit:run', 'karma:e2e:run']
+    },
+    server : {
+        files: [
+            'test/**/*.js',
+            'app/**/*.js'
+        ],
+        tasks: ['mochacli']
+    },
+    views : {
+        files: [
+            'app/views/**/*.jade',
+            '<%= assetsDir %>/less/**/*.less'
+        ],
+        tasks: ['assemble']
+    }
+}
+</code>
+</pre>
+          </section>
+          <section>
+            <h3>Server Task</h3>
+          </section>
+          <section>
+            <h3>JSHint</h3>
+          </section>
+          <section>
+            <h3>LESS</h3>
+          </section>
+          <section>
+            <h3>Minification and Uglification</h3>
+          </section>
+          <section>
+            <h3>Templates</h3>
+          </section>
+          <section>
+            <h3>Extending grunt</h3>
+          </section>
         </section>
         <section>
           <h2>Yeoman generators</h2>
         </section>
         <section>
-          <h2>3rd Party Libraries</h2>
+          <section>
+            <h2>3rd Party Libraries</h2>
+          </section>
+          <section>
+            <h3>moment.js</h3>
+          </section>
+          <section>
+            <h3>add-to-homescreen</h3>
+          </section>
+          <section>
+            <h3>respond.js</h3>
+          </section>
+          <section>
+            <h3>jquery and lodash</h3>
+          </section>
+          <section>
+            <h3>Twitter Bootstrap</h3>
+          </section>
         </section>
         <section>
-          <h3>moment.js</h3>
+          <section>
+            <h2>Automated Testing</h2>
+          </section>
+          <section>
+            <h3>Mocha/Chai</h3>
+          </section>
+          <section>
+            <h3>Scenario Runner</h3>
+          </section>
+          <section>
+            <h3>Karma Integration</h3>
+          </section>
         </section>
         <section>
-          <h3>add-to-homescreen</h3>
+          <section>
+            <h2>Continuous Integration</h2>
+          </section>
+          <section>
+            <h3>How we run tests</h3>
+          </section>
         </section>
         <section>
-          <h3>respond.js</h3>
+          <section>
+            <h2>Angular.js</h2>
+          </section>
+          <section>
+            <h3>Modules</h3>
+          </section>
+          <section>
+            <h3>UI Router</h3>
+          </section>
         </section>
         <section>
-          <h3>jquery and lodash</h3>
-        </section>
-        <section>
-          <h3>Twitter Bootstrap</h3>
-        </section>
-        <section>
-          <h2>Automated Testing</h2>
-        </section>
-        <section>
-          <h3>Mocha/Chai</h3>
-        </section>
-        <section>
-          <h3>Scenario Runner</h3>
-        </section>
-        <section>
-          <h3>Karma Integration</h3>
-        </section>
-        <section>
-          <h2>Continuous Integration</h2>
-        </section>
-        <section>
-          <h3>How we run tests</h3>
-        </section>
-        <section>
-          <h2>Angular.js</h2>
-        </section>
-        <section>
-          <h3>Modules</h3>
-        </section>
-        <section>
-          <h3>UI Router</h3>
+          <section>
+            <h2>ng-boilerplate</h2>
+            <ul>
+              <li>Very cool new project</li>
+              <li>Takes a different approach to code organization</li>
+              <li>Modules are self-contained (feels very Web Component-ish)</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Let's take a gander</h3><a href="https://github.com/joshdmiller/ng-boilerplate">ng-boilerplate on Github</a>
+          </section>
         </section>
       </div>
     </div>
