@@ -140,14 +140,14 @@ watch : {
             <ul>
               <li>Simple custom Grunt task to serve our index.html locally</li>
               <li>Gives us 'environments' to run our code in different phases</li>
-              <li>Uses <a href="https://github.com/remy/nodemon" target="_blank">nodemon</a>to monitor for changes (restarts the server)</li>
+              <li>Uses <a href="https://github.com/remy/nodemon" target="_blank">nodemon</a>&nbsp;to monitor for changes (restarts the server)</li>
               <li>Just a wrapper around the CLI for nodemon</li>
             </ul>
           </section>
           <section>
             <h3><a href="http://www.jshint.com/" target="_blank">JSHINT</a></h3>
             <ul>
-              <li>Since JavaScript is a dynamic language, it's impossible for static compilation feedback</li>
+              <li>Since JavaScript is a dynamic language, it's impossible to get static compilation feedback</li>
               <li>Check that your code follows best practices</li>
               <li>Add settings to tweak the linting to your tastes</li>
               <li>Helps keep the code consistent among the team</li>
@@ -180,15 +180,15 @@ watch : {
             <h3>Minification Example</h3>
             <p>Minification results on a real project</p>
             <ul>
-              <li> <strong>Original </strong>2611949 bytes (2.49MB)</li>
-              <li> <strong>Minified </strong>996966 bytes (973.5KB)</li>
-              <li> <strong>Gzipped </strong>170552 bytes (166.5KB)</li>
+              <li> <strong>Original </strong>&nbsp;2611949 bytes (2.49MB)</li>
+              <li> <strong>Minified </strong>&nbsp;996966 bytes (973.5KB)</li>
+              <li> <strong>Gzipped </strong>&nbsp;170552 bytes (166.5KB)</li>
               <li>15:1 Compression ratio</li>
             </ul>
           </section>
           <section>
             <h3>Templates</h3>
-            <p>Templates are static, so why not provide them as a compiled resource? This is where <a href="https://github.com/ericclemmons/grunt-angular-templates" target="_blank">grunt-angular-templates</a>comes in.</p>
+            <p>Templates are static, so why not provide them as a compiled resource? This is where <a href="https://github.com/ericclemmons/grunt-angular-templates" target="_blank">grunt-angular-templates</a>&nbsp;comes in.</p>
             <ol>
               <li>Glob match files and directories</li>
               <li>The $templateCache serivce is then preloaded with the static content</li>
@@ -219,15 +219,52 @@ watch : {
         <section>
           <section>
             <h2>Automated Testing</h2>
+            <ul>
+              <li>Tests should run automatically during build process</li>
+              <li>Should be very easy to write </li>
+              <li>Logical placement of tests within code</li>
+            </ul>
           </section>
           <section>
-            <h3>Mocha/Chai</h3>
+            <h3> <a href="http://visionmedia.github.io/mocha/" target="_blank">Mocha</a></h3>
+            <ul>
+              <li>Behavior driven development</li>
+              <li>Runs in the browser and on the server (Node)</li>
+            </ul>
           </section>
           <section>
-            <h3>Scenario Runner</h3>
+            <h3> <a href="http://chaijs.com/" target="_blank">Chai</a></h3>
+            <ul>
+              <li>Assertion library</li>
+              <li>Can actually be used in real code</li>
+            </ul>
+            <pre><code data-trim content-editable>
+  expect(foo).to.be.a('string');
+  expect(foo).to.equal('bar');
+  expect(foo).to.have.length(3);
+  expect(tea).to.have.property('flavors').with.length(3);
+</code>
+</pre>
+            <p>Check out <a href="https://www.youtube.com/watch?v=-WpDN2k7vbU" target="_blank">this </a>&nbsp;awesome talk by Rebecca Murphey at JSConf 2013</p>
           </section>
           <section>
-            <h3>Karma Integration</h3>
+            <h3> <a href="http://docs.angularjs.org/guide/dev_guide.e2e-testing" target="_blank">Angular Scenarios</a></h3>
+            <ul>
+              <li>End to End tests</li>
+              <li>Similar to Selenium testing</li>
+              <li>Created by the Angular team so they are 'Angular-aware'</li>
+              <li>Navigate through the browser and check for correct behavior</li>
+              <li> <a href="http://pivotal.github.io/jasmine/" target="_blank">Jasmine</a>&nbsp;syntax (very similiar to Mocha)</li>
+            </ul>
+          </section>
+          <section>
+            <h3> <a href="http://karma-runner.github.io/0.10/index.html" target="_blank">Karma Integration</a></h3>
+            <p>Spectacular test runner from the Angular JS team</p>
+            <ul> 
+              <li>Run your tests in multiple browsers at once</li>
+              <li>simple configuration</li>
+              <li>'Debug' mode to see your tests in action in the browser</li>
+            </ul>
           </section>
         </section>
         <section>
@@ -314,7 +351,7 @@ watch : {
             <ul>
               <li>The most powerful part of Angular</li>
               <li>Meta-framework that you can use to create a DSL for the browser</li>
-              <li>Great talk by Misko<a href="http://www.youtube.com/watch?v=WqmeI5fZcho&amp;list=TLu6EfJmyWLcE" target="_blank">HERE</a></li>
+              <li> <a href="http://www.youtube.com/watch?v=WqmeI5fZcho&amp;list=TLu6EfJmyWLcE" target="_blank">Great talk by Misko</a></li>
             </ul>
           </section>
           <section>
