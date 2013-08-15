@@ -36,7 +36,7 @@
         </section>
         <section>
           <h1><i class="icon-github"></i></h1>
-          <p>You can view this presentation on GitHub</p><a href="http://mrkelly.github.io/up-angular">mrkelly/up-angular</a>
+          <p>You can view this presentation on GitHub</p><a href="http://mrkelly.github.io/up-angular" target="_blank">mrkelly/up-angular</a>
         </section>
         <section>
           <section>
@@ -49,8 +49,8 @@
             <h2>About Us</h2>
             <p>We are NOT experts, just write a ton of code.</p>
             <ul>
-              <li>Mike Kelly<a href="https://twitter.com/mikerkelly">(@mikerkelly)</a></li>
-              <li>Bruce Coddington <a href="https://twitter.com/brucecoddington">(@brucecoddington) </a></li>
+              <li>Mike Kelly<a href="https://twitter.com/mikerkelly" target="_blank">(@mikerkelly)</a></li>
+              <li>Bruce Coddington <a href="https://twitter.com/brucecoddington" target="_blank">(@brucecoddington) </a></li>
             </ul><small>We're ALL noobs</small>
           </section>
         </section>
@@ -69,15 +69,59 @@
             </ul>
           </section>
           <section>
-            <h2>Let's take a look</h2><a href="https://github.com/brucecoddington/mixtape">Mixtape on Github</a>
+            <h2>Let's take a look</h2><a href="https://github.com/brucecoddington/mixtape" target="_blank">Mixtape on Github</a>
           </section>
         </section>
         <section>
           <section>
             <h2>Build Process</h2>
+            <ul>
+              <li>Automate Everything!!</li>
+              <li>Minimize developer interaction (just write the code)</li>
+            </ul>
+          </section>
+          <section> 
+            <h2> <a href="http://gruntjs.com/" target="_blank">Grunt</a></h2>
+            <ul>
+              <li>The JavaScript Task Runner</li>
+              <li>A ton of tasks already written to do most anything</li>
+              <li>Easy to extend and write your own tasks</li>
+              <li>Gruntfile.js (let's take a look)</li>
+            </ul>
           </section>
           <section>
             <h3>Watch Task</h3>
+            <pre><code data-trim contenteditable>
+// A task that runs in the background 'watching' for changes to code.
+watch : {
+    options : {
+        livereload: true
+    },
+    client: {
+        files: [
+            'client/src/**/*.js', 
+            'client/test/**/*.js',
+            '<%= assetsDir %>/templates/**/*.html'
+        ],
+        tasks: ['assemble', 'karma:unit:run', 'karma:e2e:run']
+    },
+    server : {
+        files: [
+            'test/**/*.js',
+            'app/**/*.js'
+        ],
+        tasks: ['mochacli']
+    },
+    views : {
+        files: [
+            'app/views/**/*.jade',
+            '<%= assetsDir %>/less/**/*.less'
+        ],
+        tasks: ['assemble']
+    }
+}
+</code> 
+</pre>
           </section>
           <section>
             <h3>Server Task</h3>
