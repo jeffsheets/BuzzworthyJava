@@ -140,12 +140,12 @@ watch : {
             <ul>
               <li>Simple custom Grunt task to serve our index.html locally</li>
               <li>Gives us 'environments' to run our code in different phases</li>
-              <li>Uses<a href="https://github.com/remy/nodemon" target="_blank">nodemon</a>to monitor for changes (restarts the server)</li>
+              <li>Uses <a href="https://github.com/remy/nodemon" target="_blank">nodemon</a>to monitor for changes (restarts the server)</li>
               <li>Just a wrapper around the CLI for nodemon</li>
             </ul>
           </section>
           <section>
-            <h3>JSHint</h3>
+            <h3><a href="http://www.jshint.com/" target="_blank">JSHINT</a></h3>
             <ul>
               <li>Since JavaScript is a dynamic language, it's impossible for static compilation feedback</li>
               <li>Check that your code follows best practices</li>
@@ -154,7 +154,7 @@ watch : {
             </ul>
           </section>
           <section>
-            <h3>LESS</h3>
+            <h3><a href="http://lesscss.org/" target="_blank">LESS</a></h3>
             <ul>
               <li>CSS preprocessor to make life a little easier</li>
               <li>Adds variables and mixins</li>
@@ -163,9 +163,26 @@ watch : {
           </section>
           <section>
             <h3>Minification and Uglification</h3>
+            <p>Uglification is the optimization/compression/minimization of source code.  For JavaScript, we use <a href="https://github.com/mishoo/UglifyJS2" target="_blank">UglifyJS2</a></p>
+            <ul>
+              <li>Parser produces abstract syntax tree</li>
+              <li>AST is optimized into a smaller one by
+                <ul>
+                  <li>Applying optimization transforms</li>
+                  <li>Mangling variables</li>
+                  <li>Analyzing the scope for unused items</li>
+                </ul>
+              </li>
+            </ul>
           </section>
           <section>
             <h3>Templates</h3>
+            <p>Templates are static, so why not provide them as a compiled resource? This is where <a href="https://github.com/ericclemmons/grunt-angular-templates" target="_blank">grunt-angular-templates</a>comes in.</p>
+            <ol>
+              <li>Glob match files and directories</li>
+              <li>The $templateCache serivce is then preloaded with the static content</li>
+              <li>Template preload file is then uglified with the rest of the source</li>
+            </ol>
           </section>
         </section>
         <section>
@@ -173,19 +190,19 @@ watch : {
             <h2>3rd Party Libraries</h2>
           </section>
           <section>
-            <h3>moment.js</h3>
+            <h3> <a href="http://momentjs.com/" target="_blank">moment.js</a></h3>
           </section>
           <section>
-            <h3>add-to-homescreen</h3>
+            <h3> <a href="" target="_blank">add-to-homescreen</a></h3>
           </section>
           <section>
-            <h3>respond.js</h3>
+            <h3> <a href="https://github.com/scottjehl/Respond" target="_blank">respond.js</a></h3>
           </section>
           <section>
-            <h3>jquery and lodash</h3>
+            <h3> <a href="http://lodash.com/" target="_blank">jquery and lodash</a></h3>
           </section>
           <section>
-            <h3>Twitter Bootstrap</h3>
+            <h3> <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a></h3>
           </section>
         </section>
         <section>

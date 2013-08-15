@@ -145,13 +145,14 @@ html(class="no-js", ng-app="main")
             ul
               li Simple custom Grunt task to serve our index.html locally
               li Gives us 'environments' to run our code in different phases
-              li Uses
+              li Uses 
                 a(href="https://github.com/remy/nodemon", target="_blank") nodemon
                 | to monitor for changes (restarts the server)
               li Just a wrapper around the CLI for nodemon
 
           section
-            h3 JSHint
+            h3
+              a(href="http://www.jshint.com/", target="_blank") JSHINT
 
             ul
               li Since JavaScript is a dynamic language, it's impossible for static compilation feedback
@@ -160,8 +161,8 @@ html(class="no-js", ng-app="main")
               li Helps keep the code consistent among the team
 
           section
-            h3 LESS
-
+            h3
+              a(href="http://lesscss.org/", target="_blank") LESS
             ul
               li CSS preprocessor to make life a little easier
               li Adds variables and mixins
@@ -169,28 +170,50 @@ html(class="no-js", ng-app="main")
 
           section
             h3 Minification and Uglification
+            p Uglification is the optimization/compression/minimization of source code.  For JavaScript, we use 
+              a(href="https://github.com/mishoo/UglifyJS2", target="_blank") UglifyJS2
+            ul
+              li Parser produces abstract syntax tree
+              li AST is optimized into a smaller one by
+                ul
+                  li Applying optimization transforms
+                  li Mangling variables
+                  li Analyzing the scope for unused items
+
 
           section
             h3 Templates
+            p Templates are static, so why not provide them as a compiled resource? This is where 
+              a(href="https://github.com/ericclemmons/grunt-angular-templates", target="_blank") grunt-angular-templates
+              | comes in.
+            ol
+              li Glob match files and directories
+              li The $templateCache serivce is then preloaded with the static content
+              li Template preload file is then uglified with the rest of the source
 
         section
           section
             h2 3rd Party Libraries
 
           section
-            h3 moment.js
+            h3 
+              a(href="http://momentjs.com/", target="_blank") moment.js
 
           section
-            h3 add-to-homescreen
+            h3 
+              a(href="", target="_blank") add-to-homescreen
 
           section
-            h3 respond.js
+            h3 
+              a(href="https://github.com/scottjehl/Respond", target="_blank") respond.js
 
           section
-            h3 jquery and lodash
+            h3 
+              a(href="http://lodash.com/", target="_blank") jquery and lodash
 
           section
-            h3 Twitter Bootstrap
+            h3 
+              a(href="http://getbootstrap.com/", target="_blank") Twitter Bootstrap
 
         section
           section
