@@ -78,6 +78,9 @@ html(class="no-js", ng-app="main")
             a(href="https://github.com/brucecoddington/mixtape", target="_blank") Mixtape on Github
 
         section
+          h2 Yeoman generators
+
+        section
           section
             h2 Build Process
 
@@ -133,11 +136,29 @@ html(class="no-js", ng-app="main")
           section
             h3 Server Task
 
+            ul
+              li Simple custom Grunt task to serve our index.html locally
+              li Gives us 'environments' to run our code in different phases
+              li Uses 
+                a(href="https://github.com/remy/nodemon", target="_blank") nodemon
+                | to monitor for changes (restarts the server)
+              li Just a wrapper around the CLI for nodemon
+
           section
             h3 JSHint
 
+            ul
+              li Check your JavaScript for widely known possible issues
+              li Add settings to tweak the linting to your tastes
+              li Helps keep the code consistent among the team
+
           section
             h3 LESS
+
+            ul
+              li CSS preprocessor to make life a little easier
+              li Adds variables and mixins
+              li Twitter Bootstrap is written in LESS
 
           section
             h3 Minification and Uglification
@@ -147,10 +168,6 @@ html(class="no-js", ng-app="main")
 
           section
             h3 Extending grunt
-
-
-        section
-          h2 Yeoman generators
 
         section
           section
