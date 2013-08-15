@@ -39,7 +39,7 @@ html(class="no-js", ng-app="main")
           h1
             i.icon-github
           p You can view this presentation on GitHub
-          a(href="http://mrkelly.github.io/up-angular") mrkelly/up-angular
+          a(href="http://mrkelly.github.io/up-angular", target="_blank") mrkelly/up-angular
 
         section
           section
@@ -54,9 +54,9 @@ html(class="no-js", ng-app="main")
 
             ul
               li Mike Kelly
-                a(href="https://twitter.com/mikerkelly") (@mikerkelly)
+                a(href="https://twitter.com/mikerkelly", target="_blank") (@mikerkelly)
               li Bruce Coddington 
-                a(href="https://twitter.com/brucecoddington") (@brucecoddington) 
+                a(href="https://twitter.com/brucecoddington", target="_blank") (@brucecoddington) 
 
             small We're ALL noobs
 
@@ -75,14 +75,60 @@ html(class="no-js", ng-app="main")
 
           section
             h2 Let's take a look
-            a(href="https://github.com/brucecoddington/mixtape") Mixtape on Github
+            a(href="https://github.com/brucecoddington/mixtape", target="_blank") Mixtape on Github
 
         section
           section
             h2 Build Process
 
+            ul
+              li Automate Everything!!
+              li Minimize developer interaction (just write the code)
+
+          section 
+            h2 
+              a(href="http://gruntjs.com/", target="_blank") Grunt
+
+            ul
+              li The JavaScript Task Runner
+              li A ton of tasks already written to do most anything
+              li Easy to extend and write your own tasks
+              li Gruntfile.js (let's take a look)
+
           section
             h3 Watch Task
+
+            pre.
+              <code data-trim contenteditable>
+              // A task that runs in the background 'watching' for changes to code.
+              watch : {
+                  options : {
+                      livereload: true
+                  },
+                  client: {
+                      files: [
+                          'client/src/**/*.js', 
+                          'client/test/**/*.js',
+                          '<%= assetsDir %>/templates/**/*.html'
+                      ],
+                      tasks: ['assemble', 'karma:unit:run', 'karma:e2e:run']
+                  },
+                  server : {
+                      files: [
+                          'test/**/*.js',
+                          'app/**/*.js'
+                      ],
+                      tasks: ['mochacli']
+                  },
+                  views : {
+                      files: [
+                          'app/views/**/*.jade',
+                          '<%= assetsDir %>/less/**/*.less'
+                      ],
+                      tasks: ['assemble']
+                  }
+              }
+              </code> 
 
           section
             h3 Server Task
