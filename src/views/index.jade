@@ -26,12 +26,12 @@ html(class="no-js", ng-app="main")
             img.animate-logos.angular(src="assets/img/angular.png")
             img.animate-logos.grunt(src="assets/img/grunt-logo.png")
             img.animate-logos.yeoman(src="assets/img/yeoman-logo.png")
-            img.animate-logos.bootstrap(src="assets/img/bootstrap-logo.png")
+            img.animate-logos.node(src="assets/img/node-logo.png")
           .fading-header-container
             h1.animate-headers.angular Angular.js
             h1.animate-headers.grunt Grunt.js
             h1.animate-headers.yeoman Yeoman
-            h1.animate-headers.bootstrap Bootstrap
+            h1.animate-headers.node Node.js
           p.
             Lunch and Learn @ Union Pacific
 
@@ -179,7 +179,7 @@ html(class="no-js", ng-app="main")
                   li Applying optimization transforms
                   li Mangling variables
                   li Analyzing the scope
-              li As an added benefit, your source code is obsfucated
+              li As an added benefit: your source code is obsfucated
 
           section
             h3 Minification Example
@@ -195,6 +195,17 @@ html(class="no-js", ng-app="main")
                 strong Gzipped 
                 | &nbsp;170552 bytes (166.5KB)
               li 15:1 Compression ratio
+
+          section
+            h3 Special Considerations
+            p Because of mangling, Angular dependency injection and "Pretotyping" no longer works and leads to the infamous:
+            pre.
+              <code data-trim contenteditable>
+              Uncaught Error: Unknown provider: aProvider <- a
+              </code>
+            ul
+              li Convert all modules and components to string argument style  
+              li Lets take a look
 
           section
             h3 Templates
@@ -213,22 +224,52 @@ html(class="no-js", ng-app="main")
           section
             h3 
               a(href="http://momentjs.com/", target="_blank") moment.js
+            p Arguably the best date formatting library on the planet
+            ul
+              li Formatting
+              li Internationalization
+              li Calculations
+              li Fuzzy dates
 
           section
             h3 
-              a(href="", target="_blank") add-to-homescreen
+              a(href="https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-Browser-Polyfills", target="_blank") HTML5 Shims and Polyfills
+            p A long list of libraries for providing standard HTML4 and HTML5 capabilities in "web browsers" (IE)
+            ul
+              li SVG
+              li Form Elements
+              li Web Sockets
+              li Browser state
 
           section
             h3 
               a(href="https://github.com/scottjehl/Respond", target="_blank") respond.js
-
+            p respond.js is a CSS3 polyfill for media queries.
+            ul
+              li Automatic browser detection
+              li Fast and lightweight
+              li Works great with Twitter Bootstrap
+              li Has a few 
+                a(href="https://github.com/scottjehl/Respond#support--caveats", target="_blank") caveats
+                  
           section
             h3 
-              a(href="http://lodash.com/", target="_blank") jquery and lodash
+              a(href="http://lodash.com/", target="_blank") Lo-dash
+            p "A utility library delivering consistency, customization, performance, and extras."
+            ul
+              li High performance (in some cases beats browser implementations)
+              li Has most utility functions you would typically create yourself
 
           section
             h3 
               a(href="http://getbootstrap.com/", target="_blank") Twitter Bootstrap
+            p One of the best base stylesheets and a great place to start with new applications 
+            ul
+              li Responsive
+              li Written in LESS so its easily extendable
+              li Bootstrap 3 supports browsers newer than internet explorer 7
+              li Fast paint and rendering times
+              li Some of the best plugin support
 
         section
           section
