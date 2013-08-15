@@ -78,6 +78,15 @@ html(class="no-js", ng-app="main")
             a(href="https://github.com/brucecoddington/mixtape", target="_blank") Mixtape on Github
 
         section
+          h2 Yeoman generators
+
+          ul
+            li Spearheaded by famous Googlers (Paul Irish and Addy Osmani)
+            li Easy to write custom generators to fit your project
+            li Helps keep the project structure consistent
+            li Can be published as NPM Modules
+
+        section
           section
             h2 Build Process
 
@@ -133,24 +142,36 @@ html(class="no-js", ng-app="main")
           section
             h3 Server Task
 
+            ul
+              li Simple custom Grunt task to serve our index.html locally
+              li Gives us 'environments' to run our code in different phases
+              li Uses
+                a(href="https://github.com/remy/nodemon", target="_blank") nodemon
+                | to monitor for changes (restarts the server)
+              li Just a wrapper around the CLI for nodemon
+
           section
             h3 JSHint
 
+            ul
+              li Since JavaScript is a dynamic language, it's impossible for static compilation feedback
+              li Check that your code follows best practices
+              li Add settings to tweak the linting to your tastes
+              li Helps keep the code consistent among the team
+
           section
             h3 LESS
+
+            ul
+              li CSS preprocessor to make life a little easier
+              li Adds variables and mixins
+              li Twitter Bootstrap is written in LESS
 
           section
             h3 Minification and Uglification
 
           section
             h3 Templates
-
-          section
-            h3 Extending grunt
-
-
-        section
-          h2 Yeoman generators
 
         section
           section
@@ -261,11 +282,37 @@ html(class="no-js", ng-app="main")
           section
             h2 Angular.js
 
+            ul
+              li Teaching the browser new tricks
+              li Dependency Injection
+              li A bit of a learning curve (but not much)
+              li Change the model, let Angular do the rest
+
           section
             h3 Modules
 
+            ul
+              li Small packages of functionality
+              li Helps keep the application decoupled and promotes re-use
+              li If minifying your code, make sure to use the array syntax
+                a(href="https://npmjs.org/package/grunt-ngmin", target="_blank") (or use ng-min)
+
+          section
+            h3 Directives
+
+            ul
+              li The most powerful part of Angular
+              li Meta-framework that you can use to create a DSL for the browser
+              li Great talk by Misko
+                a(href="http://www.youtube.com/watch?v=WqmeI5fZcho&list=TLu6EfJmyWLcE", target="_blank") HERE
+
           section
             h3 UI Router
+            ul
+              li Cool project by the
+                a(href="http://angular-ui.github.io/", target="_blank") Angular UI devs
+              li Allows for nested views
+              li Provides a complete state machine linked to your urls
 
         section
           section
