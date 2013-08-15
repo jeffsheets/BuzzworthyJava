@@ -189,7 +189,73 @@ html(class="no-js", ng-app="main")
             h2 Continuous Integration
 
           section
-            h3 How we run tests
+            h3 Jenkins
+            ul
+              li Works out of the box
+              li Uses development tools
+              li Run commands as you would locally
+
+          section
+            h3 Git source control
+            ul
+              li Building a single branch
+              li Building multiple branches
+              li Special considerations with the workspace
+
+          section
+            h3 The Process
+            ul
+              li Install NPM and Bower packages
+              li Run the assembly task
+              li Test
+              li Record the JUnit test results
+
+          section
+            h3 More on Tests
+            p More than likely your CI will be running on a headless OS. How do you run end-to-end tests with no display?
+
+          section
+            h3
+              a(href="http://phantomjs.org/", target="_blank") PhantomJS
+            p Phantom JS is a headless WebKit browser
+            ul.icons-ul
+              li.
+                <i class="icon-li icon-ok"></i>
+                Works out of the box
+              li.
+                <i class="icon-li icon-ok"></i>
+                Scriptable API
+              li.
+                <i class="icon-li icon-ok"></i>
+                Performance reporting
+              li.
+                <i class="icon-li icon-remove"></i>
+                Firefox anyone?
+              li.
+                <i class="icon-li icon-remove"></i>
+                It's a WebKit port, not a real browser
+          section
+            h3
+              a(href="http://en.wikipedia.org/wiki/Xvfb", target="_blank") Xvfb
+            p.
+              <strong>X</strong> <strong>V</strong>irtual <strong>F</strong>rame <strong>B</strong>uffer
+              provides a virtual X11 server on a headless device for GUI applications.
+            ul.icons-ul
+              li.
+                <i class="icon-li icon-ok"></i>
+                Color depth and resolutions are customizable
+              li.
+                <i class="icon-li icon-ok"></i>
+                Easy to install and configure
+              li.
+                <i class="icon-li icon-ok"></i>
+                Test with Chrome, Firefox, etc.
+              li.
+                <i class="icon-li icon-remove"></i>
+                *nix only
+
+          section
+            h3 Examples
 
         section
           section

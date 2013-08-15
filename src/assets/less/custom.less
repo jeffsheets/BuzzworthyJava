@@ -2,6 +2,9 @@
   font-style: inherit;
 }
 
+.reveal ul.icons-ul {
+  list-style-type: none;
+}
 
 .index-section {
   .sliding-image-container {
@@ -28,6 +31,24 @@
   p {
     padding-top: 110px;
   }
+
+  img {
+    &.angular,
+    &.grunt,
+    &.yeoman,
+    &.bootstrap {
+      position:absolute;
+      margin-left: 2000px;
+      width: 256px;
+      height: 256px;
+      border: none;
+      background: none;
+      box-shadow: none;
+    }
+  }
+}
+
+.index-slide {
 
   .animate-logos {
     &.angular {
@@ -60,22 +81,6 @@
       -webkit-animation-delay: 1s;
     }
   }
-
-  img {
-    &.angular,
-    &.grunt,
-    &.yeoman,
-    &.bootstrap {
-      position:absolute;
-      margin-left: 2000px;
-      width: 256px;
-      height: 256px;
-      border: none;
-      background: none;
-      box-shadow: none;
-    }
-  }
-
 }
 
 @-webkit-keyframes anuglarlogo {
