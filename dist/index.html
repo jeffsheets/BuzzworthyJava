@@ -569,9 +569,101 @@ def "findAllByMakeAndYear with many tests at once"() {
   service.findAllByMakeAndYear('chevy', '2013').empty
   !service.findAllByMakeAndYear('ford', '2014')
 }
-</code>
-
-</pre>
+</code></pre>
+          </section>
+          <section>
+            <h2>Spock - Multiple when/then</h2>
+            <pre><code data-trim contenteditable>
+def "findAllByMakeAndYear with many tests at once but multiple blocks"() {
+  given: 'a bunch of work items'
+  List<WorkItem> allWorkItems = buildAllWorkItems()
+  
+  when: 'findAllByMakeAndYear is called for Ford and 2013'
+  def results = service.findAllByMakeAndYear('ford', '2013')
+  
+  then: 'results are correct'
+  1 * workItemRepository.findAll() >> allWorkItems
+  results.containsAll allWorkItems[2,4]
+  
+  when: 'findAllByMakeAndYear is called for Ford and 2012'
+  results = service.findAllByMakeAndYear('ford', '2012')
+  
+  then: 'results are correct'
+  1 * workItemRepository.findAll() >> allWorkItems
+  results.containsAll allWorkItems[0..1]
+}
+</code></pre>
+          </section>
+          <section>
+            <h2>Spock @Unroll Magic FTW!</h2>
+            <ul>
+              <li>Wow. Killer Feature! &nbsp; &nbsp; 
+                <div class="i icon-magic"></div>
+              </li>
+              <li>Parameterized Tests (anyone doing JUnit style?)</li>
+            </ul>
+            <pre><code data-trim contenteditable>
+@Unroll
+def "getYearAsString with #inputDate returns #result"
+                                (String inputDate, String result) {
+expect: 'getYearAsString is correct when called'
+  service.getYearAsString(
+              Date.parse("MM/dd/yyyy", inputDate)) == result
+              
+  where:
+  inputDate    | result
+  "01/01/1999" | "1999"
+  "02/01/2000" | "2000"
+  "03/01/199"  | "199"
+  '03/01/2013' | '2013'	
+}
+</code></pre>
+          </section>
+          <section>
+            <h2>Spock old() method</h2>
+            <ul>
+              <li>"Wait, WTF is going on there? That’s voodoo!" -- <a href="http://blog.freeside.co/post/41774646403/spock-killer-features-the-old-method" target="_blank">Rob Fletcher</a></li>
+            </ul>
+            <pre><code data-trim contenteditable>
+def "findAll workItems and Save showing how the old method works"() {
+  //...
+  
+  when: 'workItem saved, and results retrieved'
+  WorkItem workItem = new WorkItem(car, new Date(), "Oil Change", provider, 18123L, 60.12, "Took 1:45 so got free oil change coupon");
+  workItem = workItemRepository.save(workItem);
+  List&lt;WorkItem> result = workItemRepository.findAll();
+  
+  then: 'size was incremented'
+  result.size() == old(workItemRepository.findAll()).size() + 1
+}
+</code></pre>
+          </section>
+          <section>
+            <h2>Spock Wires into Spring</h2>
+            <ul>
+              <li>Needs spock-spring plugin</li>
+              <li>Just use @Autowired</li>
+              <li>Setup Transaction rollbacks</li>
+              <li>WorkItemRepositorySpecIT.groovy</li>
+            </ul>
+            <pre><code data-trim contenteditable>
+@ContextConfiguration(loader=AnnotationConfigContextLoader, 
+                      classes=[RootConfig, PersistenceConfig])
+@Transactional
+abstract class IntegrationSpecBaseClass extends Specification {
+}
+</code></pre>
+          </section>
+          <section>
+            <h2>Spock Miscellaneous</h2>
+            <ul>
+              <li>thrown() and notThrown()</li>
+              <li>setup() and cleanup()</li>
+              <li>setupSpec() and cleanupSpec()</li>
+              <li>@Ignore, @IgnoreRest, @Timeout, @FailsWith</li>
+              <li>where: using simple arrays instead of tables</li>
+              <li> <a href="https://code.google.com/p/spock/wiki/SpockBasics" target="_blank">SpockBasics</a></li>
+            </ul>
           </section>
         </section>
         <section>
