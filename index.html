@@ -498,6 +498,7 @@ public class UserServiceIT extends IntegrationTestBaseClass {
             <div>Basic Layout</div>
             <pre><code data-trim contenteditable>
 class WorkItemServiceSpecTest extends Specification {
+  def service = new WorkItemService();
   def "getYearAsString works for simple case"() {
     given: 'a normal date'
     def date = Date.parse("MM/dd/yyyy", "08/01/2013")
@@ -512,8 +513,7 @@ class WorkItemServiceSpecTest extends Specification {
 </code></pre>
           </section>
           <section>
-            <h2>Using expect:</h2>
-            <div>{suggested for testing functional code}</div>
+            <h2>Expect: for functional code</h2>
             <pre><code data-trim contenteditable>
 def "getYearAsString works for simple case using expect block"() {
   given: 'a normal date'
