@@ -23,9 +23,11 @@ html(class="no-js", ng-app="main")
       .slides
         section.index-section(data-state="index-slide")
           h1
+            i.icon-coffee &nbsp; &nbsp; 
             i.icon-thumbs-up
           h2 Testing Java Code in 2013
           div Beyond JUnit w/ Hamcrest, Mockito, Spring, and Spock!
+          div {by Jeff Sheets}
 
         section
           h1
@@ -203,6 +205,95 @@ html(class="no-js", ng-app="main")
               
               assertThat(anotherProperty, isStringInjected());
               </code>
+
+
+        section
+          section
+            h2 Fest
+            ul
+              li Fluent API for writing assertions (readability)
+              li
+                a(href="https://github.com/alexruiz/fest-assert-2.x/wiki/One-minute-starting-guide", target="_blank") Fest Starting Guide
+                div &nbsp;
+              li UserServiceTest.java
+            pre.
+              <code data-trim contenteditable>
+              import static org.fest.assertions.Assertions.assertThat;
+
+              /* ... */
+
+              assertThat(demoUser.getEmail()).isEqualTo(userDetails.getUsername());
+              assertThat(demoUser.getPassword()).isEqualTo(userDetails.getPassword());
+              assertThat(hasAuthority(userDetails, demoUser.getRole()));
+              </code>
+
+
+        section
+          section
+            h2 Checking Thrown Exceptions
+            div JUnit 4 actually provides a BAD way
+            pre.
+              <code data-trim contenteditable>
+              //Don't copy this!
+              @Test(expected=IndexOutOfBoundsException.class)
+              public void testIndexOutOfBoundsException() {
+                  Object a = service.getAllResults().get(2);
+                  Object b = service.getAllForA(a).get(2);
+              }
+              </code>
+          section
+            h2 The Better Way
+            div Use ExpectedException @Rule (UserServiceTest.java)
+            pre.
+              <code data-trim contenteditable>
+              @Rule
+              public ExpectedException thrown = ExpectedException.none();
+
+              public void shouldThrowExceptionWhenUserNotFound() {
+                thrown.expect(UsernameNotFoundException.class);
+                thrown.expectMessage("not found");  //NOTE: something funny here
+
+                when(accountRepositoryMock.findByEmail("user@example.com")).thenReturn(null);
+
+                userService.loadUserByUsername("user@example.com");
+              }
+              </code>
+          section
+            h2 The Custom Way
+            ul
+             li BusinessValidationExceptionMatchers.java
+             li Custom Hamcrest matchers for sourceField and arguments
+            pre.
+              <code data-trim contenteditable>
+              public static void expect(String message, ExpectedException thrown)
+              {
+                thrown.expect(BusinessValidationException.class);
+                thrown.expectMessage(equalTo(message));
+              }
+              
+              /** From UserServiceTest.java */
+              public void shouldThrowBusinessExceptionWhenUsernameTooShort() {
+                //Uses custom expect matcher using equalTo() instead of containsString()
+                expect("username", "username.too.short", thrown, "ab");
+
+                userService.loadUserByUsername("ab");
+              }
+              </code>
+
+
+        section
+          section
+            h2 Mockito Annotations
+            ul
+              li We've all used Mockito? JMock? Others?
+              li Why? To isolate your
+               u 
+                 b Unit Tests!
+              li Mock method return values
+              li Verify mock methods were called
+              li 
+                strong Spy 
+                | to mock method on class-under-test
               
         section
           section

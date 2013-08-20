@@ -25,9 +25,10 @@
       <div class="opi-logo"></div>
       <div class="slides">
         <section data-state="index-slide" class="index-section">
-          <h1><i class="icon-thumbs-up"></i></h1>
+          <h1><i class="icon-coffee">&nbsp; &nbsp; </i><i class="icon-thumbs-up"></i></h1>
           <h2>Testing Java Code in 2013</h2>
           <div>Beyond JUnit w/ Hamcrest, Mockito, Spring, and Spock!</div>
+          <div>{by Jeff Sheets}</div>
         </section>
         <section>
           <h1><i class="icon-github"></i></h1>
@@ -196,7 +197,100 @@ import static com.sheetsj.test.matchers.CustomMatchers.isStringInjected;
 
 assertThat(anotherProperty, isStringInjected());
 </code>
+
 </pre>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Fest</h2>
+            <ul>
+              <li>Fluent API for writing assertions (readability)</li>
+              <li><a href="https://github.com/alexruiz/fest-assert-2.x/wiki/One-minute-starting-guide" target="_blank">Fest Starting Guide</a>
+                <div>&nbsp;</div>
+              </li>
+              <li>UserServiceTest.java</li>
+            </ul>
+            <pre><code data-trim contenteditable>
+import static org.fest.assertions.Assertions.assertThat;
+
+/* ... */
+
+assertThat(demoUser.getEmail()).isEqualTo(userDetails.getUsername());
+assertThat(demoUser.getPassword()).isEqualTo(userDetails.getPassword());
+assertThat(hasAuthority(userDetails, demoUser.getRole()));
+</code>
+
+</pre>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Checking Thrown Exceptions</h2>
+            <div>JUnit 4 actually provides a BAD way</div>
+            <pre><code data-trim contenteditable>
+//Don't copy this!
+@Test(expected=IndexOutOfBoundsException.class)
+public void testIndexOutOfBoundsException() {
+    Object a = service.getAllResults().get(2);
+    Object b = service.getAllForA(a).get(2);
+}
+</code></pre>
+          </section>
+          <section>
+            <h2>The Better Way</h2>
+            <div>Use ExpectedException @Rule (UserServiceTest.java)</div>
+            <pre><code data-trim contenteditable>
+@Rule
+public ExpectedException thrown = ExpectedException.none();
+
+public void shouldThrowExceptionWhenUserNotFound() {
+  thrown.expect(UsernameNotFoundException.class);
+  thrown.expectMessage("not found");  //NOTE: something funny here
+  
+  when(accountRepositoryMock.findByEmail("user@example.com")).thenReturn(null);
+  
+  userService.loadUserByUsername("user@example.com");
+}
+</code></pre>
+          </section>
+          <section>
+            <h2>The Custom Way</h2>
+            <ul>
+              <li>BusinessValidationExceptionMatchers.java</li>
+              <li>Custom Hamcrest matchers for sourceField and arguments</li>
+            </ul>
+            <pre><code data-trim contenteditable>
+public static void expect(String message, ExpectedException thrown)
+{
+  thrown.expect(BusinessValidationException.class);
+  thrown.expectMessage(equalTo(message));
+}
+
+/** From UserServiceTest.java */
+public void shouldThrowBusinessExceptionWhenUsernameTooShort() {
+  //Uses custom expect matcher using equalTo() instead of containsString()
+  expect("username", "username.too.short", thrown, "ab");
+  
+  userService.loadUserByUsername("ab");
+}
+</code>
+
+</pre>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Mockito Annotations</h2>
+            <ul>
+              <li>We've all used Mockito? JMock? Others?</li>
+              <li>Why? To isolate your
+                <u> <b>Unit Tests!</b></u>
+              </li>
+              <li>Mock method return values</li>
+              <li>Verify mock methods were called</li>
+              <li> <strong>Spy </strong>to mock method on class-under-test</li>
+            </ul>
           </section>
         </section>
         <section>
