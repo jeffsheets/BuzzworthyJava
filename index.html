@@ -655,6 +655,30 @@ abstract class IntegrationSpecBaseClass extends Specification {
 </code></pre>
           </section>
           <section>
+            <h2>Spock + Hamcrest?</h2><i class="icon-check">
+              &nbsp; 
+              Yes it can be done (that() and expect())</i>
+            <pre><code data-trim contenteditable>
+  expect: 'findAllByMakeAndYear returns correct results'
+  that result1, containsInAnyOrder(allWorkItems[2], allWorkItems[4])
+  that result2, containsInAnyOrder(allWorkItems[0], allWorkItems[1])
+  that result3, empty()
+  that result4, empty()
+</code></pre>
+          </section>
+          <section>
+            <h2>Spock + Hamcrest? 2</h2><i class="icon-thumbs-down">
+              &nbsp; 
+              But groovy often easier</i>
+            <pre><code data-trim contenteditable>
+expect: 'findAllByMakeAndYear returns correct results'
+result1.containsAll allWorkItems[2,4]
+result2.containsAll(allWorkItems[0..1])
+result3.empty
+!result4
+</code></pre>
+          </section>
+          <section>
             <h2>Spock Miscellaneous</h2>
             <ul>
               <li>thrown() and notThrown()</li>
@@ -663,6 +687,50 @@ abstract class IntegrationSpecBaseClass extends Specification {
               <li>@Ignore, @IgnoreRest, @Timeout, @FailsWith</li>
               <li>where: using simple arrays instead of tables</li>
               <li> <a href="https://code.google.com/p/spock/wiki/SpockBasics" target="_blank">SpockBasics</a></li>
+            </ul>
+          </section>
+          <section>
+            <h2>Spock vs JUnit+Mockito+Hamcrest</h2>
+            <ul>
+              <li>Spock gives you power of Groovy</li>
+              <li>I prefer readability of Spock Specs</li>
+              <li>Opinions? Thoughts? Spock Questions?</li>
+            </ul>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Testing REST Clients</h2>
+            <ul>
+              <li>Spring MockRestServiceServer <a href="http://www.objectpartners.com/2013/01/09/rest-client-testing-with-mockrestserviceserver/" target="_blank">Blog Post</a></li>
+              <li>SimpleRestServiceFunctionalTest.java<a href="https://github.com/jeffsheets/MockRestServiceServerExample" target="_blank">github.com/jeffsheets/MockRestServiceServerExample</a></li>
+            </ul>
+            <pre><code data-trim contenteditable>
+public void testGetMessage() {
+  mockServer.expect(requestTo("http://google.com"))
+    .andExpect(method(HttpMethod.GET))
+    .andRespond(withSuccess("resultSuccess", MediaType.TEXT_PLAIN));
+    
+  String result = simpleRestService.getMessage();
+  
+  mockServer.verify();
+  assertThat(result, allOf(containsString("SUCCESS"), 
+                           containsString("resultSuccess")));
+}
+</code>
+
+</pre>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Testing Mail Senders</h2>
+            <ul>
+              <li>MockMailSender for Spring JavaMailSender</li>
+              <li>Mocks it out so no mail is sent</li>
+              <li>Other tools spinning up real mail servers</li>
+              <li>Described well in this <a href="http://fahdshariff.blogspot.com/2012/09/testing-email-with-mock-mailsender.html" target="_blank">Blog Post</a></li>
+              <li>See MockMailSender.java</li>
             </ul>
           </section>
         </section>
