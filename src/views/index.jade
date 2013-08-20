@@ -340,6 +340,186 @@ html(class="no-js", ng-app="main")
               //Showing nested matchers in contains and sameInstance
               assertThat(results, contains(sameInstance(expected)));
               </code>
+
+
+        section
+          section
+            h2 Spring Integration Tests
+            ul
+              li Are you testing your ORM/SQL?
+              div {Stored Procs? Sorry!}
+              li What about Spring Wiring?
+              div {Especially any 
+                b injected 
+                | properties}
+          section
+            h2 Transactional Tests
+            b Auto-rollback from real database!
+            div IntegrationTestBaseClass.java
+            pre.
+              <code data-trim contenteditable>
+              @ContextConfiguration(loader=AnnotationConfigContextLoader.class, 
+                           classes={RootConfig.class, PersistenceConfig.class})
+              @ActiveProfiles("test")
+              public abstract class IntegrationTestBaseClass extends 
+                                AbstractTransactionalJUnit4SpringContextTests {
+
+              }
+              </code>
+          section
+            h2 Transactional Tests 2
+            div Test now talks to real DB
+            small WorkItemRepositoryIT.java
+            pre.
+              <code data-trim contenteditable>
+              public class WorkItemRepositoryIT extends IntegrationTestBaseClass {
+                List&lt;WorkItem> original = workItemRepository.findAll();
+
+                Manufacturer make = manufacturerRepository.save(new Manufacturer("JUnitMake"));
+                Car car = carRepository.save(new Car(2013, make, "JunitModel", "LT FWD 3.6L V6 DOHC 24V"));
+                Provider provider = providerRepository.save(new Provider("Junit Tire Shop", "Shadow Lake"));
+
+                WorkItem workItem = new WorkItem(car, new Date(), "Oil Change", provider, 18123L, 60.12, "Took 1:45 so got free oil change coupon");
+                workItem = workItemRepository.save(workItem);
+
+                List&lt;WorkItem> result = workItemRepository.findAll();
+              }
+              </code>
+          section
+            h2 Mad Props
+            ul
+              li Integration Test our Properties too
+              li Especially if coming from database table
+              li Two styles: 1) All props in PropertiesIT.java
+            pre.
+              <code data-trim contenteditable>
+              public class PropertiesIT extends IntegrationTestBaseClass {
+
+                @Value("${another.property}")
+                private String anotherProperty;
+
+                @Test
+                public void testAnotherProperty() {
+                  assertThat(anotherProperty, isStringInjected());
+                }
+              }
+              </code>
+          section
+            h2 Mad Props 2
+            ul
+              li 2) Test on injected class
+              div {Better but needs 
+                b protected 
+                | getter}
+            pre.
+              <code data-trim contenteditable>
+              public class UserServiceIT extends IntegrationTestBaseClass {
+                @Autowired
+                private UserService userService;
+
+                @Test
+                public void testPropertyIsInjected() {
+                  assertThat(userService.getAnotherProperty(), isStringInjected());
+                }
+              }
+              </code>
+
+
+        section
+          section
+            h2 Spock Testing Framework
+            ul
+              li "The Enterprise Ready Specification Framework"
+                .i.icon-rocket
+              li Yes, Spock is Groovy
+              li But tests Java classes fine (or better)
+              li Read the 
+               a(href="http://code.google.com/p/spock/wiki/SpockBasics", target="_blank") Intro Docs
+              li IANASE (I Am Not A Spock Expert)
+          section
+            h2 Spock Setup
+            ul
+              li Mrhaki Blog post
+               a(href="http://mrhaki.blogspot.fr/2011/01/spocklight-add-spock-support-to-java.html", target="_blank") Setup Spock in Eclipse
+              li 1) Setup Groovy and Spock in Pom.xml
+               div Dependencies and Plugins
+            pre.
+              <code data-trim contenteditable>
+              &lt;properties>
+                &lt;spock.version>0.7-groovy-2.0&lt;/spock.version>
+                &lt;groovy.version>2.0.7&lt;/groovy.version>
+              &lt;/properties>
+              </code>
+          section
+            h2 Spock Setup 2
+            ul
+              li 2) Build Path for src/test/groovy
+              li 3) Output Folder for src/test/groovy
+              li 4) Profit???
+          section
+            h2 Spock Setup Gotcha's
+            ul
+              li No spock-maven plugin in Maven 3
+              li Groovy only for tests? Just use testCompile goal
+              li STS gmaven 
+               a(href="http://stackoverflow.com/questions/15938466/plugin-execution-not-covered-by-lifecycle-configuration-error-in-eclipse-juno", target="_blank") not covered by lifecycle configuration
+                 i.icon-stackexchange
+            pre.
+              <code data-trim contenteditable>
+              <lifecycleMappingMetadata>
+                <pluginExecutions>
+                  <pluginExecution>
+                    <pluginExecutionFilter>
+                      <groupId>org.codehaus.gmaven</groupId>
+                      <artifactId>gmaven-plugin</artifactId>
+                      <versionRange>[1.5,)</versionRange>
+                      <goals>
+                        <goal>testCompile</goal>
+                        <!-- <goal>compile</goal> -->
+                      </goals>
+                    </pluginExecutionFilter>
+                    <action> 
+                      <ignore></ignore>
+                    </action>
+                  </pluginExecution>
+                </pluginExecutions>
+              </lifecycleMappingMetadata>
+              </code>
+
+
+        section
+          section
+            h2 Spock Test Code
+            div Basic Layout
+            pre.
+              <code data-trim contenteditable>
+              class WorkItemServiceSpecTest extends Specification {
+                def "getYearAsString works for simple case"() {
+                  given: 'a normal date'
+                  def date = Date.parse("MM/dd/yyyy", "08/01/2013")
+
+                  when: 'getYearAsString is called'
+                  def result = service.getYearAsString(date)
+
+                  then: 'year is correct on result'
+                  result == "2013"
+                }
+              }
+              </code>
+          section
+            h2 Using expect:
+            div {suggested for testing functional code}
+            pre.
+              <code data-trim contenteditable>
+              def "getYearAsString works for simple case using expect block"() {
+                given: 'a normal date'
+                def date = Date.parse("MM/dd/yyyy", "08/01/2013")
+
+                expect: 'getYearAsString is correct when called'
+                service.getYearAsString(date) == "2013"
+              }
+              </code>
+                
               
         section
           section
