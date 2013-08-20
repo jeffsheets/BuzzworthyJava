@@ -494,6 +494,7 @@ html(class="no-js", ng-app="main")
             pre.
               <code data-trim contenteditable>
               class WorkItemServiceSpecTest extends Specification {
+                def service = new WorkItemService();
                 def "getYearAsString works for simple case"() {
                   given: 'a normal date'
                   def date = Date.parse("MM/dd/yyyy", "08/01/2013")
@@ -507,8 +508,7 @@ html(class="no-js", ng-app="main")
               }
               </code>
           section
-            h2 Using expect:
-            div {suggested for testing functional code}
+            h2 Expect: for functional code
             pre.
               <code data-trim contenteditable>
               def "getYearAsString works for simple case using expect block"() {
