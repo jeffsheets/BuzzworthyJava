@@ -286,7 +286,7 @@ html(class="no-js", ng-app="main")
             h2 Mockito Annotations
             ul
               li We've all used Mockito? JMock? Others?
-              li Why? To isolate your
+              li Why? To isolate our
                u 
                  b Unit Tests!
               li Mock method return values
@@ -294,33 +294,81 @@ html(class="no-js", ng-app="main")
               li 
                 strong Spy 
                 | to mock method on class-under-test
+          section
+            h2 The Old Mockito Way
+            div WorkItemServiceOldMockitoWayTest.java
+            pre.
+              <code data-trim contenteditable>
+              private WorkItemRepository workItemRepository = mock(WorkItemRepository.class);
+              private WorkItemService service = new WorkItemService(workItemRepository);
+
+              /* .. inside a test method .. */
+              when(workItemRepository.findAll()).thenReturn(allWorkItems);
+              </code>
+          section
+            h2 The New Mockito Way
+            div WorkItemServiceTest.java
+            pre.
+              <code data-trim contenteditable>
+              @RunWith(MockitoJUnitRunner.class)
+              public class WorkItemServiceTest {
+                @Mock
+                private WorkItemRepository workItemRepository;
+
+                @InjectMocks
+                private WorkItemService service = new WorkItemService();
+              }
+              </code>
+          section
+            h2 Those Double-Crossing Spies 
+              .i.icon-meh
+            ul
+              li Spies are a code smell
+              li But sometimes it is just easier (legacy)
+            pre.
+              <code data-trim contenteditable>
+              @InjectMocks
+              @Spy
+              private WorkItemService service = new WorkItemService();
+
+              /* ... in test method ... */
+              doReturn(expectedList).when(service)
+                   .selectWorkItemsByMakeAndYear("bmw", "2008", allWorkItems);
+
+              Collection&lt;WorkItem> results = service.findAllByMakeAndYear("bmw", "2008");
+
+              //Showing nested matchers in contains and sameInstance
+              assertThat(results, contains(sameInstance(expected)));
+              </code>
               
         section
           section
-            h2 References
-          section
-            h3 
-              a(href="http://momentjs.com/", target="_blank") moment.js
-            p Arguably the best date formatting library on the planet
-            ul
-              li Formatting
-              li Internationalization
-              li Calculations
-              li Fuzzy dates
-
-        section
-          section
             h2 Conclusion
+          section
+            h2 References
+            ul
+              li
+               b BIG 
+               | thanks to Mike Kelly for 
+               a(href="https://github.com/mrkelly/reveal-template", target="_blank") reveal.js template
+              li Mrhaki Blog 
+                a(href="http://mrhaki.blogspot.co.uk/2013/05/spocklight-support-for-hamcrest-matchers.html", target="_blank") for Spock
+              li JavaCodeGeeks Testing 2013 
+                a(href="http://www.javacodegeeks.com/2013/07/testing-web-based-spring-applications-in-2013-part-one.html", target="_blank") Blog Post
+
           section
             h1
               i.icon-question-sign
             h2 Questions
 
-          section
+        section
             h3 Java Trends in 2013
             ul
-              li Works out of the box
-              li Uses development tools
-              li Run commands as you would locally
+              li Cloud PaaS (Heroku & Cloudfoundry/Appfog)
+              li Continuous Deployment (Cloudbees & drone.io)
+              li Online IDEs (codenvy and cloud9)
+              li Dropwizard / Spring Boot / No-Servlet?
+              li Akka async promises in Java/Scala
+              li Java 8 Functional Style (next year)
 
     script(src="./assets/js/app.js")
