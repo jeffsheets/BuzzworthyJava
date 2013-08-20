@@ -64,34 +64,41 @@ html(class="no-js", ng-app="main")
           section
             h2 Why test your code?
             ul
-              li Developers Code
-              li Senior Developers Test and Code
-              li Chuck Norris continuously deploys to prod with 100% test coverage - in COBOL
+              li Developers -> Code
+              li Senior Developers -> Code and Test
+              li Chuck Norris -> continuously deploys to prod with 100% test coverage -- in COBOL &nbsp;
+               i.icon-thumbs-up
           
           section
             h2 Really why test?
             ul
-              li Obvious (you wouldn''t be in this room otherwise)
-              li Molds your testable coding style
+              li Obvious (you wouldn't be in this room otherwise)
+              li Molds your testable 
+               b coding style
               li Faster than redeploy-test-repeat
-              li Coding with confidence
-              li Second step towards continuous deployment - what is 1st?
+              li Coding with 
+               b confidence
+              li Continuous Deployment &nbsp;
+               i.icon-sun
           section
-            h2 Generic Testing concepts
+            h3 Keep It Simple
             ul
-              li Test independence
               li Do all of your tests pass?
               li Jenkins Server (in the cloud!)
+              li Test Independence
               li Not too brittle
 
         section
-          h2 CarMaint sample code
-            li Let's look at the simple domain model
-            li Quick look at project layout
+          h3 Sample App
+          ul
+            li Simple Domain Model for Car Maintenance
+            li
+             i.icon-github 
+             a(href="https://github.com/jeffsheets/carmaint", target="_blank") https://github.com/jeffsheets/carmaint
 
         section
           section
-            h2 Unit vs Integration vs Functional
+            h3 Unit vs Integration vs Functional
             ul
               li unit: JUnit+Mockito or Spock
               li int: Spring Transactional
@@ -105,9 +112,12 @@ html(class="no-js", ng-app="main")
               li src/java/main
               li src/java/test
               li src/java/integration   ???
-              li src/groovy/test        //for spock
+              li src/groovy/test        ---> for spock
               li src/groovy/integration
-              li Maven makes this very difficult!
+              li 
+               b Maven 
+               | makes this very 
+               b difficult!
 
           section
             h2 Separating Testing types - by File
@@ -116,7 +126,9 @@ html(class="no-js", ng-app="main")
               li MyServiceIT.java   //Maven failsafe plugin pattern
               li MyServiceSpec.groovy //Spock 
               li MyServiceSpecIT.groovy //Spock + failsafe
-              li Look at Pom.xml failsafe setup...
+              li Failsafe setup in 
+                a(href="https://github.com/jeffsheets/carmaint/blob/master/pom.xml", target="_blank") Pom.xml 
+              
 
         section
           h2 

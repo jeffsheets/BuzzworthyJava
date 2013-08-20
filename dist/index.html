@@ -60,40 +60,41 @@
           <section>
             <h2>Why test your code?</h2>
             <ul>
-              <li>Developers Code</li>
-              <li>Senior Developers Test and Code</li>
-              <li>Chuck Norris continuously deploys to prod with 100% test coverage - in COBOL</li>
+              <li>Developers -> Code</li>
+              <li>Senior Developers -> Code and Test</li>
+              <li>Chuck Norris -> continuously deploys to prod with 100% test coverage -- in COBOL &nbsp;<i class="icon-thumbs-up"></i></li>
             </ul>
           </section>
           <section>
             <h2>Really why test?</h2>
             <ul>
-              <li>Obvious (you wouldn''t be in this room otherwise)</li>
-              <li>Molds your testable coding style</li>
+              <li>Obvious (you wouldn't be in this room otherwise)</li>
+              <li>Molds your testable <b>coding style</b></li>
               <li>Faster than redeploy-test-repeat</li>
-              <li>Coding with confidence</li>
-              <li>Second step towards continuous deployment - what is 1st?</li>
+              <li>Coding with <b>confidence</b></li>
+              <li>Continuous Deployment &nbsp;<i class="icon-sun"></i></li>
             </ul>
           </section>
           <section>
-            <h2>Generic Testing concepts</h2>
+            <h3>Keep It Simple</h3>
             <ul>
-              <li>Test independence</li>
               <li>Do all of your tests pass?</li>
               <li>Jenkins Server (in the cloud!)</li>
+              <li>Test Independence</li>
               <li>Not too brittle</li>
             </ul>
           </section>
         </section>
         <section>
-          <h2>CarMaint sample code
-            <li>Let's look at the simple domain model</li>
-            <li>Quick look at project layout</li>
-          </h2>
+          <h3>Sample App</h3>
+          <ul>
+            <li>Simple Domain Model for Car Maintenance</li>
+            <li><i class="icon-github"> </i><a href="https://github.com/jeffsheets/carmaint" target="_blank">https://github.com/jeffsheets/carmaint</a></li>
+          </ul>
         </section>
         <section>
           <section>
-            <h2>Unit vs Integration vs Functional</h2>
+            <h3>Unit vs Integration vs Functional</h3>
             <ul>
               <li>unit: JUnit+Mockito or Spock</li>
               <li>int: Spring Transactional</li>
@@ -108,9 +109,9 @@
               <li>src/java/main</li>
               <li>src/java/test</li>
               <li>src/java/integration   ???</li>
-              <li>src/groovy/test        //for spock</li>
+              <li>src/groovy/test        ---> for spock</li>
               <li>src/groovy/integration</li>
-              <li>Maven makes this very difficult!</li>
+              <li> <b>Maven </b>makes this very <b>difficult!</b></li>
             </ul>
           </section>
           <section>
@@ -120,7 +121,7 @@
               <li>MyServiceIT.java   //Maven failsafe plugin pattern</li>
               <li>MyServiceSpec.groovy //Spock </li>
               <li>MyServiceSpecIT.groovy //Spock + failsafe</li>
-              <li>Look at Pom.xml failsafe setup...</li>
+              <li>Failsafe setup in <a href="https://github.com/jeffsheets/carmaint/blob/master/pom.xml" target="_blank">Pom.xml </a></li>
             </ul>
           </section>
         </section>
