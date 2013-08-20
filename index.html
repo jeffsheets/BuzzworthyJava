@@ -25,8 +25,9 @@
       <div class="opi-logo"></div>
       <div class="slides">
         <section data-state="index-slide" class="index-section">
+          <h1><i class="icon-thumbs-up"></i></h1>
           <h2>Testing Java Code in 2013</h2>
-          <h4>Beyond JUnit w/ Hamcrest, Mockito, Spring, and Spock!</h4>
+          <div>Beyond JUnit w/ Hamcrest, Mockito, Spring, and Spock!</div>
         </section>
         <section>
           <h1><i class="icon-github"></i></h1>
@@ -34,38 +35,93 @@
         </section>
         <section>
           <section>
-            <h2>Today's Objective</h2>
-            <p>Share our experience building a production application using Angular JS</p>
-            <p>Many of the topics covered are universal to any JS dev</p>
-            <p>We love questions, don't be shy..you cannot derail us (challenge)</p>
-          </section>
-          <section>
-            <h2>About</h2>
-            <p>Java/Grails Consultant for OPI</p>
+            <h2>About Me</h2>
             <ul>
-              <li>Jeff Sheets</li>
-              <li>a(href="https://twitter.com/sheetsj" target="_blank") @sheetsj</li>
-              <li>a(href="http://sheetsj.com/" target="_blank") http://sheetsj.com/</li>
+              <li>Java/Grails/Javascript Consultant for OPI</li>
+              <li> <i class="icon-twitter">&nbsp;</i><a href="https://twitter.com/sheetsj" target="_blank">@sheetsj</a></li>
+              <li>Website &nbsp;<a href="http://sheetsj.com/" target="_blank">http://sheetsj.com/</a></li>
               <li>jeffsheets@gmail.com</li>
-            </ul><small>We're ALL noobs</small>
+            </ul>
           </section>
         </section>
         <section>
+          <h2>Objectives Assuming...</h2>
+          <ul>
+            <li>Spring MVC + JPA/Hibernate</li>
+            <li>Using Maven {<i class="icon-frown">}</i></li>
+            <li>Using Eclipse/STS/GGTS or RAD {<i class="icon-frown"> </i><i class="icon-frown">}</i></li>
+            <li>We want tools newer than JUnit 3</li>
+            <li>Possibly use Groovy for tests (but not prod code)</li>
+            <div>&nbsp;</div>
+            <li>Please ask questions!</li><span>Everyone in this room is an expert!</span>
+          </ul>
+        </section>
+        <section>
           <section>
-            <h2>Project Layout</h2>
-          </section>
-          <section>
-            <h2>Objectives</h2>
+            <h2>Why test your code?</h2>
             <ul>
-              <li>Familiar for enterprise Java devs</li>
-              <li>Clear separation of concerns</li>
-              <li>Compiled code away from written code</li>
-              <li>Obvious (please)</li>
-              <li>Have our favorite libs play together nicely</li>
+              <li>Developers Code</li>
+              <li>Senior Developers Test and Code</li>
+              <li>Chuck Norris continuously deploys to prod with 100% test coverage - in COBOL</li>
             </ul>
           </section>
           <section>
-            <h2>Let's take a look</h2><a href="https://github.com/brucecoddington/mixtape" target="_blank">Mixtape on Github</a>
+            <h2>Really why test?</h2>
+            <ul>
+              <li>Obvious (you wouldn''t be in this room otherwise)</li>
+              <li>Molds your testable coding style</li>
+              <li>Faster than redeploy-test-repeat</li>
+              <li>Coding with confidence</li>
+              <li>Second step towards continuous deployment - what is 1st?</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Generic Testing concepts</h2>
+            <ul>
+              <li>Test independence</li>
+              <li>Do all of your tests pass?</li>
+              <li>Jenkins Server (in the cloud!)</li>
+              <li>Not too brittle</li>
+            </ul>
+          </section>
+        </section>
+        <section>
+          <h2>CarMaint sample code
+            <li>Let's look at the simple domain model</li>
+            <li>Quick look at project layout</li>
+          </h2>
+        </section>
+        <section>
+          <section>
+            <h2>Unit vs Integration vs Functional</h2>
+            <ul>
+              <li>unit: JUnit+Mockito or Spock</li>
+              <li>int: Spring Transactional</li>
+              <li>func: Geb, Selenium, Cloud...</li>
+              <li>Others???</li>
+              <li>How to separate the types?</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Separating Testing types - by Dir</h2>
+            <ul>
+              <li>src/java/main</li>
+              <li>src/java/test</li>
+              <li>src/java/integration   ???</li>
+              <li>src/groovy/test        //for spock</li>
+              <li>src/groovy/integration</li>
+              <li>Maven makes this very difficult!</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Separating Testing types - by File</h2>
+            <ul>
+              <li>MyServiceTest.java</li>
+              <li>MyServiceIT.java   //Maven failsafe plugin pattern</li>
+              <li>MyServiceSpec.groovy //Spock </li>
+              <li>MyServiceSpecIT.groovy //Spock + failsafe</li>
+              <li>Look at Pom.xml failsafe setup...</li>
+            </ul>
           </section>
         </section>
         <section>
