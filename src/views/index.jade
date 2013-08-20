@@ -22,8 +22,10 @@ html(class="no-js", ng-app="main")
       .opi-logo
       .slides
         section.index-section(data-state="index-slide")
+          h1
+            i.icon-thumbs-up
           h2 Testing Java Code in 2013
-          h4 Beyond JUnit w/ Hamcrest, Mockito, Spring, and Spock!
+          div Beyond JUnit w/ Hamcrest, Mockito, Spring, and Spock!
 
         section
           h1
@@ -33,39 +35,88 @@ html(class="no-js", ng-app="main")
 
         section
           section
-            h2 Today's Objective
-            p Share our experience building a production application using Angular JS
-            p Many of the topics covered are universal to any JS dev
-            p We love questions, don't be shy..you cannot derail us (challenge)
-
-          section
-            h2 About
-            p Java/Grails Consultant for OPI
-
+            h2 About Me
             ul
-              li Jeff Sheets
-              li a(href="https://twitter.com/sheetsj" target="_blank") @sheetsj
-              li a(href="http://sheetsj.com/" target="_blank") http://sheetsj.com/
+              li Java/Grails/Javascript Consultant for OPI
+              li 
+               i.icon-twitter &nbsp;
+               a(href="https://twitter.com/sheetsj", target="_blank") @sheetsj
+              li Website &nbsp;
+               a(href="http://sheetsj.com/", target="_blank") http://sheetsj.com/
               li jeffsheets@gmail.com
-
-            small We're ALL noobs
+              
+        section
+            h2 Objectives Assuming...
+            ul
+              li Spring MVC + JPA/Hibernate
+              li Using Maven {
+                i.icon-frown}
+              li Using Eclipse/STS/GGTS or RAD {
+                i.icon-frown 
+                i.icon-frown}
+              li We want tools newer than JUnit 3
+              li Possibly use Groovy for tests (but not prod code)
+              div &nbsp;
+              li Please ask questions!
+              span Everyone in this room is an expert!
 
         section
           section
-            h2 Project Layout
-
-          section
-            h2 Objectives
+            h2 Why test your code?
             ul
-              li Familiar for enterprise Java devs
-              li Clear separation of concerns
-              li Compiled code away from written code
-              li Obvious (please)
-              li Have our favorite libs play together nicely
+              li Developers Code
+              li Senior Developers Test and Code
+              li Chuck Norris continuously deploys to prod with 100% test coverage - in COBOL
+          
+          section
+            h2 Really why test?
+            ul
+              li Obvious (you wouldn''t be in this room otherwise)
+              li Molds your testable coding style
+              li Faster than redeploy-test-repeat
+              li Coding with confidence
+              li Second step towards continuous deployment - what is 1st?
+          section
+            h2 Generic Testing concepts
+            ul
+              li Test independence
+              li Do all of your tests pass?
+              li Jenkins Server (in the cloud!)
+              li Not too brittle
+
+        section
+          h2 CarMaint sample code
+            li Let's look at the simple domain model
+            li Quick look at project layout
+
+        section
+          section
+            h2 Unit vs Integration vs Functional
+            ul
+              li unit: JUnit+Mockito or Spock
+              li int: Spring Transactional
+              li func: Geb, Selenium, Cloud...
+              li Others???
+              li How to separate the types?
 
           section
-            h2 Let's take a look
-            a(href="https://github.com/brucecoddington/mixtape", target="_blank") Mixtape on Github
+            h2 Separating Testing types - by Dir
+            ul
+              li src/java/main
+              li src/java/test
+              li src/java/integration   ???
+              li src/groovy/test        //for spock
+              li src/groovy/integration
+              li Maven makes this very difficult!
+
+          section
+            h2 Separating Testing types - by File
+            ul
+              li MyServiceTest.java
+              li MyServiceIT.java   //Maven failsafe plugin pattern
+              li MyServiceSpec.groovy //Spock 
+              li MyServiceSpecIT.groovy //Spock + failsafe
+              li Look at Pom.xml failsafe setup...
 
         section
           h2 
