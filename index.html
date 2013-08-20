@@ -284,7 +284,7 @@ public void shouldThrowBusinessExceptionWhenUsernameTooShort() {
             <h2>Mockito Annotations</h2>
             <ul>
               <li>We've all used Mockito? JMock? Others?</li>
-              <li>Why? To isolate your
+              <li>Why? To isolate our
                 <u> <b>Unit Tests!</b></u>
               </li>
               <li>Mock method return values</li>
@@ -292,20 +292,54 @@ public void shouldThrowBusinessExceptionWhenUsernameTooShort() {
               <li> <strong>Spy </strong>to mock method on class-under-test</li>
             </ul>
           </section>
-        </section>
-        <section>
           <section>
-            <h2>References</h2>
+            <h2>The Old Mockito Way</h2>
+            <div>WorkItemServiceOldMockitoWayTest.java</div>
+            <pre><code data-trim contenteditable>
+private WorkItemRepository workItemRepository = mock(WorkItemRepository.class);
+private WorkItemService service = new WorkItemService(workItemRepository);
+
+/* .. inside a test method .. */
+when(workItemRepository.findAll()).thenReturn(allWorkItems);
+</code></pre>
           </section>
           <section>
-            <h3> <a href="http://momentjs.com/" target="_blank">moment.js</a></h3>
-            <p>Arguably the best date formatting library on the planet</p>
+            <h2>The New Mockito Way</h2>
+            <div>WorkItemServiceTest.java</div>
+            <pre><code data-trim contenteditable>
+@RunWith(MockitoJUnitRunner.class)
+public class WorkItemServiceTest {
+  @Mock
+  private WorkItemRepository workItemRepository;
+  
+  @InjectMocks
+  private WorkItemService service = new WorkItemService();
+}
+</code></pre>
+          </section>
+          <section>
+            <h2>Those Double-Crossing Spies 
+              <div class="i icon-meh"></div>
+            </h2>
             <ul>
-              <li>Formatting</li>
-              <li>Internationalization</li>
-              <li>Calculations</li>
-              <li>Fuzzy dates</li>
+              <li>Spies are a code smell</li>
+              <li>But sometimes it is just easier (legacy)</li>
             </ul>
+            <pre><code data-trim contenteditable>
+@InjectMocks
+@Spy
+private WorkItemService service = new WorkItemService();
+
+/* ... in test method ... */
+doReturn(expectedList).when(service)
+     .selectWorkItemsByMakeAndYear("bmw", "2008", allWorkItems);
+     
+Collection&lt;WorkItem> results = service.findAllByMakeAndYear("bmw", "2008");
+
+//Showing nested matchers in contains and sameInstance
+assertThat(results, contains(sameInstance(expected)));
+</code>
+</pre>
           </section>
         </section>
         <section>
@@ -313,17 +347,28 @@ public void shouldThrowBusinessExceptionWhenUsernameTooShort() {
             <h2>Conclusion</h2>
           </section>
           <section>
+            <h2>References</h2>
+            <ul>
+              <li><b>BIG </b>thanks to Mike Kelly for <a href="https://github.com/mrkelly/reveal-template" target="_blank">reveal.js template</a></li>
+              <li>Mrhaki Blog <a href="http://mrhaki.blogspot.co.uk/2013/05/spocklight-support-for-hamcrest-matchers.html" target="_blank">for Spock</a></li>
+              <li>JavaCodeGeeks Testing 2013 <a href="http://www.javacodegeeks.com/2013/07/testing-web-based-spring-applications-in-2013-part-one.html" target="_blank">Blog Post</a></li>
+            </ul>
+          </section>
+          <section>
             <h1><i class="icon-question-sign"></i></h1>
             <h2>Questions</h2>
           </section>
-          <section>
-            <h3>Java Trends in 2013</h3>
-            <ul>
-              <li>Works out of the box</li>
-              <li>Uses development tools</li>
-              <li>Run commands as you would locally</li>
-            </ul>
-          </section>
+        </section>
+        <section>
+          <h3>Java Trends in 2013</h3>
+          <ul>
+            <li>Cloud PaaS (Heroku & Cloudfoundry/Appfog)</li>
+            <li>Continuous Deployment (Cloudbees & drone.io)</li>
+            <li>Online IDEs (codenvy and cloud9)</li>
+            <li>Dropwizard / Spring Boot / No-Servlet?</li>
+            <li>Akka async promises in Java/Scala</li>
+            <li>Java 8 Functional Style (next year)</li>
+          </ul>
         </section>
       </div>
     </div>
