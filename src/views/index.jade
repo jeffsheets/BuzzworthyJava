@@ -647,6 +647,30 @@ html(class="no-js", ng-app="main")
               }
               </code>
           section
+            h2 Spock + Hamcrest?
+            i.icon-check &nbsp; 
+             | Yes it can be done (that() and expect())
+            pre.
+              <code data-trim contenteditable>
+                expect: 'findAllByMakeAndYear returns correct results'
+                that result1, containsInAnyOrder(allWorkItems[2], allWorkItems[4])
+                that result2, containsInAnyOrder(allWorkItems[0], allWorkItems[1])
+                that result3, empty()
+                that result4, empty()
+              </code>
+          section
+            h2 Spock + Hamcrest? 2
+            i.icon-thumbs-down &nbsp; 
+             | But groovy often easier
+            pre.
+              <code data-trim contenteditable>
+              expect: 'findAllByMakeAndYear returns correct results'
+              result1.containsAll allWorkItems[2,4]
+              result2.containsAll(allWorkItems[0..1])
+              result3.empty
+              !result4
+              </code>
+          section
             h2 Spock Miscellaneous
             ul
              li thrown() and notThrown()
@@ -656,6 +680,48 @@ html(class="no-js", ng-app="main")
              li where: using simple arrays instead of tables
              li 
               a(href="https://code.google.com/p/spock/wiki/SpockBasics", target="_blank") SpockBasics
+          section
+            h2 Spock vs JUnit+Mockito+Hamcrest
+            ul
+             li Spock gives you power of Groovy
+             li I prefer readability of Spock Specs
+             li Opinions? Thoughts? Spock Questions?
+
+
+        section
+          section
+            h2 Testing REST Clients
+            ul
+             li Spring MockRestServiceServer 
+              a(href="http://www.objectpartners.com/2013/01/09/rest-client-testing-with-mockrestserviceserver/", target="_blank") Blog Post
+             li SimpleRestServiceFunctionalTest.java
+              a(href="https://github.com/jeffsheets/MockRestServiceServerExample", target="_blank") github.com/jeffsheets/MockRestServiceServerExample
+            pre.
+              <code data-trim contenteditable>
+              public void testGetMessage() {
+                mockServer.expect(requestTo("http://google.com"))
+                  .andExpect(method(HttpMethod.GET))
+                  .andRespond(withSuccess("resultSuccess", MediaType.TEXT_PLAIN));
+
+                String result = simpleRestService.getMessage();
+
+                mockServer.verify();
+                assertThat(result, allOf(containsString("SUCCESS"), 
+                                         containsString("resultSuccess")));
+              }
+              </code>
+
+
+        section
+          section
+            h2 Testing Mail Senders
+            ul
+             li MockMailSender for Spring JavaMailSender
+             li Mocks it out so no mail is sent
+             li Other tools spinning up real mail servers
+             li Described well in this 
+              a(href="http://fahdshariff.blogspot.com/2012/09/testing-email-with-mock-mailsender.html", target="_blank") Blog Post
+             li See MockMailSender.java
                 
               
         section
