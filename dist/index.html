@@ -498,7 +498,7 @@ public class UserServiceIT extends IntegrationTestBaseClass {
             <div>Basic Layout</div>
             <pre><code data-trim contenteditable>
 class WorkItemServiceSpecTest extends Specification {
-  def service = new WorkItemService();
+  def service = new WorkItemService()
   def "getYearAsString works for simple case"() {
     given: 'a normal date'
     def date = Date.parse("MM/dd/yyyy", "08/01/2013")
@@ -521,6 +521,53 @@ def "getYearAsString works for simple case using expect block"() {
   
   expect: 'getYearAsString is correct when called'
   service.getYearAsString(date) == "2013"
+}
+</code></pre>
+          </section>
+          <section>
+            <h2>Spock Mocks Setup</h2>
+            <pre><code data-trim contenteditable>
+class WorkItemServiceSpecTest extends Specification {
+  def service = new WorkItemService()
+  def workItemRepository = Mock(WorkItemRepository)
+  def setup() {
+    service.workItemRepository = workItemRepository
+  }
+}
+</code></pre>
+          </section>
+          <section>
+            <h2>Spock Mocks - Simple</h2>
+            <pre><code data-trim contenteditable>
+def "findAllByMakeAndYear works with mocks"() {
+  given: 'a bunch of work items'
+  List&lt;WorkItem> allWorkItems = buildAllWorkItems()
+  
+  when: 'findAllByMakeAndYear is called'
+  def results = service.findAllByMakeAndYear('ford', '2013')
+  
+  then: 'results are correct'
+  1 * workItemRepository.findAll() >> allWorkItems
+  results.containsAll allWorkItems[2,4]
+}
+</code></pre>
+          </section>
+          <section>
+            <h2>Spock Mocks - Wildcard _</h2>
+            <pre><code data-trim contenteditable>
+/** not a good pattern. just showing it is possible */
+def "findAllByMakeAndYear with many tests at once"() {
+  given: 'a bunch of work items'
+  List&lt;WorkItem> allWorkItems = buildAllWorkItems()
+  _ * workItemRepository.findAll() >> allWorkItems
+  
+  expect: 'findAllByMakeAndYear is called and has correct results'
+  service.findAllByMakeAndYear('ford', '2013').containsAll(
+     allWorkItems[2,4])
+  service.findAllByMakeAndYear('ford', '2012').containsAll(
+     allWorkItems[0..1])
+  service.findAllByMakeAndYear('chevy', '2013').empty
+  !service.findAllByMakeAndYear('ford', '2014')
 }
 </code>
 
