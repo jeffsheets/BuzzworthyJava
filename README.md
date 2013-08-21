@@ -1,6 +1,8 @@
 Slides for Java Testing 2013 tech talk
 =======
 
+Presentation here: http://jeffsheets.github.io/JavaTesting2013Slides
+
 #### Dependencies
 * Node
 * Bower
