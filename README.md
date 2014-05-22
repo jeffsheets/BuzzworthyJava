@@ -1,7 +1,7 @@
-Slides for Java Testing 2013 tech talk
+Slides for Java Testing 2014 talk at Mutual of Omaha BITS Conf 2014
 =======
 
-Presentation here: http://jeffsheets.github.io/JavaTesting2013Slides
+Presentation here: http://jeffsheets.github.io/BITSConfJavaTesting2014
 
 #### Dependencies
 * Node

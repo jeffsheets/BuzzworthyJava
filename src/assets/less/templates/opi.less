@@ -7,7 +7,10 @@
 
 @logo-width:                  742px;
 @logo-height:                 267px;
-@logo-default-scale:          0.3;
+@mutual-width:                  270px;
+@mutual-height:                 56px;
+@logo-default-scale:          0.15;
+@mutual-default-scale:          .8;
 @logo-default-opacity:        0.5;
 @logo-overview-opacity:       0.1;
 @logo-red-color:              #ee311d;
@@ -34,8 +37,8 @@ body {
 
 .reveal .opi-logo {
   position: fixed;
-  top: 50px;
-  left: 50px;
+  top: 20px;
+  left: 40px;
   width: floor(@logo-width * @logo-default-scale);
   height: floor(@logo-height * @logo-default-scale);
   background-image: url('../img/opi-logo.png');
@@ -45,14 +48,34 @@ body {
   opacity: @logo-default-opacity;
   .transition(~"left 0.7s ease, opacity 0.7s ease");
 }
-
 .index-slide .opi-logo {
   left: -@logo-width + 50px;
   opacity: @logo-default-opacity;
 }
-
 .overview .opi-logo {
-  left: 50px;
+  left: 40px;
+  opacity: @logo-overview-opacity;
+}
+
+.reveal .mutual {
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  background-image: url('../img/mutual-logo.png');
+  background-repeat: no-repeat;
+  background-position:left top;
+  background-size: 100%;
+  width: floor(@mutual-width * @mutual-default-scale);
+  height: floor(@mutual-height * @mutual-default-scale);
+  opacity: @logo-default-opacity;
+  .transition(~"right 0.7s ease, opacity 0.7s ease");
+}
+.index-slide .mutual {
+  right: -@mutual-width;
+  opacity: @logo-default-opacity;
+}
+.overview .mutual {
+  right: 20px;
   opacity: @logo-overview-opacity;
 }
 
