@@ -1,4 +1,7 @@
 module.exports = function(grunt) {
+  
+  var connect = require('connect'),
+  redirect = require('connect-redirection');
 
   // Project configuration.
   grunt.initConfig({
@@ -15,7 +18,8 @@ module.exports = function(grunt) {
           paths: ['src/assets/less']
         },
         files : {
-          'dist/temp/style.css': 'src/assets/less/style.less'
+          'dist/temp/style.css': 'src/assets/less/style.less',
+          'dist/temp/pdf.css': 'src/assets/less/pdf.less'
         }
       }
     },
@@ -25,7 +29,11 @@ module.exports = function(grunt) {
         files : {
           'dist/assets/css/style.css':[
             'src/assets/js/components/reveal.js/lib/css/zenburn.css',
+            'src/assets/js/components/highlight.js/styles/github.css',
             'dist/temp/style.css'
+          ],
+          'dist/assets/css/pdf.css':[
+            'dist/temp/pdf.css'
           ]
         }
       }
@@ -42,7 +50,7 @@ module.exports = function(grunt) {
           // Reveal.js Plugins
           'src/assets/js/components/reveal.js/plugin/markdown/marked.js',
           'src/assets/js/components/reveal.js/plugin/markdown/markdown.js',
-          'src/assets/js/components/reveal.js/plugin/highlight/highlight.js',
+          'src/assets/js/components/highlight.js/highlight.pack.js',
           'src/assets/js/components/reveal.js/plugin/zoom-js/zoom.js',
 
           //Presentation init
@@ -73,6 +81,11 @@ module.exports = function(grunt) {
         },
         files: {
           'dist/index.html' : ['src/views/index.jade']
+          // expand:true,
+ //          cwd: 'src/views',
+ //          src: ['**/*.jade'],
+ //          dest: 'dist/',
+ //          ext: '.html'
         }
       }
     },
@@ -88,7 +101,7 @@ module.exports = function(grunt) {
           },
           {
             expand: true,
-            cwd: 'src/assets/js/components/font-awesome/font',
+            cwd: 'src/assets/js/components/font-awesome/fonts',
             src:['**'],
             dest:'dist/assets/font'
           }
@@ -109,24 +122,27 @@ module.exports = function(grunt) {
 
     watch : {
       options : {
-        livereload: true
+        atBegin: true,
+        livereload: 35729
       },
       src: {
         files: [
-        'src/**/*'
+        'src/views/**/*',
+        'src/assets/less/**/*',
+        'src/assets/img/**/*'
         ],
         tasks: ['assemble']
       }
     },
 
-    connect: {
-      server: {
-        options: {
-          port: 8000,
-          base: 'dist'
-        }
-      }
-    },
+    // connect: {
+//       server: {
+//         options: {
+//           port: 8000,
+//           base: 'dist'
+//         }
+//       }
+//     },
 
     shell : {
       publish : {
@@ -150,6 +166,15 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-shell');
+  
+  grunt.registerTask('connect', 'Start a custom static web server.', function() {
+      grunt.log.writeln('Starting static web server in "dist" on port 8001.');
+    
+      connect()
+        .use(redirect())
+        .use('/', connect.static('dist'))
+        .listen(8001);
+    });
 
   // Default task(s).
   grunt.registerTask('default', ['assemble']);

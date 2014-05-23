@@ -9,10 +9,11 @@
     "tests"
   ],
   "dependencies": {
-    "reveal.js": "~2.4.0",
+    "reveal.js": "2.6.1",
     "jquery.classList": "*",
-    "headjs": "b8189f180c340fa34a8e197d11bed47b7f03e78d",
-    "lesshat": "~1.1.2",
-    "font-awesome": "~3.2.1"
+    "headjs": "1.0.3",
+    "lesshat": "~2.0.15",
+    "font-awesome": "4.0.3",
+    "highlight.js": "components/highlightjs"
   }
 }
