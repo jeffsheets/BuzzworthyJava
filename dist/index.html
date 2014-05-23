@@ -220,6 +220,24 @@ import static com.sheetsj.test.matchers.CustomMatchers.isStringInjected;
 /* ... */
 
 assertThat(anotherProperty, isStringInjected());
+</code></pre>
+          </section>
+          <section>
+            <h2>Testing Thrown Exceptions</h2>
+            <div>Use ExpectedException @Rule (UserServiceTest.java)</div>
+            <pre><code data-trim contenteditable>
+@Rule
+public ExpectedException thrown = ExpectedException.none();
+
+public void shouldThrowExceptionWhenUserNotFound() {
+  thrown.expect(UsernameNotFoundException.class);
+  thrown.expectMessage("not found");  //NOTE: does a contains()
+  
+  when(accountRepositoryMock.findByEmail("user@example.com"))
+    .thenReturn(null);
+    
+  userService.loadUserByUsername("user@example.com");
+}
 </code>
 
 </pre>
@@ -725,65 +743,6 @@ expect: 'findAllByMakeAndYear returns correct results'
               <li>I prefer readability of Spock Specs</li>
               <li>Opinions? Thoughts? Spock Questions?</li>
             </ul>
-          </section>
-        </section>
-        <section>
-          <section>
-            <h2>Checking Thrown Exceptions</h2>
-            <div>JUnit 4 actually provides a BAD way</div>
-            <pre><code data-trim contenteditable>
-//Don't copy this!
-@Test(expected=IndexOutOfBoundsException.class)
-public void testIndexOutOfBoundsException() {
-    Object a = service.getAllResults().get(2);
-    Object b = service.getAllForA(a).get(2);
-}
-</code></pre>
-          </section>
-          <section>
-            <h2>The Better Way</h2>
-            <div>Use ExpectedException @Rule (UserServiceTest.java)</div>
-            <pre><code data-trim contenteditable>
-@Rule
-public ExpectedException thrown = ExpectedException.none();
-
-public void shouldThrowExceptionWhenUserNotFound() {
-  thrown.expect(UsernameNotFoundException.class);
-  thrown.expectMessage("not found");  //NOTE: does a contains()
-  
-  when(accountRepositoryMock.findByEmail("user@example.com"))
-    .thenReturn(null);
-    
-  userService.loadUserByUsername("user@example.com");
-}
-</code></pre>
-          </section>
-          <section>
-            <h2>The Custom Way</h2>
-            <ul>
-              <li>BusinessValidationExceptionMatchers.java</li>
-              <li>Custom Hamcrest matchers for sourceField and arguments</li>
-            </ul>
-            <pre><code data-trim contenteditable>
-public static void expect(String sourceField, String message, 
-                          ExpectedException thrown, Object... args)
-{
-  thrown.expect(BusinessValidationException.class);
-  thrown.expectMessage(equalTo(message));
-  thrown.expect(hasSourceField(sourceField));
-  thrown.expect(containsArguments(args));
-}
-
-/** From UserServiceTest.java */
-public void shouldThrowBusinessExceptionWhenUsernameTooShort() {
-  //Uses custom expect matcher using equalTo() instead of containsString()
-  expect("username", "username.too.short", thrown, "ab");
-  
-  userService.loadUserByUsername("ab");
-}
-</code>
-
-</pre>
           </section>
         </section>
         <section>
