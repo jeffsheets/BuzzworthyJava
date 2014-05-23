@@ -399,14 +399,11 @@ public class WorkItemRepositoryIT extends IntegrationTestBaseClass {
       List<ProducerUplineDTO> result = dao.getProducerUplines(conn, "0666666", 2296, "11/14/2013"); 
       
       assertThat(result, hasSize(3)); 
-      assertThat(result.get(0).getProducerNumber(), is("0049116")); 
-      assertThat(result.get(0).getContractSID(), is("0003510")); 
+      assertThat(result.get(0).getProducerNumber(), is("11111")); 
       assertThat(result.get(0).getProducerType(), is("INDIVIDUAL")); 
-      assertThat(result.get(1).getProducerNumber(), is("0309324")); 
-      assertThat(result.get(1).getContractSID(), is("0003510")); 
+      assertThat(result.get(1).getProducerNumber(), is("22222")); 
       assertThat(result.get(1).getProducerType(), is("GENERAL AGENT")); 
-      assertThat(result.get(2).getProducerNumber(), is("0518149")); 
-      assertThat(result.get(2).getContractSID(), is("0003510")); 
+      assertThat(result.get(2).getProducerNumber(), is("33333"));
       assertThat(result.get(2).getProducerType(), is("MARKETER")); 
   } 
 } 
@@ -462,7 +459,7 @@ public class WorkItemRepositoryIT extends IntegrationTestBaseClass {
   
   @Before 
   public void setUp() throws MalformedURLException { 
-    URL url = new URL("http://webitg3.mutualofomaha.com/ebs_CommunicationData_WS/CommunicationData_WSService?wsdl"); 
+    URL url = new URL(ITG_PATH + "CommunicationData_WSService?wsdl"); 
     QName qname = new QName("http://service.communicationdata.ebs.mutualofomaha.com/", "CommunicationData_WSService"); 
     Service service = Service.create(url, qname); 
     stub = service.getPort(CommunicationDataWSDelegate.class); 
@@ -471,7 +468,7 @@ public class WorkItemRepositoryIT extends IntegrationTestBaseClass {
   @Test 
   public void testGetProducerDocumentData() throws Exception_Exception { 
     GetProducerDocumentDataWSRequest request = new GetProducerDocumentDataWSRequest(); 
-    request.setProducerNumber("0227988"); 
+    request.setProducerNumber("0202020"); 
     request.setRequestType("ALLDOCSSID");
     GetProducerDocumentDataWSResponse response = stub.getProducerDocumentData(request); 
     
@@ -539,17 +536,17 @@ public class WorkItemRepositoryIT extends IntegrationTestBaseClass {
   
   void "findDocumentsByPolicy response is handled well"() { 
     when: 
-    def results = service.findDocumentsByPolicy('907926-27') 
+    def results = service.findDocumentsByPolicy('999999-11') 
     
     then: 
     1 * service.findDocuments(_, '', _) >> mockResponse('findDocumentsResponse.xml') 
     
     results.size() == 10 
     results[0].EntryDate == '2012-02-07' 
-    results[0].PolicyNumber == '907926-27' 
+    results[0].PolicyNumber == '999999-11' 
     results[0].DocName == 'SOLO HLTH RIDER' 
     results[9].EntryDate == '2012-04-05' 
-    results[9].PolicyNumber == '907926-27' 
+    results[9].PolicyNumber == '999999-11' 
     results[9].DocName == 'OUTGOING CORR' 
   } 
 }
@@ -796,7 +793,6 @@ public void shouldThrowBusinessExceptionWhenUsernameTooShort() {
           <section>
             <h2>References</h2>
             <ul>
-              <li>TODO: SVN Repo of code examples</li>
               <li>Mrhaki Blog <a href="http://mrhaki.blogspot.co.uk/2013/05/spocklight-support-for-hamcrest-matchers.html" target="_blank">for Spock</a></li>
               <li>JavaCodeGeeks Testing 2013 <a href="http://www.javacodegeeks.com/2013/07/testing-web-based-spring-applications-in-2013-part-one.html" target="_blank">Blog Post</a></li>
             </ul>
