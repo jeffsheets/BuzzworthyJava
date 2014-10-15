@@ -1,7 +1,7 @@
-Slides for Java Testing 2014 talk at Mutual of Omaha BITS Conf 2014
+Slides for Buzzworthy Java with Spring Boot and JHipster at Omaha Java Users Group, October 2014
 =======
 
-Presentation here: http://jeffsheets.github.io/BITSConfJavaTesting2014
+Presentation here: http://jeffsheets.github.io/BuzzworthyJava
 
 #### Dependencies
 * Node
@@ -17,7 +17,7 @@ Presentation here: http://jeffsheets.github.io/BITSConfJavaTesting2014
   * Compiles jade
   * Stages everything in the dist folder
 * `grunt run`
-  * Starts a server running on port 8000
+  * Starts a server running on port 8001
   * watches for changes on project files
   * When files change, the assemble task is re-run and
   * Livereload triggers browser update on assemble task completion
