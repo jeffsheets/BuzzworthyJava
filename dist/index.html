@@ -33,8 +33,18 @@
         </section>
         <section>
           <h1><i class="fa fa-github"></i></h1>
-          <p>These slides are up on GitHub!</p><a href="http://jeffsheets.github.io/BuzzworthyJava/" target="_blank">jeffsheets/BuzzworthyJava</a>
+          <p>These slides are up on GitHub!</p><a href="http://jeffsheets.github.io/BuzzworthyJava/" target="_blank">jeffsheets.github.io/BuzzworthyJava</a>
           <p>Also a printable version | <a href="http://jeffsheets.github.io/BuzzworthyJava/?print-pdf#/" target="_blank">Open Printable PDF</a></p>
+        </section>
+        <section>
+          <h2>Buzzworthy Objectives</h2>
+          <ul>
+            <li>Much Spring Boot</li>
+            <li>So JHipster</li>
+            <li>Code Code Code</li>
+            <div>&nbsp;</div>
+            <li>Please ask questions! Open discussion</li><span>Everyone in this room is an expert!</span>
+          </ul>
         </section>
         <section>
           <section>
@@ -42,49 +52,138 @@
             <ul>
               <li>Java/Grails/Javascript Consultant for OPI</li>
               <li><i class="fa fa-twitter">&nbsp;</i><a href="https://twitter.com/sheetsj" target="_blank">@sheetsj</a></li>
-              <li>Website &nbsp;<a href="http://sheetsj.com/" target="_blank">http://sheetsj.com/</a></li>
+              <li>Website &nbsp;<a href="http://sheetsj.com/" target="_blank">sheetsj.com</a></li>
               <li>jeffsheets@gmail.com</li>
+              <li>Omaha</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Object Partners Inc (OPI)</h2>
+            <ul>
+              <li>Java, Groovy, JavaScript, Mobile, Open Source</li>
+              <li>~100 Senior Consultants
+                <ul>
+                  <li>Minneapolis, Omaha</li>
+                  <li>Chicago, Denver</li>
+                  <li>Average Tenure Over 5 years</li>
+                </ul>
+              </li>
+              <li>Founded 1996</li>
             </ul>
           </section>
         </section>
         <section>
-          <h2>Objectives Assuming...</h2>
-          <ul>
-            <li>Using Eclipse/STS/GGTS or RAD with Ivy</li>
-            <li>We want tools newer than JUnit 3</li>
-            <li>Possibly test with Groovy <i class="fa fa-heart"></i></li>
-            <li>Using Stored Procedures</li>
-            <li>Have some Web Service calls</li>
-            <div>&nbsp;</div>
-            <li>Please ask questions!</li><span>Everyone in this room is an expert!</span>
-          </ul>
+          <section>
+            <h2>Set the record straight</h2>
+            <ul>
+              <li>We learned Java because it was the 'hipster' lang</li>
+              <li>C and COBOL were the old domain</li>
+              <li>Garbage Collection FTW!</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Web Apps?</h2>
+            <ul>
+              <li>We wrote Web apps before JSPs</li>
+              <li>Instead of Apache mod_cgi and perl</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Javascript?</h2>
+            <ul>
+              <li>We wrote Javascript (DHTML) before it was cool!</li>
+              <li>CSS when it was still awesome</li>
+              <li>AJAX before the blog post calling it AJAX</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Where did it all go wrong?</h2>
+            <ul>
+              <li>I mean, we were using vi before Y2K (not emacs of course)</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Java's Image Problem</h2>
+            <ul>
+              <li>NodeJS, Ruby, Go, Swift, etc</li>
+              <li>Code Verbosity and Ceremony</li>
+              <li>Too "enterprisey"</li>
+              <li>App Servers</li>
+            </ul>
+          </section>
+          <section>
+            <ul>
+              <li>But what about Groovy and Scala?</li>
+              <li>Groovy was way before Swift</li>
+              <li>Kotlin (aka Scala the good parts)</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Java's Speed Problem</h2>
+            <ul>
+              <li>Not app performance</li>
+              <ul>
+                <li>Java wins that battle (see Netflix)</li>
+              </ul>
+              <li>But speed-to-market</li>
+              <ul>
+                <li>Hard to jumpstart</li>
+                <li>XML everywhere</li>
+                <li>App Servers</li>
+              </ul>
+            </ul>
+          </section>
+          <section>
+            <h3>Spicing up Java's Image</h3>
+            <ul>
+              <li>Spring Boot
+                <ul>
+                  <li>Write an app in a tweet! (so hipster)</li>
+                  <li>Opinionated Spring all wired up</li>
+                  <li>Production-ready by default</li>
+                  <li>No App Server Required - executable Jars</li>
+                </ul>
+              </li>
+              <li>JHipster
+                <ul>
+                  <li>Full stack AngularJS + Spring Boot</li>
+                  <li>JS Build Tools</li>
+                  <li>Beautiful Metrics</li>
+                </ul>
+              </li>
+              <li>Groovy Ecosystem
+                <ul>
+                  <li>Groovy / Spock / Gradle / gvm / Grails</li>
+                </ul>
+              </li>
+              <li>Others - Dropwizard, Akka, Vert.x</li>
+            </ul>
+          </section>
         </section>
         <section>
           <section>
-            <h2>Why test your code?</h2>
+            <h2>Spring Boot! &nbsp;<a href="http://docs.spring.io/spring-boot/docs/1.1.8.RELEASE/reference/htmlsingle/#getting-started-introducing-spring-boot" target="_blank"><i class="fa fa-rocket"></i></a></h2>
             <ul>
-              <li>Developers -> Code</li>
-              <li>Senior Developers -> Code and Test</li>
-              <li>Chuck Norris -> continuously deploys to prod with 100% test coverage -- in Assembly &nbsp;<i class="fa fa-thumbs-up"></i></li>
+              <li>Opinionated Spring all wired up</li>
+              <li>100% Java Config (no XML!)</li>
+              <li>Executable Jars, embedded web server (or not)</li>
+              <li>Sane Profiles and Properties</li>
+              <li>Easy REST & Microservices</li>
+              <li>Spring Data JPA - dynamic finders (grails style)</li>
+              <li>Production-ready by default</li>
             </ul>
           </section>
+        </section>
+        <section>
           <section>
-            <h2>Really why test?</h2>
+            <h2>JHipster! &nbsp;<a href="http://jhipster.github.io/" target="_blank"><i class="fa fa-rocket"></i></a></h2>
             <ul>
-              <li>Obvious (you wouldn&apos;t be in this room otherwise)</li>
-              <li>Molds your testable <b>coding style</b></li>
-              <li>Faster than redeploy-test-repeat</li>
-              <li>Coding with <b>confidence</b></li>
-              <li>Continuous Deployment &nbsp;<i class="fa fa-sun-o"></i></li>
-            </ul>
-          </section>
-          <section>
-            <h3>Keep It Simple</h3>
-            <ul>
-              <li>Do all of your tests pass?</li>
-              <li>Test Independence</li>
-              <li>Not too brittle</li>
-              <li>Jenkins Server (plus Ivy plus WAM)</li>
+              <li>Opinionated AngularJS + Spring Boot</li>
+              <li>Yeoman, Grunt, Bower, Gradle</li>
+              <li>Websockets with Atmosphere</li>
+              <li>Liquibase jumpstart</li>
+              <li>Thymeleaf</li>
+              <li>Community! The people are awesome</li>
             </ul>
           </section>
         </section>
