@@ -114,7 +114,7 @@
           <section>
             <ul>
               <li>But what about Groovy and Scala?</li>
-              <li>Groovy was way before Swift</li>
+              <li>Groovy was Swift before Swift</li>
               <li>Kotlin (aka Scala the good parts)</li>
             </ul>
           </section>
@@ -149,6 +149,7 @@
                   <li>Full stack AngularJS + Spring Boot</li>
                   <li>JS Build Tools</li>
                   <li>Beautiful Metrics</li>
+                  <li>HotSwapping Classes just works</li>
                 </ul>
               </li>
               <li>Groovy Ecosystem
@@ -173,6 +174,172 @@
               <li>Production-ready by default</li>
             </ul>
           </section>
+          <section>
+            <h2>Boot Install and CLI</h2>
+            <ul>
+              <li>gvm install springboot</li>
+              <li>A full tweet-sized 140 character app:</li>
+              <li>spring run GBR.groovy</li>
+              <pre><code data-trim contenteditable class="groovy">@RestController
+  class GBR {
+      @RequestMapping("/")
+      String gbr() {
+          "Go Big Red!"
+      }
+  }
+</code></pre>
+            </ul>
+          </section>
+          <section>
+            <h2>Jumpstart a Real Boot App</h2>
+            <ul>
+              <li>start.spring.io INITIALIZR<a href="http://start.spring.io/" target="_blank"><i class="fa fa-rocket"></i></a></li>
+              <li>a la carte selection menu</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Embedded Web Container</h2>
+            <ul>
+              <li>Just run as a main class in a jar (wut?)</li>
+              <li>Great for cloud deploys. Microservices. Fat Jars.</li>
+              <li>Weblogic, Websphere, Tomcat, JBoss, etc NOT REQUIRED</li>
+              <li>gradle bootRun</li>
+              <li>java -jar appname.jar</li>
+              <li>Or run Main class from IDE</li>
+              <li>Example...</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Or generate a War</h2>
+            <ul>
+              <li>gradle war</li>
+              <li>Warning Disclaimer:</li>
+              <ul>
+                <li>
+                  Running latest of any Java stack on Websphere/Weblogic
+                  is tricky. Especially Hibernate/JPA.
+                </li>
+                <li>Because classloaders...</li>
+                <li>It can be done</li>
+                <li>Get your Google / Stackoverflow keyword search game right</li>
+              </ul>
+            </ul>
+          </section>
+          <section>
+            <h2>Java Config</h2>
+            <ul>
+              <li>No XML, all Java Config (unless you like XML)</li>
+              <pre><code data-trim contenteditable class="java">@Configuration
+  @EnableAutoConfiguration
+  @ComponentScan
+  public class Application {
+  
+      public static void main(String[] args) {
+          SpringApplication.run(Application.class, args);
+      }
+      
+  }
+</code></pre>
+            </ul>
+          </section>
+          <section>
+            <h2>Everything is all wired up</h2>
+            <ul>
+              <li>No fiddling with hooking it all together</li>
+              <li>Production-ready out of the box</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Profiles</h2>
+            <ul>
+              <li>Important piece of Spring Boot</li>
+              <li>dev/test/prod profiles</li>
+              <li>Available in core Spring too, but Boot leans on them</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Properties</h2>
+            <ul>
+              <li>Hierarchical properties</li>
+              <li>application-*.properties, application.properties, System Props, JNDI Var, JVM Arg, ...</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Boot-style Props in raw Spring</h2>
+            <ul>
+              <li>Cool to use application-*.properties in non-Boot apps too</li>
+              <pre><code data-trim contenteditable class="java">properties sample here...
+</code></pre>
+            </ul>
+          </section>
+          <section>
+            <h2>Database Props</h2>
+            <ul>
+              <li>Extend it further, to pull props from a database table</li>
+              <pre><code data-trim contenteditable class="java">properties sample here...
+</code></pre>
+            </ul>
+          </section>
+          <section>
+            <h2>Spring Data JPA</h2>
+            <ul>
+              <li>Simple CRUD Repositories</li>
+              <li>Dynamic Finders</li>
+              <pre><code data-trim contenteditable class="java">sample here...
+</code></pre>
+            </ul>
+          </section>
+          <section>
+            <h2>Spring Data REST</h2>
+            <ul>
+              <li>Easy REST Entities</li>
+              <li>HATEOAS enabled</li>
+              <pre><code data-trim contenteditable class="groovy"> sample
+</code></pre>
+            </ul>
+          </section>
+          <section>
+            <h2>REST Exception Handling</h2>
+            <ul>
+              <li>ResponseEntityExceptionHandler @ControllerAdvice</li>
+              <li>Global handling based on Exception types</li>
+              <li>See RestResponseEntityExceptionHandler.java <a href="https://gist.github.com/jeffsheets/8b73620e0912afd95aa0#file-restresponseentityexceptionhandler-java" target="_blank"><i class="fa fa-external-link"></i></a></li>
+            </ul>
+          </section>
+          <section>
+            <h2>Spring MVC Tests &nbsp;<a href="https://gist.github.com/jeffsheets/ada3de8fe4a536e5351b" target="_blank"><i class="fa fa-external-link"></i></a></h2>
+            <pre><code data-trim contenteditable class="groovy">class AccountControllerTest extends Specification {
+  def accountController = new AccountController()
+  
+  MockMvc mockMvc = standaloneSetup(accountController).build()
+  
+  def "getAccount test hits the URL and parses JSON output"() {
+      when: 'rest account url is hit'
+      def response = mockMvc.perform(get('/rest/account')).andReturn().response
+      def content = new JsonSlurper().parseText(response.contentAsString)
+      
+      then: 'securityService correctly returned account in JSON'
+      response.status == OK.value()
+      
+      //Can test the whole content string that is returned
+      response.contentAsString == '{"username":"spockUser"}'
+      
+      //Or can use the JsonSlurper version to test the JSON as object
+      content.username == 'spockUser'
+  }
+}
+</code></pre>
+          </section>
+          <section>
+            <h2>Much more</h2>
+            <ul>
+              <li>JSP/GSP/Thymeleaf</li>
+              <li>Metrics - app-server style</li>
+              <li>No-SQL data stores, if that's your thing</li>
+              <li>Great docs</li>
+              <li>Simple tutorials</li>
+            </ul>
+          </section>
         </section>
         <section>
           <section>
@@ -189,670 +356,19 @@
         </section>
         <section>
           <section>
-            <h3>SVN Code Locations</h3>
-            <ul>
-              <li>Root /MainRepository/Insurance</li>
-              <li>/EBS/WebServices/trunk/ebs_ECommunicationsWS</li>
-              <li>
-                /EBS/WebServices/branches/WAS85_Branch/
-                hma_PdcrDemographics_WS-JUnitTests
-              </li>
-              <li>/EBS/WebServices/trunk/ebs_CommunicationData_WS-Test</li>
-              <li>Grails /BDS/ServiceWorkTool/trunk/ServiceWorkTool</li>
-            </ul>
-          </section>
-          <section>
-            <h3>Sample App</h3>
-            <ul>
-              <li>Simple Domain Model for Car Maintenance</li>
-              <li><i class="fa fa-github"></i><a href="https://github.com/jeffsheets/carmaint" target="_blank">https://github.com/jeffsheets/carmaint</a></li>
-              <li>Generated by <a href="https://github.com/kolorobot/spring-mvc-quickstart-archetype" target="_blank">spring-mvc-quickstart-archetype</a></li>
-            </ul>
-          </section>
-        </section>
-        <section>
-          <section>
-            <h3>Unit vs Integration vs Functional</h3>
-            <ul>
-              <li>unit: JUnit+Mockito or Spock</li>
-              <li>int: Database Transactional and Wiring</li>
-              <li>func: Geb, Selenium, Cloud...</li>
-              <li>Others???</li>
-              <li>How to separate the types?</li>
-            </ul>
-          </section>
-          <section>
-            <h2>Separating Tests (Mutual way)</h2>
-            <ul>
-              <li>src/com/mutualofomaha/pkg/MySource.java</li>
-              <li>test/com/mutualofomaha/pkg/MySourceTest.java</li>
-              <li>test/com/mutualofomaha/pkg/MySourceIntTest.java</li>
-              <li>groovytest/com/mutualofomaha/pkg/MySourceSpec.groovy</li>
-              <li>groovytest/com/mutualofomaha/pkg/MySourceIntSpec.groovy</li>
-              <li>Difficult to run only Unit Tests (or Int Tests)</li>
-            </ul>
-          </section>
-          <section>
-            <h2>Ivy Config</h2>
-            <pre><code data-trim contenteditable class="xml">
-  &lt;!--  test deps  -->   
-  &lt;dependency org="org.junit" name="junit" rev="latest.release"
-              conf="default->default" />   
-  &lt;dependency org="org.mockito" name="mockito" rev="latest.release"
-              conf="default->default" /> 
-              
-  &lt;!--  db2 deps for integration tests --> 
-  &lt;dependency org="com.ibm" name="db2" rev="latest.release"
-              conf="default->default" />
-</code>
-
-</pre>
-          </section>
-        </section>
-        <section>
-          <h2>Traditional JUnit</h2>
-          <div>CarRepositoryIT.java</div>
-          <pre><code data-trim contenteditable>
-//Setup your Eclipse Favorites for code suggestions
-import static org.junit.Assert.assertEquals;
-
-/* ... */
-
-assertEquals(2013, result.getYear().intValue());
-assertEquals("JunitMotors", result.getMake().getName());
-assertEquals(make.getId(), result.getMake().getId());
-assertEquals(car.getDescription(), result.getDescription());
-</code>
-
-</pre>
-        </section>
-        <section>
-          <section>
-            <h2>Hamcrest</h2>
-            <div>CarRepositoryIT.java</div>
-            <pre><code data-trim contenteditable>
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
-
-/* ... */
-
-assertThat(result.getYear().intValue(), is(equalTo(2013)));
-assertThat(result.getMake().getName(), is("JunitMotors"));
-assertThat(result.getMake().getId(), is(make.getId()));
-assertThat(result.getDescription(), is(car.getDescription()));
-
-//containsString
-//equalToIgnoringCase
-//hasKey for Maps, hasItem for Collections
-</code>
-</pre>
-          </section>
-          <section>
-            <h2>Hamcrest Details</h2>
-            <ul>
-              <li>Readable assertions (actual before expected)</li>
-              <li><a href="https://code.google.com/p/hamcrest/wiki/Tutorial" target="_blank">Hamcrest Docs</a>
-                <div>&nbsp;</div>
-              </li>
-              <li>ProviderRepositoryIT.java</li>
-            </ul>
-            <pre><code data-trim contenteditable>
-assertThat(result, not(nullValue()));
-assertThat(result, hasSize(original.size() + 1));
-
-//This requires overridden provider.equals method
-assertThat(result, hasItem(provider));
-</code>
-</pre>
-          </section>
-          <section>
-            <h2>Custom Matchers</h2>
-            <ul>
-              <li>Implement Matcher interface</li><span>matches() and describeTo() methods</span>
-              <li>Use static methods for <b>readability</b></li>
-              <li>CustomMatchers.java and PropertiesIT.java</li>
-            </ul>
-            <pre><code data-trim contenteditable>
-import static com.sheetsj.test.matchers.CustomMatchers.isStringInjected;
-
-/* ... */
-
-assertThat(anotherProperty, isStringInjected());
-</code></pre>
-          </section>
-          <section>
-            <h2>Testing Thrown Exceptions</h2>
-            <div>Use ExpectedException @Rule (UserServiceTest.java)</div>
-            <pre><code data-trim contenteditable>
-@Rule
-public ExpectedException thrown = ExpectedException.none();
-
-public void shouldThrowExceptionWhenUserNotFound() {
-  thrown.expect(UsernameNotFoundException.class);
-  thrown.expectMessage("not found");  //NOTE: does a contains()
-  
-  when(accountRepositoryMock.findByEmail("user@example.com"))
-    .thenReturn(null);
-    
-  userService.loadUserByUsername("user@example.com");
-}
-</code>
-
-</pre>
-          </section>
-        </section>
-        <section>
-          <section>
-            <h2>Mockito Annotations</h2>
-            <ul>
-              <li>Experience with Mockito? JMock? Others?</li>
-              <li>Why? To isolate our
-                <u><b>Unit Tests!</b></u>
-              </li>
-              <li>Mock method return values</li>
-              <li>Verify mock methods were called</li>
-              <li><strong>Spy </strong>to mock method on class-under-test</li>
-            </ul>
-          </section>
-          <section>
-            <h2>The Old Mockito Way</h2>
-            <div>WorkItemServiceOldMockitoWayTest.java</div>
-            <pre><code data-trim contenteditable>
-private WorkItemRepository workItemRepo = mock(WorkItemRepository.class);
-private WorkItemService service = new WorkItemService(workItemRepo);
-
-/* .. inside a test method .. */
-when(workItemRepo.findAll()).thenReturn(allWorkItems);
-</code></pre>
-          </section>
-          <section>
-            <h2>The New Mockito Way</h2>
-            <div>WorkItemServiceTest.java</div>
-            <pre><code data-trim contenteditable>
-@RunWith(MockitoJUnitRunner.class)
-public class WorkItemServiceTest {
-  @Mock
-  private WorkItemRepository workItemRepository;
-  
-  @InjectMocks
-  private WorkItemService service = new WorkItemService();
-}
-</code></pre>
-          </section>
-          <section>
-            <h2>Sneaky Spies
-              <div class="i fa fa-meh-o"></div>
-            </h2>
-            <ul>
-              <li>Spies are a code smell</li>
-              <li>But sometimes it is just easier (legacy)</li>
-            </ul>
-            <pre><code data-trim contenteditable class="java">
-@InjectMocks
-@Spy
-private WorkItemService service = new WorkItemService();
-
-/* ... in test method ... */
-doReturn(expectedList).when(service)
-     .selectWorkItemsByMakeAndYear("bmw", "2008", allWorkItems);
-     
-Collection&lt;WorkItem> results = service.findAllByMakeAndYear("bmw", "2008");
-
-//Showing nested matchers in contains and sameInstance
-assertThat(results, contains(sameInstance(expected)));
-</code></pre>
-          </section>
-          <section>
-            <h2>Mutual of Omaha Example</h2><small>ebs_ECommunicationsWS/test/com/mutualofomaha/ebs/method/RecordFollowupMethodTest.java</small>
-            <pre><code data-trim contenteditable class="java">
-@RunWith(MockitoJUnitRunner.class) 
-public class RecordFollowupMethodTest { 
-    @Mock 
-    private FollowupService followupService; 
-    
-    @Mock 
-    private CommFollowupReqValidator validator; 
-    
-    @InjectMocks 
-    private RecordFollowupMethod recordFollowupMethod; 
-    
-//...
-}
-</code></pre>
-          </section>
-          <section>
-            <h2>Mutual of Omaha Example - cont&apos;d</h2>
-            <pre><code data-trim contenteditable class="java">@Test 
-public void testGo_success() { 
-    CommFollowupReq request = new CommFollowupReq(); 
-    when(followupService.recordFollowup(request)).thenReturn(true); 
-    
-    CommFollowupResp result = recordFollowupMethod.go(request); 
-    
-    verify(followupService).recordFollowup(request); 
-    assertThat(result.getResponseCode(), is(R.ResponseCode.RESPONSE_CODE_SUCCESSFUL)); 
-    assertThat(result.getResponseMessage(), is(R.Notes.SUCCESSFUL_FOLLOWUP_RECORD)); 
-} 
-
-@Test 
-public void testGo_fail() { 
-    CommFollowupReq request = new CommFollowupReq(); 
-    when(followupService.recordFollowup(request)).thenReturn(false); 
-    
-    CommFollowupResp result = recordFollowupMethod.go(request); 
-    
-    assertThat(result.getResponseCode(), is(R.ResponseCode.RESPONSE_CODE_FATAL_ERROR)); 
-    assertThat(result.getResponseMessage(), is(R.Notes.UNSUCCESSFUL_REQUEST)); 
-}
-</code>
-
-</pre>
-          </section>
-        </section>
-        <section>
-          <section>
-            <h2>Integration Tests</h2>
-            <ul>
-              <li>Are you testing your ORM/SQL?</li>
-              <li>How about Stored Procedures?</li>
-              <li>Web Service Client calls?</li>
-            </ul>
-          </section>
-          <section>
-            <h2>Transactional Tests</h2><b>Auto-rollback from real database!</b><small>ebs_ECommunicationsWS/test/com/mutualofomaha/ebs/util/BaseIntegrationTestClass.java </small>
-            <pre><code data-trim contenteditable class="java">public abstract class BaseIntegrationTestClass { 
-  protected Connection conn = null; 
-  protected ModelBuilder modelBuilder = new ModelBuilder(); 
-  
-  @Before 
-  public void setUp() throws ClassNotFoundException, SQLException { 
-      conn = getConnection(); 
-      conn.setAutoCommit(false); 
-  } 
-  
-  @After 
-  public void tearDown() throws SQLException { 
-      if (conn != null) { 
-          conn.rollback(); 
-          conn.close(); 
-      } 
-  } 
-  
-  protected Connection getConnection() { /* .... */ } 
-} 
-</code></pre>
-          </section>
-          <section>
-            <h2>Transactional Tests 2</h2>
-            <div>Test now talks to real DB, and rollsback when finished!</div><small>WorkItemRepositoryIT.java</small>
-            <pre><code data-trim contenteditable>
-public class WorkItemRepositoryIT extends IntegrationTestBaseClass {
-  List&lt;WorkItem> original = workItemRepository.findAll();
-  
-  Manufacturer make = manufacturerRepository.save(
-                        new Manufacturer("JUnitMake"));
-  Car car = carRepository.save(
-            new Car(2013, make, "JunitModel", "LT FWD 3.6L V6 DOHC 24V"));
-  Provider provider = providerRepository.save(
-                        new Provider("Junit Tire Shop", "Shadow Lake"));
-                        
-  WorkItem workItem = new WorkItem(car, new Date(), "Oil Change", provider, 
-                 18123L, 60.12, "Took 1:45 so got free oil change coupon");
-  workItem = workItemRepository.save(workItem);
-  
-  List&lt;WorkItem> result = workItemRepository.findAll();
-}
-</code></pre>
-          </section>
-          <section>
-            <h2>Stored Procedure Testing</h2>
-            <div>Design code to accept passed in connection object</div><small>hma_PdcrDemographics_WS-JUnitTests/test/com/mutualofomaha/hma/ pdcrdemographics/dao/ProducerDAOTest.java</small>
-            <pre><code data-trim contenteditable>public class ProducerDAOTest extends BaseIntegrationTest { 
-  private ProducerDAO dao = new ProducerDAO(HmaPdcrDemographicsConstants.DB_SCHEMA); 
-  
-  @Test 
-  public void testGetProducerUplines() throws Exception { 
-      List<ProducerUplineDTO> result = dao.getProducerUplines(conn, "0666666", 2296, "11/14/2013"); 
-      
-      assertThat(result, hasSize(3)); 
-      assertThat(result.get(0).getProducerNumber(), is("11111")); 
-      assertThat(result.get(0).getProducerType(), is("INDIVIDUAL")); 
-      assertThat(result.get(1).getProducerNumber(), is("22222")); 
-      assertThat(result.get(1).getProducerType(), is("GENERAL AGENT")); 
-      assertThat(result.get(2).getProducerNumber(), is("33333"));
-      assertThat(result.get(2).getProducerType(), is("MARKETER")); 
-  } 
-} 
-</code></pre>
-          </section>
-          <section>
-            <h2>Test Positives and Negatives</h2>
-            <div>Not just the Happy Paths</div><small>ebs_CommunicationData_WS-Test/test/com/mutualofomaha/ebs/ communicationdata/dao/CommunicationDAOTest.java</small>
-            <pre><code data-trim contenteditable>public class CommunicationDAOTest extends BaseIntegrationTest { 
-  @Test 
-  public void testFindCode() throws Exception { 
-    String result = CommunicationDAO.findCode(
-                                     conn, "CONTRACTING", "Contract Packet");
-    assertEquals("06", result); 
-  } 
-  
-  @Test 
-  public void testFindCode_mixedCase() throws Exception { 
-    String result = CommunicationDAO.findCode(
-                                     conn, "Contracting", "CONTRACT Packet"); 
-    assertEquals("06", result); 
-  } 
-  
-  @Test 
-  public void testFindCode_notFoundValue() throws Exception { 
-    String result = CommunicationDAO.findCode(
-                                     conn, "CONTRACTING", "Made Up Value"); 
-    assertEquals("", result); 
-  } 
-} 
-</code>
-
-</pre>
-          </section>
-        </section>
-        <section>
-          <section>
-            <h2>Testing Web Service Clients</h2>
-            <ul>
-              <li>Chrome Wizdler (SOAP)</li>
-              <li>Chrome Postman (REST)</li>
-              <li>Avoid brittleness in Int Tests</li>
-              <li>Make life easier with groovy</li>
-              <li>Unit Test for isolation</li>
-            </ul>
-          </section>
-          <section>
-            <h2>WS Integration Test</h2>
-            <div>Avoid Brittleness</div>
-            <div>Hard to control data - Can check results not empty</div><small>ebs_CommunicationData_WS-Test/test/com/mutualofomaha/ebs/communicationdata/service</small>
-            <pre><code data-trim contenteditable>public class CommunicationData_WSIntegrationTest {
-  private CommunicationDataWSDelegate stub; 
-  
-  @Before 
-  public void setUp() throws MalformedURLException { 
-    URL url = new URL(ITG_PATH + "CommunicationData_WSService?wsdl"); 
-    QName qname = new QName("http://service.communicationdata.ebs.mutualofomaha.com/", "CommunicationData_WSService"); 
-    Service service = Service.create(url, qname); 
-    stub = service.getPort(CommunicationDataWSDelegate.class); 
-  } 
-  
-  @Test 
-  public void testGetProducerDocumentData() throws Exception_Exception { 
-    GetProducerDocumentDataWSRequest request = new GetProducerDocumentDataWSRequest(); 
-    request.setProducerNumber("0202020"); 
-    request.setRequestType("ALLDOCSSID");
-    GetProducerDocumentDataWSResponse response = stub.getProducerDocumentData(request); 
-    
-    //Only make sure we have results without errors
-    assertEquals(", ", response.getFeedbackMessage()); 
-  }
-}
-</code></pre>
-          </section>
-          <section>
-            <h2>EDR WS Integration Test</h2>
-            <div>Load a file to EDR - then Read it back!</div><small>ebs_ECommunicationsWS/test/com/mutualofomaha/ebs/dao/EdrDaoImplTest.java</small>
-            <pre><code data-trim contenteditable>public class EdrDaoImplTest { 
-  @Before
-  public void setUp() { //For SSL Communication
-    Security.setProperty("ssl.SocketFactory.provider", "com.ibm.jsse2.SSLSocketFactoryImpl"); 
-    Security.setProperty("ssl.ServerSocketFactory.provider", "com.ibm.jsse2.SSLServerSocketFactoryImpl"); 
-  } 
-  public void testLoadDocument() throws Exception { 
-    URL pdfResource = EdrDaoImplTest.class.getClassLoader().getResource("testdata/testpdf.pdf"); 
-    File pdfFile = new File(pdfResource.getFile()); 
-    byte[] pdfBytes = FileUtils.readFileToByteArray(pdfFile); 
-    
-    String result = edrDao.loadDocument(category, type, pdfBytes); 
-    assertTrue(StringUtils.isNotBlank(result)); 
-    
-    EdrGetRestletClient edrGetClient = new EdrGetRestletClient("SPA", key); 
-    byte[] responseBytes = edrGetClient.callEdrGetRawBytes(EnvironmentParms.getEnvironmentType()); 
-    Assert.assertTrue(responseBytes.length > 0); 
-    
-    File outputFile = new File("testoutput/testpdf-output.pdf"); 
-    FileUtils.writeByteArrayToFile(outputFile, responseBytes); 
-    Assert.assertTrue(FileUtils.contentEquals(pdfFile, outputFile)); 
-  }
-} 
-</code></pre>
-          </section>
-          <section>
-            <h2>Groovy WS Clients with wsLite</h2>
-            <div>AKA No Client Jars Required!</div><small>ServiceWorkTool/grails-app/services/com/mutualofomaha/ esc/swt/service/FileNetClientService.groovy</small>
-            <pre><code data-trim contenteditable class="groovy">SOAPResponse findDocuments(String query, String folderName, String maxRows) { 
-  send('findDocuments') { 
-    body { 
-      findDocuments(xmlns:BEANS) { 
-        arg0(xmlns:ARGS, userId) 
-        arg1(xmlns:ARGS, password) 
-        arg2(xmlns:ARGS, query) 
-        arg3(xmlns:ARGS, folderName) 
-        arg4(xmlns:ARGS, maxRows) 
-      } 
-    } 
-  } 
-} 
-</code></pre>
-          </section>
-          <section>
-            <h2>Groovy wsLite Unit Testing</h2>
-            <div>Save a response and use it to Unit Test!</div><small>ServiceWorkTool/trunk/ServiceWorkTool/test/unit/com/mutualofomaha/ esc/swt/service/FileNetClientServiceSpec.groovy</small>
-            <pre><code data-trim contenteditable class="groovy">class FileNetClientServiceSpec extends Specification {
-  protected SOAPResponse mockResponse(String filePath) { 
-    String text = this.getClass().getResource(filePath).text 
-    def envelope = new XmlSlurper().parseText(text) 
-    new SOAPResponse(envelope: envelope) 
-  } 
-  
-  void "findDocumentsByPolicy response is handled well"() { 
-    when: 
-    def results = service.findDocumentsByPolicy('999999-11') 
-    
-    then: 
-    1 * service.findDocuments(_, '', _) >> mockResponse('findDocumentsResponse.xml') 
-    
-    results.size() == 10 
-    results[0].EntryDate == '2012-02-07' 
-    results[0].PolicyNumber == '999999-11' 
-    results[0].DocName == 'SOLO HLTH RIDER' 
-    results[9].EntryDate == '2012-04-05' 
-    results[9].PolicyNumber == '999999-11' 
-    results[9].DocName == 'OUTGOING CORR' 
-  } 
-}
-</code>
-
-</pre>
-          </section>
-        </section>
-        <section>
-          <section>
-            <h2>Spock Testing Framework</h2>
-            <ul>
-              <li>"The Enterprise Ready Specification Framework"
-                <div class="i fa fa-rocket"></div>
-              </li>
-              <li>Yes, Spock is Groovy</li>
-              <li>Great for testing Java code!</li>
-              <li>Spock modules for Guice, Grails, Spring, etc</li>
-              <li>Read the <a href="http://code.google.com/p/spock/wiki/SpockBasics" target="_blank">Intro Docs</a></li>
-              <li>IANASE (I Am Not A Spock Expert)</li>
-            </ul>
-          </section>
-        </section>
-        <section>
-          <section>
-            <h2>Spock Test Code</h2>
-            <div>Basic Layout</div>
-            <pre><code data-trim contenteditable>
-class WorkItemServiceSpecTest extends Specification {
-  def service = new WorkItemService()
-  def "getYearAsString works for simple case"() {
-    given: 'a normal date'
-    def date = Date.parse("MM/dd/yyyy", "08/01/2013")
-    
-    when: 'getYearAsString is called'
-    def result = service.getYearAsString(date)
-    
-    then: 'year is correct on result'
-    result == "2013"
-  }
-}
-</code></pre>
-          </section>
-          <section>
-            <h2>Expect: for functional code</h2>
-            <pre><code data-trim contenteditable>
-def "getYearAsString works for simple case using expect block"() {
-  given: 'a normal date'
-  def date = Date.parse("MM/dd/yyyy", "08/01/2013")
-  
-  expect: 'getYearAsString is correct when called'
-  service.getYearAsString(date) == "2013"
-}
-</code></pre>
-          </section>
-          <section>
-            <h2>Spock Mocks Setup</h2>
-            <pre><code data-trim contenteditable>
-class WorkItemServiceSpecTest extends Specification {
-  def service = new WorkItemService()
-  def workItemRepository = Mock(WorkItemRepository)
-  def setup() {
-    service.workItemRepository = workItemRepository
-  }
-}
-</code></pre>
-          </section>
-          <section>
-            <h2>Spock Mocks - Simple</h2>
-            <pre><code data-trim contenteditable>
-def "findAllByMakeAndYear works with mocks"() {
-  given: 'a bunch of work items'
-    List&lt;WorkItem> allWorkItems = buildAllWorkItems()
-    
-  when: 'findAllByMakeAndYear is called'
-    def results = service.findAllByMakeAndYear('ford', '2013')
-    
-  then: 'results are correct'
-    1 * workItemRepository.findAll() >> allWorkItems
-    results.containsAll allWorkItems[2,4]
-}
-</code></pre>
-          </section>
-          <section>
-            <h2>Spock Mocks - Wildcard _</h2>
-            <pre><code data-trim contenteditable>
-/** not a good pattern. just showing it is possible */
-def "findAllByMakeAndYear with many tests at once"() {
-  given: 'a bunch of work items'
-    List&lt;WorkItem> allWorkItems = buildAllWorkItems()
-    _ * workItemRepository.findAll() >> allWorkItems
-    
-  expect: 'findAllByMakeAndYear is called and has correct results'
-    service.findAllByMakeAndYear('ford', '2013').containsAll(
-       allWorkItems[2,4])
-    service.findAllByMakeAndYear('ford', '2012').containsAll(
-       allWorkItems[0..1])
-    service.findAllByMakeAndYear('chevy', '2013').empty
-    !service.findAllByMakeAndYear('ford', '2014')
-}
-</code></pre>
-          </section>
-          <section>
-            <h2>Spock - Multiple when/then</h2>
-            <pre><code data-trim contenteditable>def "findAllByMakeAndYear with many tests at once but multiple blocks"() {
-  given: 'a bunch of work items'
-    List<WorkItem> allWorkItems = buildAllWorkItems()
-    
-  when: 'findAllByMakeAndYear is called for Ford and 2013'
-    def results = service.findAllByMakeAndYear('ford', '2013')
-    
-  then: 'results are correct'
-    1 * workItemRepository.findAll() >> allWorkItems
-    results.containsAll allWorkItems[2,4]
-    
-  when: 'findAllByMakeAndYear is called for Ford and 2012'
-    results = service.findAllByMakeAndYear('ford', '2012')
-    
-  then: 'results are correct'
-    1 * workItemRepository.findAll() >> allWorkItems
-    results.containsAll allWorkItems[0..1]
-}
-</code></pre>
-          </section>
-          <section>
-            <h2>Spock @Unroll Magic FTW!</h2>
-            <ul>
-              <li>Wow. Killer Feature! &nbsp; &nbsp; 
-                <div class="i fa fa-magic"></div>
-              </li>
-              <li>Parameterized Tests (anyone doing JUnit style?)</li>
-            </ul>
-            <pre><code data-trim contenteditable>
-@Unroll
-def "getYearAsString with #inputDate returns #result"
-                                (String inputDate, String result) {
-expect: 'getYearAsString is correct when called'
-    service.getYearAsString(
-              Date.parse("MM/dd/yyyy", inputDate)) == result
-              
-where:
-    inputDate    | result
-    "01/01/1999" | "1999"
-    "02/01/2000" | "2000"
-    "03/01/199"  | "199"
-    '03/01/2013' | '2013'	
-}
-</code></pre>
-          </section>
-          <section>
-            <h2>Spock + Hamcrest? &nbsp;<i class="fa fa-thumbs-down"></i></h2>
-            <div>Groovy is usually easier</div>
-            <pre><code data-trim contenteditable>
-expect: 'findAllByMakeAndYear returns correct results'
-  result1.containsAll allWorkItems[2,4]
-  result2.containsAll(allWorkItems[0..1])
-  result3.empty
-  !result4
-</code></pre>
-          </section>
-          <section>
-            <h2>Spock Miscellaneous</h2>
-            <ul>
-              <li>thrown() and notThrown()</li>
-              <li>setup() and cleanup()</li>
-              <li>setupSpec() and cleanupSpec()</li>
-              <li>@Ignore, @IgnoreRest, @Timeout, @FailsWith</li>
-              <li>where: using simple arrays instead of tables</li>
-              <li><a href="https://code.google.com/p/spock/wiki/SpockBasics" target="_blank">SpockBasics</a></li>
-            </ul>
-          </section>
-          <section>
-            <h2>Spock vs JUnit+Mockito+Hamcrest</h2>
-            <ul>
-              <li>Spock gives you power of Groovy</li>
-              <li>I prefer readability of Spock Specs</li>
-              <li>Opinions? Thoughts? Spock Questions?</li>
-            </ul>
-          </section>
-        </section>
-        <section>
-          <section>
             <h2>Conclusion</h2>
           </section>
           <section>
-            <h2>References</h2>
+            <h2>Many Many Thanks!</h2>
             <ul>
-              <li>Mrhaki Blog <a href="http://mrhaki.blogspot.co.uk/2013/05/spocklight-support-for-hamcrest-matchers.html" target="_blank">for Spock</a></li>
-              <li>JavaCodeGeeks Testing 2013 <a href="http://www.javacodegeeks.com/2013/07/testing-web-based-spring-applications-in-2013-part-one.html" target="_blank">Blog Post</a></li>
+              <li>Bootiful Apps talk by Josh Long <a href="http://" target="_blank">Josh Long</a></li>
+              <li>JHipster Twitter account<a href="http://" target="_blank">@jhipster</a></li>
+            </ul>
+          </section>
+          <section>
+            <h3>Github repos</h3>
+            <ul>
+              <li>github.com/jeffsheets</li>
             </ul>
           </section>
           <section>
