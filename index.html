@@ -22,8 +22,9 @@
   </head>
   <body>
     <div class="reveal">
+      <div class="boot-logo"></div>
       <div class="opi-logo"></div>
-      <!--.mutual-->
+      <div class="jhipster-logo"></div>
       <div class="slides">
         <section data-state="index-slide" class="index-section">
           <h1><i class="fa fa-coffee">&nbsp; &nbsp; </i><i class="fa fa-thumbs-up"></i></h1>
@@ -31,7 +32,14 @@
           <div>Jeff Sheets</div>
           <div>October 2014</div>
         </section>
-        <section>
+        <section data-state="image-slide" class="image-section"><img src="assets/img/spring-boot-icon-large.png" class="boot"/>
+          <div><small>http://projects.spring.io/spring-boot/</small></div>
+        </section>
+        <section data-state="image-slide" class="image-section"><img src="assets/img/hipster-logo.png" class="hipster"/>
+          <div><small>http://jhipster.github.io/</small></div>
+          <div><small>https://twitter.com/java_hipster/status/522857424181809152</small></div>
+        </section>
+        <section data-state="github-slide" class="github-section">
           <h1><i class="fa fa-github"></i></h1>
           <p>These slides are up on GitHub!</p><a href="http://jeffsheets.github.io/BuzzworthyJava/" target="_blank">jeffsheets.github.io/BuzzworthyJava</a>
           <p>Also a printable version | <a href="http://jeffsheets.github.io/BuzzworthyJava/?print-pdf#/" target="_blank">Open Printable PDF</a></p>
@@ -39,15 +47,14 @@
         <section>
           <h2>Buzzworthy Objectives</h2>
           <ul>
-            <li>An introduction to what they offer</li>
-            <li>Much Spring Boot</li>
-            <li>So JHipster</li>
-            <li>Code Code Code</li>
+            <li>An introduction to both Boot and JHipster</li>
+            <li>Sample Code</li>
+            <li>Pragmatic Usage Ideas</li>
             <div>&nbsp;</div>
             <li>Please ask questions! Open discussion</li><span>Everyone in this room is an expert!</span>
           </ul>
         </section>
-        <section>
+        <section data-state="opi-slide" class="opi-section">
           <section>
             <h2>About Me</h2>
             <ul>
@@ -79,13 +86,13 @@
             <ul>
               <li>We learned Java because it was the 'hipster' lang</li>
               <li>C and COBOL were the old domain</li>
-              <li>Garbage Collection FTW!</li>
+              <li>Garbage Collection and Object Oriented FTW!</li>
             </ul>
           </section>
           <section>
             <h2>Web Apps?</h2>
             <ul>
-              <li>We wrote Web apps before JSPs</li>
+              <li>We wrote Web apps before JSPs on Netscape</li>
               <li>Instead of Apache mod_cgi and perl</li>
             </ul>
           </section>
@@ -93,15 +100,13 @@
             <h2>Javascript?</h2>
             <ul>
               <li>We wrote Javascript (DHTML) before it was cool!</li>
-              <li>CSS when it was still awesome</li>
-              <li>AJAX before the blog post calling it AJAX</li>
+              <li>CSS when it wasn't LESS or SASS</li>
+              <li>AJAX before the blog post calling it AJAX <a href="http://www.adaptivepath.com/ideas/ajax-new-approach-web-applications/" target="_blank"><i class="fa fa-external-link"></i></a></li>
             </ul>
           </section>
           <section>
-            <h2>Where did it all go wrong?</h2>
-            <ul>
-              <li>I mean, we were using vi before Y2K (not emacs of course)</li>
-            </ul>
+            <h2>Where did it all go wrong?</h2><img src="assets/img/hipster-vinyl.jpg" class="sixty"/>
+            <div><small>http://www.buzzfeed.com/awesomer/the-most-hipster-things-that-have-ever-happened</small></div>
           </section>
           <section>
             <h2>Java's Image Problem</h2>
@@ -161,10 +166,13 @@
               <li>Others - Dropwizard, Akka, Vert.x</li>
             </ul>
           </section>
+          <section data-state="image-slide" class="image-section"><img src="assets/img/hipster-bow-tie.jpg"/>
+            <div><small>http://jhipster.github.io/</small></div>
+          </section>
         </section>
         <section>
           <section>
-            <h2>Spring Boot! &nbsp;<a href="http://docs.spring.io/spring-boot/docs/1.1.8.RELEASE/reference/htmlsingle/#getting-started-introducing-spring-boot" target="_blank"><i class="fa fa-rocket"></i></a></h2>
+            <h2>Spring Boot! &nbsp;<a href="http://docs.spring.io/spring-boot/docs/1.1.8.RELEASE/reference/htmlsingle/#getting-started-introducing-spring-boot" target="_blank"><i class="fa fa-external-link"></i></a></h2>
             <ul>
               <li>Opinionated Spring all wired up</li>
               <li>100% Java Config (no XML!)</li>
@@ -341,6 +349,10 @@
               <li>Simple tutorials</li>
             </ul>
           </section>
+          <section>
+            <h2>Boot bridges old and new Java worlds</h2><img src="assets/img/hipster-bike.jpg" class="sixty"/>
+            <div><small>http://www.buzzfeed.com/awesomer/the-most-hipster-things-that-have-ever-happened</small></div>
+          </section>
         </section>
         <section>
           <section>
@@ -358,9 +370,9 @@
           <section>
             <h2>Community &amp; Branding</h2>
             <ul>
-              <li>The developers are amazing</li>
+              <li>It starts with an image</li>
+              <li>Plus, the developers are amazing people</li>
               <li>The project is fun and positive</li>
-              <li>The single best thing about JHipster</li>
               <li>Julien Dubois @juliendubois</li>
               <li>Jérôme Mirc @JeromeMirc</li>
             </ul>
@@ -445,10 +457,10 @@
         </section>
         <section>
           <section>
-            <h2>Meta Review</h2>
+            <h2>Conclusion</h2>
           </section>
           <section>
-            <h2>What's not to like?</h2>
+            <h2>All good? What's not to like?</h2>
             <ul>
               <li>Bloat - Downloads the whole internet</li>
               <li>Memory footprint is tough for free cloud deploys</li>
@@ -469,27 +481,17 @@
               <li>Sometimes feels like building Grails from scratch, but you'll get there!</li>
             </ul>
           </section>
-        </section>
-        <section>
-          <section>
-            <h2>Conclusion</h2>
-          </section>
           <section>
             <h2>Many Many Thanks!</h2>
             <ul>
-              <li>Bootiful Apps talk by Josh Long <a href="http://" target="_blank">Josh Long</a></li>
-              <li>JHipster Twitter account<a href="http://" target="_blank">@jhipster</a></li>
+              <li>Bootiful Apps talk by Josh Long <a href="https://www.youtube.com/watch?v=T7kLMrqNI9k" target="_blank"><i class="fa fa-external-link"></i></a></li>
+              <li>Exploring Microframeworks by Dan Woods <a href="http://www.infoq.com/articles/microframeworks1-spring-boot" target="_blank"><i class="fa fa-external-link"></i></a></li>
+              <li>JHipster Twitter account <a href="https://twitter.com/java_hipster" target="_blank">@java_hipster</a></li>
             </ul>
           </section>
-          <section>
-            <h3>Github repos</h3>
-            <ul>
-              <li>github.com/jeffsheets</li>
-            </ul>
-          </section>
-          <section>
-            <h1><i class="fa fa-question-circle"></i></h1>
-            <h2>Questions</h2>
+          <section data-state="image-slide" class="image-section">
+            <h3>Questions &nbsp;<i class="fa fa-question-circle"></i></h3><img src="assets/img/hipster-final-boss.jpg" class="boss"/>
+            <div><small>https://twitter.com/Rokshimmer/status/514106534956388352</small></div>
           </section>
         </section>
       </div>
