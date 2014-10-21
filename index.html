@@ -54,6 +54,7 @@
           <h2>Buzzworthy Objectives</h2>
           <ul>
             <li>An introduction to both Boot and JHipster</li>
+            <li>An overview of the technologies involved</li>
             <li>Sample Code</li>
             <li>Pragmatic Usage Ideas</li>
             <div>&nbsp;</div>
@@ -217,19 +218,19 @@
           <section>
             <h2>Embedded Web Container</h2>
             <ul>
-              <li>Just run as a main class in a jar (wut?)</li>
+              <li>Just run as a main class in a jar</li>
               <li>Great for cloud deploys. Microservices. Fat Jars.</li>
               <li>Weblogic, Websphere, Tomcat, JBoss, etc NOT REQUIRED</li>
               <li>gradle bootRun</li>
               <li>java -jar appname.jar</li>
               <li>Or run Main class from IDE</li>
-              <li>Example...</li>
             </ul>
           </section>
           <section>
             <h2>Or generate a War</h2>
             <ul>
               <li>gradle war</li>
+              <li>war is also an executable jar file</li>
               <li>Warning Disclaimer:</li>
               <ul>
                 <li>
@@ -301,8 +302,10 @@
             <h2>Spring Data JPA</h2>
             <ul>
               <li>Simple CRUD Repositories</li>
-              <li>Dynamic Finders</li>
-              <pre><code data-trim contenteditable class="java">sample here...
+              <li>Dynamic Finders <a href="http://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods" target="_blank"><i class="fa fa-external-link"></i></a></li>
+              <pre><code data-trim contenteditable class="java">List<Attendee> findByNameOrderByNameAsc(String name);
+
+  List<Attendee> findByOrderByNameAsc();
 </code></pre>
             </ul>
           </section>
@@ -423,15 +426,21 @@
             </ul>
           </section>
           <section>
+            <h2>Generate App</h2><a href="http://jhipster.github.io/presentation/#/6" target="_blank">Steps<i class="fa fa-external-link"></i></a>
+            <pre><code data-trim contenteditable>npm install -g yo
+  npm install -g generator-jhipster
+  yo jhipster
+  gvm install gradle #if you don't have gradle
+  gradle bootRun
+  grunt server
+</code></pre>
+          </section>
+          <section>
             <h2>Code Walk-thru</h2>
           </section>
           <section>
-            <h2>Generate App</h2><a href="http://jhipster.github.io/presentation/#/6" target="_blank">Steps<i class="fa fa-external-link"></i></a>
-          </section>
-          <section>
             <h2>Entity Generators</h2>
-            <div>Demo create entities</div>
-            <pre><code data-trim contenteditable>yo jhipster docoolstuff
+            <pre><code data-trim contenteditable>yo jhipster:entity foo
 </code></pre>
           </section>
           <section>
@@ -448,7 +457,11 @@
             <ul>
               <li>Dev by default</li>
               <li>Compile or run with -Pprod to use Prod mode</li>
+              <li>or an exectuable war:</li>
             </ul>
+            <pre><code data-trim contenteditable>mvn -Pprod package
+  java -jar jhipster-0.0.1-SNAPSHOT.war --spring.profiles.active=prod
+</code></pre>
           </section>
           <section>
             <h2>Extras</h2>
