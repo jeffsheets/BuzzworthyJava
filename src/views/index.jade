@@ -64,6 +64,7 @@ html(class="no-js", ng-app="main")
             h2 Buzzworthy Objectives
             ul
               li An introduction to both Boot and JHipster
+              li An overview of the technologies involved
               li Sample Code
               li Pragmatic Usage Ideas
               div &nbsp;
@@ -205,17 +206,17 @@ html(class="no-js", ng-app="main")
           section
             h2 Embedded Web Container
             ul
-              li Just run as a main class in a jar (wut?)
+              li Just run as a main class in a jar
               li Great for cloud deploys. Microservices. Fat Jars.
               li Weblogic, Websphere, Tomcat, JBoss, etc NOT REQUIRED
               li gradle bootRun
               li java -jar appname.jar
               li Or run Main class from IDE
-              li Example...
           section
             h2 Or generate a War
             ul
               li gradle war
+              li war is also an executable jar file
               li Warning Disclaimer:
               ul
                 li Running latest of any Java stack on Websphere/Weblogic
@@ -273,9 +274,13 @@ html(class="no-js", ng-app="main")
             h2 Spring Data JPA
             ul
               li Simple CRUD Repositories
-              li Dynamic Finders
+              li Dynamic Finders 
+               a(href="http://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods", target="_blank")
+                i.fa.fa-external-link
               pre.
-                <code data-trim contenteditable class="java">sample here...
+                <code data-trim contenteditable class="java">List<Attendee> findByNameOrderByNameAsc(String name);
+
+                  List<Attendee> findByOrderByNameAsc();
                 </code>
           section
             h2 Spring Data REST
@@ -390,16 +395,23 @@ html(class="no-js", ng-app="main")
                a(href="http://jhipster.github.io/presentation/#/4", target="_blank") Server-side 
                 i.fa.fa-external-link
           section
-            h2 Code Walk-thru
-          section
             h2 Generate App
             a(href="http://jhipster.github.io/presentation/#/6", target="_blank") Steps
              i.fa.fa-external-link
+            pre.
+              <code data-trim contenteditable>npm install -g yo
+                npm install -g generator-jhipster
+                yo jhipster
+                gvm install gradle #if you don't have gradle
+                gradle bootRun
+                grunt server
+              </code>
+          section
+            h2 Code Walk-thru
           section
             h2 Entity Generators
-            div Demo create entities
             pre.
-              <code data-trim contenteditable>yo jhipster docoolstuff
+              <code data-trim contenteditable>yo jhipster:entity foo
               </code>
           section
             h2 JHipster-loaded
@@ -413,6 +425,11 @@ html(class="no-js", ng-app="main")
             ul
               li Dev by default
               li Compile or run with -Pprod to use Prod mode
+              li or an exectuable war:
+            pre.
+              <code data-trim contenteditable>mvn -Pprod package
+                java -jar jhipster-0.0.1-SNAPSHOT.war --spring.profiles.active=prod
+              </code>
           section
             h2 Extras
             ul
