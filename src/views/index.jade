@@ -20,8 +20,9 @@ html(class="no-js", ng-app="main")
 
   body
     .reveal
+      .boot-logo
       .opi-logo
-      //.mutual
+      .jhipster-logo
       .slides
         section.index-section(data-state="index-slide")
           h1
@@ -31,7 +32,19 @@ html(class="no-js", ng-app="main")
           div Jeff Sheets
           div October 2014
 
-        section
+        section.image-section(data-state="image-slide")
+          img(src="assets/img/spring-boot-icon-large.png").boot
+          div
+            small http://projects.spring.io/spring-boot/
+
+        section.image-section(data-state="image-slide")
+          img(src="assets/img/hipster-logo.png").hipster
+          div
+            small http://jhipster.github.io/
+          div
+            small https://twitter.com/java_hipster/status/522857424181809152
+
+        section.github-section(data-state="github-slide")
           h1
             i.fa.fa-github
           p These slides are up on GitHub!
@@ -42,15 +55,14 @@ html(class="no-js", ng-app="main")
         section
             h2 Buzzworthy Objectives
             ul
-              li An introduction to what they offer
-              li Much Spring Boot
-              li So JHipster
-              li Code Code Code
+              li An introduction to both Boot and JHipster
+              li Sample Code
+              li Pragmatic Usage Ideas
               div &nbsp;
               li Please ask questions! Open discussion
               span Everyone in this room is an expert!
 
-        section
+        section.opi-section(data-state="opi-slide")
           section
             h2 About Me
             ul
@@ -79,22 +91,25 @@ html(class="no-js", ng-app="main")
             ul
               li We learned Java because it was the 'hipster' lang
               li C and COBOL were the old domain
-              li Garbage Collection FTW!
+              li Garbage Collection and Object Oriented FTW!
           section
             h2 Web Apps?
             ul
-              li We wrote Web apps before JSPs
+              li We wrote Web apps before JSPs on Netscape
               li Instead of Apache mod_cgi and perl
           section
             h2 Javascript?
             ul
               li We wrote Javascript (DHTML) before it was cool!
-              li CSS when it was still awesome
-              li AJAX before the blog post calling it AJAX
+              li CSS when it wasn't LESS or SASS
+              li AJAX before the blog post calling it AJAX 
+               a(href="http://www.adaptivepath.com/ideas/ajax-new-approach-web-applications/", target="_blank") 
+                i.fa.fa-external-link
           section
             h2 Where did it all go wrong?
-            ul
-              li I mean, we were using vi before Y2K (not emacs of course)
+            img(src="assets/img/hipster-vinyl.jpg").sixty
+            div
+              small http://www.buzzfeed.com/awesomer/the-most-hipster-things-that-have-ever-happened
           section
             h2 Java's Image Problem
             ul
@@ -137,12 +152,16 @@ html(class="no-js", ng-app="main")
                 ul
                   li Groovy / Spock / Gradle / gvm / Grails
               li Others - Dropwizard, Akka, Vert.x
+          section.image-section(data-state="image-slide")
+            img(src="assets/img/hipster-bow-tie.jpg")
+            div
+              small http://jhipster.github.io/
 
         section
           section
             h2 Spring Boot! &nbsp;
              a(href="http://docs.spring.io/spring-boot/docs/1.1.8.RELEASE/reference/htmlsingle/#getting-started-introducing-spring-boot", target="_blank")
-              i.fa.fa-rocket
+              i.fa.fa-external-link
             ul
               li Opinionated Spring all wired up
               li 100% Java Config (no XML!)
@@ -298,6 +317,11 @@ html(class="no-js", ng-app="main")
               li No-SQL data stores, if that's your thing
               li Great docs
               li Simple tutorials
+          section
+            h2 Boot bridges old and new Java worlds
+            img(src="assets/img/hipster-bike.jpg").sixty
+            div
+              small http://www.buzzfeed.com/awesomer/the-most-hipster-things-that-have-ever-happened
 
         section
           section
@@ -315,9 +339,9 @@ html(class="no-js", ng-app="main")
           section
             h2 Community &amp; Branding
             ul
-              li The developers are amazing
+              li It starts with an image
+              li Plus, the developers are amazing people
               li The project is fun and positive
-              li The single best thing about JHipster
               li Julien Dubois @juliendubois
               li Jérôme Mirc @JeromeMirc
           section
@@ -392,9 +416,9 @@ html(class="no-js", ng-app="main")
               
         section
           section
-            h2 Meta Review
+            h2 Conclusion
           section
-            h2 What's not to like?
+            h2 All good? What's not to like?
             ul
               li Bloat - Downloads the whole internet
               li Memory footprint is tough for free cloud deploys
@@ -410,25 +434,22 @@ html(class="no-js", ng-app="main")
               li Use Spring Profiles now!
               li Java Config!
               li Sometimes feels like building Grails from scratch, but you'll get there!
-
-        section
-          section
-            h2 Conclusion
           section
             h2 Many Many Thanks!
             ul
               li Bootiful Apps talk by Josh Long 
-                a(href="http://", target="_blank") Josh Long
-              li JHipster Twitter account
-                a(href="http://", target="_blank") @jhipster
-          section
-            h3 Github repos
-            ul
-              li github.com/jeffsheets
-
-          section
-            h1
-              i.fa.fa-question-circle
-            h2 Questions
+                a(href="https://www.youtube.com/watch?v=T7kLMrqNI9k", target="_blank") 
+                 i.fa.fa-external-link
+              li Exploring Microframeworks by Dan Woods 
+               a(href="http://www.infoq.com/articles/microframeworks1-spring-boot", target="_blank")
+                i.fa.fa-external-link
+              li JHipster Twitter account 
+                a(href="https://twitter.com/java_hipster", target="_blank") @java_hipster
+          section.image-section(data-state="image-slide")
+            h3 Questions &nbsp;
+             i.fa.fa-question-circle
+            img(src="assets/img/hipster-final-boss.jpg").boss
+            div
+              small https://twitter.com/Rokshimmer/status/514106534956388352
 
     script(src="./assets/js/app.js")

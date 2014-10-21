@@ -7,10 +7,13 @@
 
 @logo-width:                  742px;
 @logo-height:                 267px;
-@mutual-width:                  270px;
-@mutual-height:                 56px;
+@jhipster-width:                  600px;
+@jhipster-height:                 842px;
 @logo-default-scale:          0.15;
-@mutual-default-scale:          .8;
+@jhipster-default-scale:          .1;
+@boot-width:                  364px;
+@boot-height:                 364px;
+@boot-default-scale:          .2;
 @logo-default-opacity:        0.5;
 @logo-overview-opacity:       0.1;
 @logo-red-color:              #ee311d;
@@ -35,7 +38,7 @@ body {
   color: @text-color;
 }
 
-.reveal .opi-logo {
+.opi-slide .opi-logo {
   position: fixed;
   top: 20px;
   left: 40px;
@@ -57,25 +60,49 @@ body {
   opacity: @logo-overview-opacity;
 }
 
-.reveal .mutual {
+.reveal .jhipster-logo {
   position: fixed;
   top: 15px;
   right: 20px;
-  background-image: url('../img/mutual-logo.png');
+  background-image: url('../img/hipster-logo.png');
   background-repeat: no-repeat;
   background-position:left top;
   background-size: 100%;
-  width: floor(@mutual-width * @mutual-default-scale);
-  height: floor(@mutual-height * @mutual-default-scale);
+  width: floor(@jhipster-width * @jhipster-default-scale);
+  height: floor(@jhipster-height * @jhipster-default-scale);
   opacity: @logo-default-opacity;
   .transition(~"right 0.7s ease, opacity 0.7s ease");
 }
-.index-slide .mutual {
-  right: -@mutual-width;
+.index-slide .jhipster-logo, .opi-slide .jhipster-logo,
+.github-slide .jhipster-logo, .image-slide .jhipster-logo {
+  right: -@jhipster-width;
   opacity: @logo-default-opacity;
 }
-.overview .mutual {
+.overview .jhipster-logo {
   right: 20px;
+  opacity: @logo-overview-opacity;
+}
+
+.reveal .boot-logo {
+  position: fixed;
+  top: 20px;
+  left: 40px;
+  width: floor(@boot-width * @boot-default-scale);
+  height: floor(@boot-height * @boot-default-scale);
+  background-image: url('../img/spring-boot-icon-large.png');
+  background-repeat: no-repeat;
+  background-position:left top;
+  background-size: 100%;
+  opacity: @logo-default-opacity;
+  .transition(~"left 0.7s ease, opacity 0.7s ease");
+}
+.index-slide .boot-logo, .opi-slide .boot-logo,
+.github-slide .boot-logo, .image-slide .boot-logo {
+  left: -@boot-width + 50px;
+  opacity: @logo-default-opacity;
+}
+.overview .boot-logo {
+  left: 40px;
   opacity: @logo-overview-opacity;
 }
 
