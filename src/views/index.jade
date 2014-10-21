@@ -73,7 +73,7 @@ html(class="no-js", ng-app="main")
 
         section.opi-section(data-state="opi-slide")
           section
-            h2 About Me
+            h2 About Me - Jeff Sheets
             ul
               li Java/Grails/Javascript Consultant for OPI
               li 
@@ -158,7 +158,7 @@ html(class="no-js", ng-app="main")
                   li Full stack AngularJS + Spring Boot
                   li JS Build Tools
                   li Beautiful Metrics
-                  li HotSwapping Classes just works
+                  li JHipster-loaded
               li Groovy Ecosystem
                 ul
                   li Groovy / Spock / Gradle / gvm / Grails
@@ -192,7 +192,7 @@ html(class="no-js", ng-app="main")
                   class GBR {
                       @RequestMapping("/")
                       String gbr() {
-                          "Go Big Red!"
+                          "Go Big Red! #Nebrasketball"
                       }
                   }
                 </code>
@@ -216,7 +216,7 @@ html(class="no-js", ng-app="main")
             h2 Or generate a War
             ul
               li gradle war
-              li war is also an executable jar file
+              li mvn package (also an executable jar file)
               li Warning Disclaimer:
               ul
                 li Running latest of any Java stack on Websphere/Weblogic
@@ -258,46 +258,117 @@ html(class="no-js", ng-app="main")
               li application-*.properties, application.properties, System Props, JNDI Var, JVM Arg, ...
           section
             h2 Boot-style Props in raw Spring
-            ul
-              li Cool to use application-*.properties in non-Boot apps too
-              pre.
-                <code data-trim contenteditable class="java">properties sample here...
-                </code>
+            div Cool to use application-*.properties in non-Boot apps too 
+               a(href="https://gist.github.com/jeffsheets/429b5454f9008aeccb1c", target="_blank")
+                i.fa.fa-external-link
+            pre.
+              <code data-trim contenteditable class="java">public class PropertiesInitializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
+              public void initialize(ConfigurableApplicationContext applicationContext) {
+                  ConfigurableEnvironment env = applicationContext.getEnvironment();
+           
+                  String[] activeProfiles = getActiveProfiles(env);
+           
+                  for (String profileName : activeProfiles) {
+                      log.info("Loading properties for Spring Active Profile: {}", profileName);
+                      try {
+                          ResourcePropertySource propertySource = new ResourcePropertySource(profileName
+                           + "EnvProperties", "classpath:application-" + profileName + ".properties");
+           
+                          env.getPropertySources().addLast(propertySource);
+                      } catch (IOException e) {
+                          log.error("ERROR during environment properties setup - TRYING TO LOAD: " + profileName, e);
+           
+                          //Okay to silently fail here, as we might have profiles
+                          // that do not have properties files (like dev1, dev2, etc)
+                      }
+                  }
+                }
+              </code>
           section
             h2 Database Props
-            ul
-              li Extend it further, to pull props from a database table
-              pre.
-                <code data-trim contenteditable class="java">properties sample here...
-                </code>
+            div Extend it further, to pull props from a database table 
+             a(href="https://gist.github.com/jeffsheets/8ab5f3aeb74787bdb051", target="_blank")
+              i.fa.fa-external-link
+            pre.
+              <code data-trim contenteditable class="java">public class SpringPropertiesConfig {
+              @PostConstruct
+              public void initializeDatabasePropertySourceUsage() {
+                  MutablePropertySources propertySources = ((ConfigurableEnvironment) env).getPropertySources();
+
+                  try {
+                      //dataSource, Table Name, Key Column, Value Column
+                      DatabaseConfiguration databaseConfiguration = new DatabaseConfiguration(dataSource(), "AppConfiguration", "propertyKey", "propertyValue");
+                      
+                      //CommonsConfigurationFactoryBean comes from https://java.net/projects/springmodules/sources/svn/content/tags/release-0_8/projects/commons/src/java/org/springmodules/commons/configuration/CommonsConfigurationFactoryBean.java?rev=2110
+                      //Per https://jira.spring.io/browse/SPR-10213 I chose to just copy the raw source into our project
+                      CommonsConfigurationFactoryBean commonsConfigurationFactoryBean = new CommonsConfigurationFactoryBean(databaseConfiguration);
+                      
+                      Properties dbProps = (Properties) commonsConfigurationFactoryBean.getObject();
+                      PropertiesPropertySource dbPropertySource = new PropertiesPropertySource("dbPropertySource", dbProps);
+
+                      //By being First, Database Properties take precedence over all other properties that have the same key name
+                      //You could put this last, or just in front of the application.properties if you wanted to...
+                      propertySources.addFirst(dbPropertySource);
+                  } catch (Exception e) {
+                      log.error("Error during database properties setup", e);
+                      throw new RuntimeException(e);
+                  }
+              }
+              </code>
           section
             h2 Spring Data JPA
             ul
               li Simple CRUD Repositories
+              li (findAll, create, update, delete, and more)
               li Dynamic Finders 
                a(href="http://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods", target="_blank")
                 i.fa.fa-external-link
-              pre.
-                <code data-trim contenteditable class="java">List<Attendee> findByNameOrderByNameAsc(String name);
+            pre.
+              <code data-trim contenteditable class="java">public interface AttendeeRepository extends JpaRepository<Attendee, Long> {
+
+                  List<Attendee> findByOrderByNameDesc();
+
+                  List<Attendee> findByNameOrderByNameAsc(String name);
 
                   List<Attendee> findByOrderByNameAsc();
-                </code>
+              }
+              </code>
           section
             h2 Spring Data REST
             ul
               li Easy REST Entities
               li HATEOAS enabled
-              pre.
-                <code data-trim contenteditable class="groovy"> sample
-                </code>
+              li Better for quick prototypes than prod (customization)
+            pre.
+              <code data-trim contenteditable class="groovy">@RepositoryRestResource(collectionResourceRel = "people", path = "people")
+                public interface PersonRepository extends PagingAndSortingRepository<Person, Long> {
+
+                  List<Person> findByLastName(@Param("name") String name);
+
+                }
+              </code>
           section
             h2 REST Exception Handling
             ul
-              li ResponseEntityExceptionHandler @ControllerAdvice
               li Global handling based on Exception types
               li See RestResponseEntityExceptionHandler.java 
                a(href="https://gist.github.com/jeffsheets/8b73620e0912afd95aa0#file-restresponseentityexceptionhandler-java", target="_blank")
                 i.fa.fa-external-link
+            pre.
+              <code data-trim contenteditable class="groovy">@ControllerAdvice
+                public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
+                    @ExceptionHandler({ Exception.class })
+                    @ResponseBody
+                    public ResponseEntity<?> handleAnyException(Exception e) {
+                        return errorResponse(e, HttpStatus.INTERNAL_SERVER_ERROR);
+                    }
+
+                    @ExceptionHandler({ InvocationTargetException.class, IllegalArgumentException.class})
+                    @ResponseBody
+                    public ResponseEntity handleMiscFailures(Throwable t) {
+                        return errorResponse(t, HttpStatus.BAD_REQUEST);
+                    }
+                              </code>
           section
             h2 Spring MVC Tests &nbsp;
              a(href="https://gist.github.com/jeffsheets/ada3de8fe4a536e5351b", target="_blank")
@@ -327,13 +398,15 @@ html(class="no-js", ng-app="main")
           section
             h2 Much more
             ul
-              li JSP/GSP/Thymeleaf
+              li JSP/GSP/Thymeleaf 
+               a(href="http://www.thymeleaf.org/doc/usingthymeleaf.html#dialects-the-standard-dialect", target="_blank")
+                i.fa.fa-external-link
               li Metrics - app-server style
               li No-SQL data stores, if that's your thing
               li Great docs
               li Simple tutorials
           section
-            h2 Boot bridges old and new Java worlds
+            h2 Old + New = Spring Boot
             img(src="assets/img/hipster-bike.jpg").sixty
             div
               small http://www.buzzfeed.com/awesomer/the-most-hipster-things-that-have-ever-happened
