@@ -420,8 +420,7 @@ html(class="no-js", ng-app="main")
               li Opinionated AngularJS + Spring Boot
               li Yeoman, Grunt, Bower, Gradle
               li Karma Client-side tests
-              li JHipster-loaded HotSwapping
-              li Liquibase jumpstart
+              li Liquibase data bootstrapping
               li Thymeleaf, Hazelcast, Logback, HikariCP
               li Websockets with Atmosphere
           section
@@ -430,15 +429,22 @@ html(class="no-js", ng-app="main")
               li It starts with an image
               li Plus, the developers are amazing people
               li The project is fun and positive
-              li Julien Dubois @juliendubois
-              li Jérôme Mirc @JeromeMirc
+              li Exhibit A: Response to Comic-Sans bug 
+               a(href="https://github.com/jhipster/generator-jhipster/issues/522", target="_blank")
+                i.fa.fa-external-link
+              li Julien Dubois 
+               a(href="https://twitter.com/juliendubois" target="_blank") @juliendubois 
+                i.fa.fa-twitter
+              li Jérôme Mirc 
+               a(href="https://twitter.com/JeromeMirc" target="_blank") @JeromeMirc 
+                i.fa.fa-twitter
           section
             h2 Code Generation?
             ul
               li Yeoman generates a jumpstarted app
               li Also Grails-like entity generators
               li Personally, I use it to build up an app structure
-              li At a minimum, generate an app and borrow ideas into your own
+              li At a minimum, generate an app and borrow ideas
               li Can 'update' from JHipster updates, but YMMV
               li vs Maven Archetypes
           section
@@ -469,23 +475,33 @@ html(class="no-js", ng-app="main")
                 i.fa.fa-external-link
           section
             h2 Generate App
-            a(href="http://jhipster.github.io/presentation/#/6", target="_blank") Steps
+            a(href="http://jhipster.github.io/presentation/#/6", target="_blank") Steps 
              i.fa.fa-external-link
             pre.
               <code data-trim contenteditable>npm install -g yo
-                npm install -g generator-jhipster
-                yo jhipster
-                gvm install gradle #if you don't have gradle
-                gradle bootRun
-                grunt server
+              npm install -g generator-jhipster
+              yo jhipster
+              gradle bootRun
+              grunt server
               </code>
           section
             h2 Code Walk-thru
           section
             h2 Entity Generators
+            div Create a Meeting Attendee List
             pre.
-              <code data-trim contenteditable>yo jhipster:entity foo
+              <code data-trim contenteditable>yo jhipster:entity location
+              //city, state, one-to-many attendee
+
+              yo jhipster:entity attendee
+              //name, previousAttendee, notes, many-to-one location
               </code>
+          section
+            h2 Show and Tell
+            ul
+              li Change db to on-disk
+              li Display city, state on attendee.html list (Livereload!)
+              li Improve previousAttendee Y/N
           section
             h2 JHipster-loaded
             ul
@@ -501,7 +517,7 @@ html(class="no-js", ng-app="main")
               li or an exectuable war:
             pre.
               <code data-trim contenteditable>mvn -Pprod package
-                java -jar jhipster-0.0.1-SNAPSHOT.war --spring.profiles.active=prod
+              java -jar jhipster-0.0.1-SNAPSHOT.war --spring.profiles.active=prod
               </code>
           section
             h2 Extras
@@ -509,10 +525,9 @@ html(class="no-js", ng-app="main")
               li Liquibase
               li Metrics screen
               li GZipping and HTTP Caching Headers
-              li Thymeleaf
               li ehcache and hazelcast
               li Docker container
-              li Heroku and Openshift deploments
+              li Heroku and Openshift deployments
               
         section
           section
@@ -522,7 +537,7 @@ html(class="no-js", ng-app="main")
             ul
               li Bloat - Downloads the whole internet
               li Memory footprint is tough for free cloud deploys
-              li Container support is beta
+              li Treat container support as "beta" (my words)
               ul
                 li I had trouble with Websphere 8.5.5
           section
@@ -533,7 +548,7 @@ html(class="no-js", ng-app="main")
               li Generate a JHipster app and look around
               li Use Spring Profiles now!
               li Java Config!
-              li Sometimes feels like building Grails from scratch, but you'll get there!
+              li Like building Grails from scratch...
           section
             h2 Many Many Thanks!
             ul

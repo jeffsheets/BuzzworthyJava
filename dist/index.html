@@ -436,8 +436,7 @@ public void initializeDatabasePropertySourceUsage() {
               <li>Opinionated AngularJS + Spring Boot</li>
               <li>Yeoman, Grunt, Bower, Gradle</li>
               <li>Karma Client-side tests</li>
-              <li>JHipster-loaded HotSwapping</li>
-              <li>Liquibase jumpstart</li>
+              <li>Liquibase data bootstrapping</li>
               <li>Thymeleaf, Hazelcast, Logback, HikariCP</li>
               <li>Websockets with Atmosphere</li>
             </ul>
@@ -448,8 +447,9 @@ public void initializeDatabasePropertySourceUsage() {
               <li>It starts with an image</li>
               <li>Plus, the developers are amazing people</li>
               <li>The project is fun and positive</li>
-              <li>Julien Dubois @juliendubois</li>
-              <li>Jérôme Mirc @JeromeMirc</li>
+              <li>Exhibit A: Response to Comic-Sans bug <a href="https://github.com/jhipster/generator-jhipster/issues/522" target="_blank"><i class="fa fa-external-link"></i></a></li>
+              <li>Julien Dubois <a href="https://twitter.com/juliendubois" target="_blank">@juliendubois <i class="fa fa-twitter"></i></a></li>
+              <li>Jérôme Mirc <a href="https://twitter.com/JeromeMirc" target="_blank">@JeromeMirc <i class="fa fa-twitter"></i></a></li>
             </ul>
           </section>
           <section>
@@ -458,7 +458,7 @@ public void initializeDatabasePropertySourceUsage() {
               <li>Yeoman generates a jumpstarted app</li>
               <li>Also Grails-like entity generators</li>
               <li>Personally, I use it to build up an app structure</li>
-              <li>At a minimum, generate an app and borrow ideas into your own</li>
+              <li>At a minimum, generate an app and borrow ideas</li>
               <li>Can 'update' from JHipster updates, but YMMV</li>
               <li>vs Maven Archetypes</li>
             </ul>
@@ -490,13 +490,12 @@ public void initializeDatabasePropertySourceUsage() {
             </ul>
           </section>
           <section>
-            <h2>Generate App</h2><a href="http://jhipster.github.io/presentation/#/6" target="_blank">Steps<i class="fa fa-external-link"></i></a>
+            <h2>Generate App</h2><a href="http://jhipster.github.io/presentation/#/6" target="_blank">Steps <i class="fa fa-external-link"></i></a>
             <pre><code data-trim contenteditable>npm install -g yo
-  npm install -g generator-jhipster
-  yo jhipster
-  gvm install gradle #if you don't have gradle
-  gradle bootRun
-  grunt server
+npm install -g generator-jhipster
+yo jhipster
+gradle bootRun
+grunt server
 </code></pre>
           </section>
           <section>
@@ -504,8 +503,21 @@ public void initializeDatabasePropertySourceUsage() {
           </section>
           <section>
             <h2>Entity Generators</h2>
-            <pre><code data-trim contenteditable>yo jhipster:entity foo
+            <div>Create a Meeting Attendee List</div>
+            <pre><code data-trim contenteditable>yo jhipster:entity location
+//city, state, one-to-many attendee
+
+yo jhipster:entity attendee
+//name, previousAttendee, notes, many-to-one location
 </code></pre>
+          </section>
+          <section>
+            <h2>Show and Tell</h2>
+            <ul>
+              <li>Change db to on-disk</li>
+              <li>Display city, state on attendee.html list (Livereload!)</li>
+              <li>Improve previousAttendee Y/N</li>
+            </ul>
           </section>
           <section>
             <h2>JHipster-loaded</h2>
@@ -524,7 +536,7 @@ public void initializeDatabasePropertySourceUsage() {
               <li>or an exectuable war:</li>
             </ul>
             <pre><code data-trim contenteditable>mvn -Pprod package
-  java -jar jhipster-0.0.1-SNAPSHOT.war --spring.profiles.active=prod
+java -jar jhipster-0.0.1-SNAPSHOT.war --spring.profiles.active=prod
 </code></pre>
           </section>
           <section>
@@ -533,10 +545,9 @@ public void initializeDatabasePropertySourceUsage() {
               <li>Liquibase</li>
               <li>Metrics screen</li>
               <li>GZipping and HTTP Caching Headers</li>
-              <li>Thymeleaf</li>
               <li>ehcache and hazelcast</li>
               <li>Docker container</li>
-              <li>Heroku and Openshift deploments</li>
+              <li>Heroku and Openshift deployments</li>
             </ul>
           </section>
         </section>
@@ -549,7 +560,7 @@ public void initializeDatabasePropertySourceUsage() {
             <ul>
               <li>Bloat - Downloads the whole internet</li>
               <li>Memory footprint is tough for free cloud deploys</li>
-              <li>Container support is beta</li>
+              <li>Treat container support as "beta" (my words)</li>
               <ul>
                 <li>I had trouble with Websphere 8.5.5</li>
               </ul>
@@ -563,7 +574,7 @@ public void initializeDatabasePropertySourceUsage() {
               <li>Generate a JHipster app and look around</li>
               <li>Use Spring Profiles now!</li>
               <li>Java Config!</li>
-              <li>Sometimes feels like building Grails from scratch, but you'll get there!</li>
+              <li>Like building Grails from scratch...</li>
             </ul>
           </section>
           <section>
