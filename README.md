@@ -2,6 +2,7 @@ Slides for Buzzworthy Java with Spring Boot and JHipster at Omaha Java Users Gro
 =======
 
 Presentation here: http://jeffsheets.github.io/BuzzworthyJava
+
 Screencast here: https://www.youtube.com/watch?v=yoEcBGxcRwU
 
 #### Dependencies
